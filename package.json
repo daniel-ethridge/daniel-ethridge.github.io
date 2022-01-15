@@ -1,0 +1,31 @@
+{
+  "name": "daniel-ethridge.github.io",
+  "version": "1.0.0",
+  "description": "Personal Website",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack serve --port 3000",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daniel-ethridge/daniel-ethridge.github.io.git"
+  },
+  "author": "Daniel Ethridge",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/daniel-ethridge/daniel-ethridge.github.io/issues"
+  },
+  "homepage": "https://github.com/daniel-ethridge/daniel-ethridge.github.io",
+  "dependencies": {
+    "@babel/core": "^7.16.7",
+    "babel-loader": "^8.2.3",
+    "html-webpack-plugin": "^5.5.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "^5.0.0",
+    "webpack": "^5.66.0",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.7.3"
+  }
+}
