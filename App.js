@@ -1,7 +1,9 @@
 import React from "react";
 
 const App = () => {
-    return;
+    return (
+        <h1>Daniel Ethridge</h1>
+    )
 }
 
 export default App;
