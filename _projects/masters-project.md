@@ -4,9 +4,6 @@ title: "Master's Project: Shape Song"
 description: "Research Question: How Does Cross-Instrumental Control Affect Engagement in a Network Music Environment"
 ---
 
-Master's Project: Shape Song
-============
-
 Shape song is a custom app that I developed from scratch to help research cross-instrumental control in a network music environment. I defined cross instrumental control as the ability for one participant to control timbral, temporal, melodic, etc. properties of another participant’s instrument or device. Imagine playing music with a group of people, and you and your friend are playing synthesizers. Of course you can both turn the knobs on your own synthesizer, but what if you could also turn the knobs on each other's synthesizer? Check out the demo video below!
 
 [![Video]](https://www.youtube.com/watch?v=AnS1vEmkQ9I)
