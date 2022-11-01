@@ -1,7 +1,7 @@
 ### your site title here
 
 title: Daniel Ethridge
-Musician | Software Engineer | Aspiring Multimedia Artist
+description: Musician | Software Engineer | Aspiring Multimedia Artist
 
 baseurl: "" #name of GitHub repository
 url: "" #custom url to be used instead of GitHub repository
