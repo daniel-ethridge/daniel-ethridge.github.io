@@ -1,144 +1,22 @@
 ---
 layout: post
-title: Master's Project
-description: Cross-Instrumental Control in a Network Music Environment
+title: "Master's Project: Shape Song"
+description: "Research Question: How Does Cross-Instrumental Control Affect Engagement in a Network Music Environment"
 ---
 
-How does Cross-Instrumental Control Affect Engagement in a Collaborative Network Music Environment?
+Master's Project: Shape Song
 ============
 
-2nd paragraph. *Italic*, **bold**, and `monospace`. Itemized lists
-look like:
+Shape song is a custom app that I developed from scratch to help research cross-instrumental control in a network music environment. I defined cross instrumental control as the ability for one participant to control timbral, temporal, melodic, etc. properties of another participant’s instrument or device. Imagine playing music with a group of people, and you and your friend are playing synthesizers. Of course you can both turn the knobs on your own synthesizer, but what if you could also turn the knobs on each other's synthesizer? Check out the demo video below!
 
-  * this one
-  * that one
-  * the other one
+https://www.youtube.com/watch?v=AnS1vEmkQ9I
 
-Note that the actual text
-content starts at 4-columns in.
+Shape song was developed using Unity's video game engine, Audiokinetic's interactive audio engine WWise, and the Photon Engine API for networking. Three participants could participate at once, and each was represented by an avatar in the application. Pressing the "J" key on the keyboard would play a note with pitch determined by the respective avatar's vertical position on the screen and volume determined by horizontal location. A higher position meant a higher pitch, while being further right on the screen meant a louder note. 
 
-> Block quotes are
-> written like so.
->
-> They can span multiple paragraphs,
-> if you like.
+The avatar's all had four body parts: a head, a torso, arms, and legs. Changing the color of those would in effect "turn the knobs" of that participant's synthesizer and change their sound. 
 
+All participants could create and delete squares and circles anywhere on the screen. Squares were percussion instruments, while circles were melodic lines. Depending on the amount of each shape present, the colors, and the brightnesses, participants could create different backing tracks to accompany them while they played their own synth with the "J" key. A the frequency cutoff of a global low-pass filter was controlled by an intensity slider which also controlled the brightness of the background. All the background music was synced together for each participant using a master clock inside of WWise.
 
-H2 Header
-------------
+Importantly, each participant was able to create and delete all shapes, modify colors and brightness values for all shapes, and change colors of all avatars. The study was divided into three parts: no cross-instrumental control (only modify your own avatar and one shape or the intensity slider), some cross-instrumental control (modify your avatar and someone elses and control either two shapes or one shape and the intensity slider), or total cross instrumental control (everyone controls everything).
 
-Here's a numbered list:
-
- 1. first item
- 2. second item
- 3. third item
-
-Note again how the actual text starts at 4 columns in (4 characters
-from the left side). Here's a code sample:
-
-    # Let me re-iterate ...
-    for i in 1 .. 10 { do-something(i) }
-
-As you probably guessed, indented 4 spaces. By the way, instead of
-indenting the block, you can use delimited blocks, if you like:
-
-~~~
-define foobar() {
-    print "Welcome to flavor country!";
-}
-~~~
-
-(which makes copying & pasting easier). You can optionally mark the
-delimited block for Pandoc to syntax highlight it by specifying the languagae after the start of a block (e.g. `~~~cpp`) which would look like :
-
-~~~cpp
-#include <iostream>
-using namespace std;
-
-int main() 
-{    
-    cout << "Size of char: " << sizeof(char) << " byte" << endl;
-    cout << "Size of int: " << sizeof(int) << " bytes" << endl;
-    cout << "Size of float: " << sizeof(float) << " bytes" << endl;
-    cout << "Size of double: " << sizeof(double) << " bytes" << endl;
-
-    return 0;
-}
-~~~
-
-### An H3 header ###
-
-Now a nested list:
-
- 1. First, get these ingredients:
-
-      * carrots
-      * celery
-      * lentils
-
- 2. Boil some water.
-
- 3. Dump everything in the pot and follow
-    this algorithm:
-
-        find wooden spoon
-        uncover pot
-        stir
-        cover pot
-        balance wooden spoon precariously on pot handle
-        wait 10 minutes
-        goto first step (or shut off burner when done)
-
-    Do not bump wooden spoon or it will fall.
-
-Notice again how text always lines up on 4-space indents (including
-that last line which continues item 3 above).
-
-Here's a footnote [^1].
-
-[^1]: Some footnote text.
-
-Tables can look like this:
-
-| Header 1 | Header 2                   | Header 3 |
-|:--------:|:--------------------------:|:--------:|
-| data1a   | Data is longer than header | 1        |
-| d1b      | add a cell                 |          |
-| lorem    | ipsum                      | 3        |
-|          | empty outside cells        |          |
-| skip     |                            | 5        |
-| six      | Morbi purus                | 6        |
-
-
-A horizontal rule follows.
-
-***
-
-Here's a definition list:
-
-apples
-  : Good for making applesauce.
-
-oranges
-  : Citrus!
-
-tomatoes
-  : There's no "e" in tomatoe.
-
-Again, text is indented 4 spaces. (Put a blank line between each
-term and  its definition to spread things out more.)
-
-Here's a "line block" (note how whitespace is honored):
-
-| Line one
-|   Line too
-| Line tree
-
-and images can be specified like so:
-
-![example image](https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?w=300&h=300&fit=crop "An exemplary image")
-
-Inline math equation: $\omega = d\phi / dt$. Display
-math should get its own line like so:
-
-$$I = \int \rho R^{2} dV$$
+Through a focus group at the end, I saw that the second condition (some cross-instrumental control) seemed to foster the most engagement. No cross-instrumental control was too limiting, while total cross-instrumental control was overwhelming. This result could be further tested and used in creating new unique and meaningful interactive performances and installations, both in person and remotely.
