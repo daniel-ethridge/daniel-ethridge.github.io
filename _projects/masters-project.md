@@ -4,12 +4,8 @@ title: Master's Project
 description: Cross-Instrumental Control in a Network Music Environment
 ---
 
-Example modified from [here](http://www.unexpected-vortices.com/sw/rippledoc/quick-markdown-example.html){:target="_blank"}.
-
-H1 Header
+How does Cross-Instrumental Control Affect Engagement in a Collaborative Network Music Environment?
 ============
-
-Paragraphs are separated by a blank line.
 
 2nd paragraph. *Italic*, **bold**, and `monospace`. Itemized lists
 look like:
