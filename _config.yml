@@ -1,7 +1,7 @@
 ### your site title here
 
-title: Your Name
-description: subtitle | affiliations | motto
+title: Daniel Ethridge
+Musician | Software Engineer | Aspiring Multimedia Artist
 
 baseurl: "" #name of GitHub repository
 url: "" #custom url to be used instead of GitHub repository
@@ -13,16 +13,8 @@ permalink: /blog/:year/:title/
 paginate_path: /blog/page:num/
 
 # Social media links in footer
-twitter: "#"
 linkedin: "#"
-stackoverflow: "#"
 github: "#"
-researchgate: "#"
-orcid: "#"
-quora: "#"
-instagram: "#"
-facebook: "#"
-
 
 # Markdown
 highlighter: rouge
@@ -48,12 +40,12 @@ collections:
     output: true
     permalink: /projects/:name/
     order:
-      - shortProject.md
-      - longerProjectTitle.md
-      - redirect.md
-      - project4.md
-      - project5.md
-      - project6.md
+      - masters-project.md
+      - music.md
+      - gtri.md
+      - anteronesia.md
+      - magnebacus.md
+      - mir-research.md
 
 sass:
   sass_dir: /assets/css/_sass
