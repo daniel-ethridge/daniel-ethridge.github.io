@@ -6,7 +6,7 @@ description: "Research Question: How Does Cross-Instrumental Control Affect Enga
 
 Shape song is a custom app that I developed from scratch to help research cross-instrumental control in a network music environment. I defined cross instrumental control as the ability for one participant to control timbral, temporal, melodic, etc. properties of another participant’s instrument or device. Imagine playing music with a group of people, and you and your friend are playing synthesizers. Of course you can both turn the knobs on your own synthesizer, but what if you could also turn the knobs on each other's synthesizer? Check out the demo video below!
 
-[![Video]()](https://www.youtube.com/watch?v=AnS1vEmkQ9I)
+[![Shape Song](/assets/images/play-shape-song.jpg)](https://www.youtube.com/watch?v=AnS1vEmkQ9I "Shape Song")
 
 Shape song was developed using Unity's video game engine, Audiokinetic's interactive audio engine WWise, and the Photon Engine API for networking. Three participants could participate at once, and each was represented by an avatar in the application. Pressing the "J" key on the keyboard would play a note with pitch determined by the respective avatar's vertical position on the screen and volume determined by horizontal location. A higher position meant a higher pitch, while being further right on the screen meant a louder note. 
 
