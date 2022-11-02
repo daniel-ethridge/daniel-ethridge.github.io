@@ -13,10 +13,10 @@ There are four pieces of music for the game: the main/title theme, the village t
 
 Check out the pieces below.
 
-[Main Theme](https://soundcloud.com/user-219856532/anteronesia-main-theme?si=8fa42845cb7e4d07b7c3590e4497b14b&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing "Main Theme")
+[Main Theme](https://soundcloud.com/user-219856532/anteronesia-main-theme "Main Theme")
 
-[Village Theme](https://soundcloud.com/user-219856532/anteronesia-village-theme?si=8fa42845cb7e4d07b7c3590e4497b14b&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing "Village Theme")
+[Village Theme](https://soundcloud.com/user-219856532/anteronesia-village-theme "Village Theme")
 
-[Forest Theme](https://soundcloud.com/user-219856532/anteronesia-forest-theme?si=8fa42845cb7e4d07b7c3590e4497b14b&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing "Forest Theme")
+[Forest Theme](https://soundcloud.com/user-219856532/anteronesia-forest-theme "Forest Theme")
 
-[Fight Music](https://soundcloud.com/user-219856532/anteronesia-fight-music?si=000da33f387146088a85d8cdb1a8158f&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing "Fight Music")
+[Fight Music](https://soundcloud.com/user-219856532/anteronesia-fight-music "Fight Music")
