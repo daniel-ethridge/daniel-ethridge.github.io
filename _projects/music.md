@@ -38,6 +38,7 @@ Watch it below!
 With lyrics written by my childhood best friend, I wrote the music to *Can't Complain* in the fall of 2019. It served as the final group project of my Recording and Mixing course during my master's degree at Georgia Tech. In the group, we recruited musicians to record, recorded ourselves (I'm playing piano in this), and fully edited and mixed the song from start to finish. 
 
 Listen here! (The link might not work on mobile. If that's the case, try a desktop computer.)
+
 [Can't Complain](https://soundcloud.com/user-219856532/cant-complain)
 
 *Perseverance in Chaos*
@@ -45,9 +46,11 @@ Listen here! (The link might not work on mobile. If that's the case, try a deskt
 I composed this instrumental piece in the spring of 2021. Most of the parts are MIDI instruments, though there are ethereal-sounding vocals that are present every now and then. Written with Ableton Live, I took advantage of Max for Live for this, so there is an accompanying Max/MSP patch that goes with this and controls the background effects heard throughout the piece. 
 
 Listen here! (The link might not work on mobile. If that's the case, try a desktop computer.)
+
 [](https://soundcloud.com/user-219856532/perseverance-in-chaos "Perseverance in Chaos")
 
 Other Work
 ===
 The works above are what I am featuring here, but there is more where that came from. Feel free to browse my soundcloud if you'd like!
+
 [SoundCloud](https://soundcloud.com/user-219856532 "SoundCloud")
