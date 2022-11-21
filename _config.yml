@@ -45,7 +45,6 @@ collections:
       - gtri.md
       - masters-project.md
       - magnebacus.md
-      - mir-research.md
 
 sass:
   sass_dir: /assets/css/_sass
