@@ -4,9 +4,11 @@ title: Anteronesia
 description: Video Game Prototype Exploring Anterograde Amnesia
 ---
 
-For a game design class in my final semester, I developed a prototype of a metroidvania type game called Anteronesia. The name is a portmanteau of the words anterograde and amnesia. 
-
-The video game was developed entirely in Unity. I composed original music for it (see my "Music and Multimedia" projects for more info on the music!), and coded everything from the character controls to the enemy AI. 
+I developed a prototype of a metroidvania-style game called Anteronesia (a portmanteau of anterograde and amnesia) to serve as my final project for two classes during the last semester of my master's degree. 
+The two classes were "Game Design" and "Computer Music Composition". I developed the game entirely using Unity, and I composed original music for it. 
+The game had to be created with at least one resource as an integral part, so I chose memory as my resource which fit perfectly with the amnesia theme. In the game,  
+memory allows a player to heal themselves, but it also cannot be allowed to run out. Running out of memory causes the player to lose their sanity, eventually killing them. 
+This effectively means that memory serves as both health and as a way to heal.				
 
 Check out the video below for a demo!
 
