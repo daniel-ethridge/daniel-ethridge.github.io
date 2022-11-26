@@ -7,7 +7,7 @@ profile:
 published: true
 ---
 
-I am a musician, software engineer, and aspiring multimedia artist. I am interested in exploring the ways that music and visual arts can be combined into new and unique interactive experiences. 
+I am a musician, software engineer, and aspiring university professor. I am interested in exploring the ways that music and visual arts can be combined into new and unique interactive experiences. 
 
 I currently work as a research scientist and software developer at the Georgia Tech Research Institute (GTRI) in the Electro-Optical Systems Laboratory. My work has included machine learning applied to audio signals, front end development using React, and C++ development using the Qt Framework. 
 
