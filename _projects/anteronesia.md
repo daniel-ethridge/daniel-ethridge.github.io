@@ -28,8 +28,7 @@ perfectly with the amnesia theme. In the game, memory allows a player to heal th
 be allowed to run out. Running out of memory causes the player to lose their sanity, eventually killing them. 
 This effectively means that memory serves as both health and as a way to heal.				
 
-Check out the video below for a demo!
-
+Check out the video below for a demo!\
 [![Anteronesia](/assets/images/anteronesia.jpg)](https://www.youtube.com/watch?v=qWli6nnr95o) 
 
 <i>Anteronesia</i> Music
