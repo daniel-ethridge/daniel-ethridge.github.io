@@ -13,8 +13,8 @@ permalink: /blog/:year/:title/
 paginate_path: /blog/page:num/
 
 # Social media links in footer
-linkedin: "#"
-github: "#"
+# linkedin: "daniel-ethridge1"
+github: "daniel-ethridge"
 
 # Markdown
 highlighter: rouge
