@@ -30,7 +30,8 @@ This effectively means that memory serves as both health and as a way to heal.
 
 Check out the video below for a demo!
 
-[![Anteronesia Demo](/assets/images/anteronesia.jpg)](https://www.youtube.com/watch?v=qWli6nnr95o "Anteronesia Demo")
+[![Anteronesia Demo](/assets/images/anteronesia.jpg)](https://www.youtube.com/watch?v=qWli6nnr95o) 
+[![Perspectrum](/assets/images/play-perspectrum.jpg)](https://www.youtube.com/watch?v=vlFEL2JK7bU)
 
 <i>Anteronesia</i> Music
 ===
