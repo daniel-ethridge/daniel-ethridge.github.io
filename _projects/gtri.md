@@ -24,8 +24,8 @@ included:
 During my first year with GTRI, I worked on a project aimed at classifying vehicles based soley on their engine sounds.
 We used Python exclusively for this project. My tasks included:
 
-* Researchint music information retrieval techniques to learn what potential methodologies might be. 
-* Researching into various machine learning architectures such as support vector machines and convolutional neural
+* Researching music information retrieval techniques to learn about potential methodologies to use.
+* Research into various machine learning architectures such as support vector machines and convolutional neural
 networks.
 * Implementing a modular and configurable audio processing pipeline in Python.
 * Implementing a variational autoencoder to experiement with sound generation.
@@ -33,9 +33,9 @@ networks.
 
 ### Front End Development with React ###
 
-My tasking for this project was to create a visualization of objects on a map using Javascript and React.js. Tasks
+My tasking for this project was to create a visualization of objects on a map using Javascript and React Tasks
 included:
 
-* Utilizing React.js to create a front end environment that could listen to and send messages to a python script.
+* Utilizing React to create a front end environment that could listen to and send messages to a python script.
 * Incorportate OpenLayers for its mapping capabilities. 
-* Create custom React.js components that could be used wherever they were needed. 
+* Create custom React components that could be used wherever they were needed. 

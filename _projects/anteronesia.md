@@ -18,15 +18,10 @@ death could be near.
 
 As per the class assignment, the game had to be developed using at least once resource to serve as the core of a
 resource mangament system. I chose memory as this resource which fits perfectly with the amnesia theme. 
-As the player moves through the world, he/she/they can collect memory by reading lore located on signs 
-throughout. This memory is what the player can use to heal themselves. With more development time, I would
+As the player moves through the world, he/she/they can collect memories that are scattered throughout.
+This memory is what the player can use to heal themselves. With more development time, I would
 have loved to also have memory be a second currency in the game (alongside regulary money) as well as play a
 role in a spellcasting system. 
-
-The game had to be created with at least one resource as an integral part, so I chose memory as my resource which fit
-perfectly with the amnesia theme. In the game, memory allows a player to heal themselves, but it also cannot
-be allowed to run out. Running out of memory causes the player to lose their sanity, eventually killing them. 
-This effectively means that memory serves as both health and as a way to heal.				
 
 Check out the video below for a demo!\
 [![Anteronesia](/assets/images/anteronesia.jpg)](https://www.youtube.com/watch?v=qWli6nnr95o) 
