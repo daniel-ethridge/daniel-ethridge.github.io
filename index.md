@@ -7,7 +7,7 @@ profile:
 published: true
 ---
 
-I am a musician, a software engineer, and an aspiring university professor. Currently, I am studying towards my PhD in Creative Technology and Design at the ATLAS Institute at the University of Colorado Boulder. 
+I am a musician, a software engineer, and an interdisciplinary scientist. Currently, I am studying towards my PhD in Creative Technology and Design at the ATLAS Institute at the University of Colorado Boulder. 
 
 "Creative Technology and Design? What's that?"
 
