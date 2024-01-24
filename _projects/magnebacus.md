@@ -4,7 +4,10 @@ title: Magnebacus
 description: A New and Unique Electronic Instrument
 ---
 **Created by:** Daniel Ethridge, Sophia Mehdizadeh, and Mohammad Jafari
-*2021 Moog Music Hackathon Winner*
+
+*2021 Moog Music Hackathon Winners*
+
+Check out the video below!
 
 [![Magnebacus](/assets/images/play-magnebacus.jpg)](https://youtu.be/PeHwQo6eCUo "Magnebacus")
 

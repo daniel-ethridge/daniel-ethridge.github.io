@@ -4,21 +4,20 @@ title: <i>Anteronesia</i>
 description: Video Game Prototype Exploring Anterograde Amnesia
 ---
 
-I developed a prototype of a metroidvania-style game called <i>Anteronesia</i> (a portmanteau of anterograde and 
+I developed a prototype of a metroidvania-style videogame called <i>Anteronesia</i> (a portmanteau of anterograde and 
 amnesia) to serve as my final project for two classes during the last semester of my master's degree. 
-The two classes were "Game Design" and "Computer Music Composition". I developed the game entirely within 
-Unity, and I composed all original music for it using Ableton Live. 
+The two classes were "Game Design" and "Computer Music Composition". I developed the game within 
+Unity, and I composed original music for it using Ableton Live. 
 
-While Unity has a built in audio engine, 
-it is not strong or flexible enough for what I wanted to acheive musically. I wanted the music to change 
-according to the character's state in the game as a way to give the player an auditory cue of how he/she/they
-are currently doing in the game. As the player's health begins to drop, the higher freuquencies begin to be
-filtered out of the audio. Additionally, an eerie melody begins to play louder and louder reminding them that
-death could be near.
+While Unity has a built in audio engine, it is not strong or flexible enough for what I wanted to acheive musically. 
+I wanted the music to change according to the player's state in the game as a way to provide an auditory 
+cue of how things are going. To acheive this, I utilized a dedicated audio engine called Wwise.
+As the player's health drops, the higher freuquencies are filtered out of the audio while an eerie melody begins to play louder and louder.
+This serves as a reminder that death could be near.
 
 As per the class assignment, the game had to be developed using at least once resource to serve as the core of a
-resource mangament system. I chose memory as this resource which fits perfectly with the amnesia theme. 
-As the player moves through the world, he/she/they can collect memories that are scattered throughout.
+resource management system. I chose memory as this resource which fits perfectly with the amnesia theme. 
+As the player moves through the world, they collect memories that are scattered throughout.
 This memory is what the player can use to heal themselves. With more development time, I would
 have loved to also have memory be a second currency in the game (alongside regulary money) as well as play a
 role in a spellcasting system. 
