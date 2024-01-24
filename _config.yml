@@ -45,6 +45,7 @@ collections:
       - gtri.md
       - anteronesia.md
       - magnebacus.md
+      - welcome-to-your-heart.md
 
 sass:
   sass_dir: /assets/css/_sass
