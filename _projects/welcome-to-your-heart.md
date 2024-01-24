@@ -1,10 +1,9 @@
 ---
 layout: post
-title: Welcome to your Heart
+title: <i>Welcome to your Heart</i>
 description: How Does Music Affect your Heart?
 ---
 
-# *Welcome to Your Heart!*
 In the fisrt 8 weeks of my PhD, I created an application called *Welcome to your Heart!* which explored
 the ways in different environments affect someone's nervous system and stress response. The application
 was created using Max / MSP and an arduino. The arduino's sole job was to act as a mediary between Max
