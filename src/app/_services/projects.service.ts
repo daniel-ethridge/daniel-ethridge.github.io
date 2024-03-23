@@ -8,9 +8,33 @@ import { Tag } from '../_models/Tag';
 export class ProjectsService {
 
   projects: Project[] = [
-    {id: 0, name: "Sample angular app1", summary: "test description1", description: "", projectLink: "", tags: [Tag.ANGULAR], pictures: []},
-    {id: 1, name: "Sample angular app2", summary: "test description2", description: "", projectLink: "", tags: [Tag.ANGULAR], pictures: []},
-    {id: 2, name: "Sample angular app3", summary: "test description3", description: "", projectLink: "", tags: [Tag.ANGULAR], pictures: []}
+    {
+      id: 0, 
+      name: "Sample angular appTesting now", 
+      summary: "test description1", 
+      description: "", 
+      projectLink: "", 
+      tags: [Tag.ANGULAR], 
+      pictures: ["../../assets/favicon.ico", "../../assets/favicon.ico"]
+    },
+    {
+      id: 1, 
+      name: "Sample angular app2", 
+      summary: "test description2", 
+      description: "", 
+      projectLink: "", 
+      tags: [Tag.ANGULAR], 
+      pictures: []
+    },
+    {
+      id: 2, 
+      name: "Sample angular app3", 
+      summary: "test description3", 
+      description: "", 
+      projectLink: "", 
+      tags: [Tag.ANGULAR], 
+      pictures: []
+    }
   ];
 
   constructor() { }
