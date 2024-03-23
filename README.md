@@ -1,29 +1,27 @@
-# Gradfolio
+# Website
 
-responsive, dark-mode ready Jekyll theme designed for use as a personal website and portfolio. [Here's a live demo](https://jitinnair1.github.io/gradfolio/)
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.1.
 
-## Features
-- Responsive
-- Respects Dark Mode preference set by user
-- Projects Page to showcase your work/side projects
-- Easily link to your profiles on ResearchGate and ORCID
+## Development server
 
-## Installation
-* Click on `Use this template`
-* Your new site should be ready at https://username.github.io/gradfolio/
-* You can now modify the contents and personalise the template
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-Alternatively, you can [download the source files](https://github.com/jitinnair1/gradfolio/archive/master.zip) and make changes locally. 
+## Code scaffolding
 
-To test these changes, open a terminal inside the source folder and use `jekyll serve --incremental --trace` to make it available on a local server (typically http://localhost:4000/)
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-The `--incremental` flag ensures that any changes you make are reflected in your browser in real-time and the `--trace` option might be useful for debugging if things break while you are changing the source files.
+## Build
 
-Once you have personalised and tested the site, you can create a new repo, upload these files and host your website from the repo. 
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-PS: If you liked the theme, do star :star: it! Thanks!
+## Running unit tests
 
-### Also, check out:
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-- [autoCV](https://github.com/jitinnair1/autocv) - a LaTeX template that builds and deploys the CV using GitHub Actions, so you will always have a ready link for your latest CV
-- [Tail](https://github.com/jitinnair1/tail) - a minimal, quick-setup template for a blog
+## Running end-to-end tests
+
+Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+
+## Further help
+
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
