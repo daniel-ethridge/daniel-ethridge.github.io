@@ -20,11 +20,20 @@ export class PortfolioComponent implements OnInit {
 
   projects = {} as Project[];
 
+  isCollapsed: boolean = true;
+  typescript: boolean = false;
+
   constructor(private titleService: Title, private projectService: ProjectsService) {
     this.titleService.setTitle("Daniel Ethridge - Portfolio");
   }
 
   ngOnInit(): void {
     this.projects = this.projectService.getProjects();
+  }
+
+  filter() {
+    let filterTags: Tag[] = [];
+
+    this.projects = this.projectService.getProjectsByFilter(filterTags);
   }
 }
