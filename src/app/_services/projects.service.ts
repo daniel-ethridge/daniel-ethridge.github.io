@@ -5,6 +5,7 @@ import { Tag } from '../_models/Tag';
 @Injectable({
   providedIn: 'root'
 })
+
 export class ProjectsService {
 
   projects: Project[] = [
@@ -51,5 +52,25 @@ export class ProjectsService {
     }
 
     return project;
+  }
+
+  getProjectsByFilter(filterTags: Tag[]) {
+    let filteredProjects: Project[] = [];
+
+    this.projects.forEach(function(project) {
+      let includesTag = true;
+
+      filterTags.forEach(function(filterTag) {
+        if (project.tags.includes(filterTag) == false) {
+          includesTag = false;
+        }
+      });
+    
+      if (includesTag) {
+        filteredProjects.push(project);
+      }
+    });
+
+    return filteredProjects;
   }
 }
