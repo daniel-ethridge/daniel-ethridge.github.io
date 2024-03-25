@@ -17,7 +17,8 @@
                                         <input 
                                             type="checkbox" 
                                             class="form-check-input position-static me-2"
-                                            [(ngModel)]="typescript">
+                                            [(ngModel)]="typescript"
+                                            name="typescript">
                                         <label class="form-check-label small">TypeScript</label>
                                     </div>
                                 </div>
@@ -30,7 +31,11 @@
                 </div>
             </div>
         </div>
-        <div *ngFor="let project of projects" class="col-lg-4 col-md-6 mb-4" style="max-width: 380px; min-width: 380px;">
+        <div 
+            *ngFor="let project of projects" 
+            class="col-lg-4 col-md-6 mb-4" 
+            style="max-width: 380px; min-width: 380px;"
+        >
             <app-project-card [project]="project"></app-project-card>
         </div>
     </div>
