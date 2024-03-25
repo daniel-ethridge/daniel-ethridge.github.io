@@ -1,0 +1,34 @@
+.column {
+    float: left;
+    width: 50%
+}
+
+.pre-gradient-left {
+    background-image: linear-gradient(white, blue);
+    min-height: 100px;
+}
+
+.pre-gradient-right {
+    background-image: linear-gradient(white, red);
+    min-height: 100px;
+}
+
+.gradient-left {
+    background-image: linear-gradient(blue, rgb(66, 184, 66));
+    min-height: 300px;
+}
+
+.gradient-right {
+    background-image: linear-gradient(red, rgb(66, 184, 66));
+    min-height: 300px;
+}
+
+.after-gradient {
+    background-color: rgb(66, 184, 66);
+    min-height: 200px;
+}
+
+.page-end {
+    background-image: linear-gradient(rgb(66, 184, 66), white);
+    min-height: 100px;
+}
