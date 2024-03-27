@@ -4,12 +4,12 @@
 }
 
 .pre-gradient-left {
-    background-image: linear-gradient(white, blue);
+    background-image: linear-gradient(black, blue);
     min-height: 100px;
 }
 
 .pre-gradient-right {
-    background-image: linear-gradient(white, red);
+    background-image: linear-gradient(black, red);
     min-height: 100px;
 }
 
@@ -23,12 +23,7 @@
     min-height: 300px;
 }
 
-.after-gradient {
-    background-color: rgb(66, 184, 66);
-    min-height: 200px;
-}
-
 .page-end {
-    background-image: linear-gradient(rgb(66, 184, 66), white);
+    background-image: linear-gradient(red, black);
     min-height: 100px;
 }

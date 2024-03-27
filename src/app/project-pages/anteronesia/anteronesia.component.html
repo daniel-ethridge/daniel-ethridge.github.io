@@ -1,0 +1,40 @@
+<body class="project-desc">
+
+    <!-- Header -->
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <h2 class="text-center"><i>{{project.name}}</i></h2>
+        </div>
+        <div class="col-md-4" style="text-align: right;">
+            <a routerLink="/portfolio">
+                <button class="btn btn-primary">Back to Portfolio</button>
+            </a>
+        </div>
+    </div>
+
+    <h4>Game Development</h4>
+    <p>
+        I developed a prototype of a metroidvania-style videogame called Anteronesia (a portmanteau of anterograde and amnesia) to serve as my final project for two classes during the last semester of my master’s degree. The two classes were “Game Design” and “Computer Music Composition”. I developed the game within Unity, and I composed original music for it using Ableton Live.
+    </p>
+    <p>
+        While Unity has a built in audio engine, it is not strong or flexible enough for what I wanted to acheive musically. I wanted the music to change according to the player's state in the game as a way to provide an auditory cue of how things are going. To acheive this, I utilized a dedicated audio engine called Wwise. As the player's health drops, the higher freuquencies are filtered out of the audio while an eerie melody begins to play louder and louder. This serves as a reminder that death could be near.
+    </p>
+    <p>
+        As per the class assignment, the game had to be developed using at least once resource to serve as the core of a resource management system. I chose memory as this resource which fits perfectly with the amnesia theme. As the player moves through the world, they collect memories that are scattered throughout. This memory is what the player can use to heal themselves. With more development time, I would have loved to also have memory be a second currency in the game (alongside regulary money) as well as play a role in a spellcasting system.
+    </p>
+    <p> Check out the video below for a demo!</p>
+    <div style="text-align: center;">
+        <a href={{videoLink}} target="_blank">
+            <img src={{videoPicture}}>
+        </a>
+    </div>
+    <h4 class="mt-5">Music Development</h4>
+    <p>
+        The pieces below make up the sound track to Anteronesia. They represent four different sections of the game. The main theme is the first piece to play upon starting the game. The “Village Theme” and the “Forest Theme” both represent the two main areas within the game. Finally, the “Fight Music” plays during the boss fight in the game against Tericken! Check out the pieces below. (Note that for some reason, the links may not work on mobile. Use a desktop or laptop computer if you're having issues.)
+    </p>
+    <a href={{mainThemeLink}} target="_blank">Main Theme</a><br/>
+    <a href={{villageThemeLink}} target="_blank">Village Theme</a><br/>
+    <a href={{forestThemeLink}} target="_blank">Forest Theme</a><br/>
+    <a href={{fightThemeLink}} target="_blank">Fight Music</a>
+</body>

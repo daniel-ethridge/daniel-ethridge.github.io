@@ -7,6 +7,7 @@ import { Project } from '../../../_models/Project';
   styleUrls: ['./project-card.component.css']
 })
 export class ProjectCardComponent {
+  
   @Input() project = {} as Project;
 
 }

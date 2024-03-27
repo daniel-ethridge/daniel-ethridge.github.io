@@ -4,18 +4,21 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HeaderComponent } from './header/header.component';
-import { NavComponent } from './nav/nav.component';
-import { HomeComponent } from './home/home.component';
-import { PortfolioComponent } from './portfolio/portfolio.component';
-import { ResumeComponent } from './resume/resume.component';
-import { ContactComponent } from './contact/contact.component';
-import { ProjectCardComponent } from './project-card/project-card.component';
-import { ModalModule } from 'ngx-bootstrap/modal';
-import { ProjectModalComponent } from './project-modal/project-modal.component'
-import { CarouselModule } from 'ngx-bootstrap/carousel'
-import { CollapseModule } from 'ngx-bootstrap/collapse'
+import { HeaderComponent } from './header/header/header.component';
+import { NavComponent } from './header/nav/nav.component';
+import { HomeComponent } from './main-pages/home/home.component';
+import { PortfolioComponent } from './main-pages/portfolio/portfolio.component';
+import { ResumeComponent } from './main-pages/resume/resume.component';
+import { ContactComponent } from './main-pages/contact/contact.component';
+import { ProjectCardComponent } from './main-pages/portfolio/project-card/project-card.component';
 import { FormsModule } from '@angular/forms';
+import { AnteronesiaComponent } from './project-pages/anteronesia/anteronesia.component';
+import { MagnebacusComponent } from './project-pages/magnebacus/magnebacus.component';
+import { AudiovascularComponent } from './main-pages/audiovascular/audiovascular.component';
+import { CompositionsComponent } from './project-pages/compositions/compositions.component';
+import { ShapeSongComponent } from './project-pages/shape-song/shape-song.component';
+import { WelcomeToYourHeartComponent } from './project-pages/welcome-to-your-heart/welcome-to-your-heart.component';
+import { GtriComponent } from './project-pages/gtri/gtri.component';
 
 @NgModule({
   declarations: [
@@ -27,15 +30,18 @@ import { FormsModule } from '@angular/forms';
     ResumeComponent,
     ContactComponent,
     ProjectCardComponent,
-    ProjectModalComponent
+    AnteronesiaComponent,
+    MagnebacusComponent,
+    AudiovascularComponent,
+    CompositionsComponent,
+    ShapeSongComponent,
+    WelcomeToYourHeartComponent,
+    GtriComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    ModalModule.forRoot(),
-    CarouselModule.forRoot(),
-    CollapseModule.forRoot(),
     FormsModule
   ],
   providers: [],
