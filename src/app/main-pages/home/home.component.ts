@@ -15,4 +15,6 @@ export class HomeComponent {
   constructor(private titleService: Title) {
     this.titleService.setTitle("Daniel Ethridge - Home");
   }
+
+  profilePhoto: string = "../../../assets/profile-photo-cropped.jpg"
 }
