@@ -5,6 +5,12 @@ import { Component } from '@angular/core';
   templateUrl: './ml-page-navigation.component.html',
   styleUrls: ['./ml-page-navigation.component.css']
 })
+
 export class MlPageNavigationComponent {
 
+  testbool: boolean;
+
+  constructor() {
+    this.testbool = true;
+  }
 }
