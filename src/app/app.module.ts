@@ -19,6 +19,12 @@ import { CompositionsComponent } from './project-pages/compositions/compositions
 import { ShapeSongComponent } from './project-pages/shape-song/shape-song.component';
 import { WelcomeToYourHeartComponent } from './project-pages/welcome-to-your-heart/welcome-to-your-heart.component';
 import { GtriComponent } from './project-pages/gtri/gtri.component';
+import { AudioPhysioCorrComponent } from './project-pages/audio-physio-corr/audio-physio-corr.component';
+import { MlIntroductionComponent } from './ml-project/ml-introduction/ml-introduction.component';
+import { MlConclusionsComponent } from './ml-project/ml-conclusions/ml-conclusions.component';
+import { MlDataPrepEdaComponent } from './ml-project/ml-data-prep-eda/ml-data-prep-eda.component';
+import { MlModelsAndMethodsComponent } from './ml-project/ml-models-and-methods/ml-models-and-methods.component';
+import { MlPageNavigationComponent } from './ml-project/ml-page-navigation/ml-page-navigation.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +42,13 @@ import { GtriComponent } from './project-pages/gtri/gtri.component';
     CompositionsComponent,
     ShapeSongComponent,
     WelcomeToYourHeartComponent,
-    GtriComponent
+    GtriComponent,
+    AudioPhysioCorrComponent,
+    MlIntroductionComponent,
+    MlConclusionsComponent,
+    MlDataPrepEdaComponent,
+    MlModelsAndMethodsComponent,
+    MlPageNavigationComponent,
   ],
   imports: [
     BrowserModule,

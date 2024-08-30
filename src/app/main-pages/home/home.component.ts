@@ -13,7 +13,7 @@ export class HomeComponent {
 
   // Angular service
   constructor(private titleService: Title) {
-    this.titleService.setTitle("Daniel Ethridge - Home");
+    this.titleService.setTitle("Daniel Ethridge | Home");
   }
 
   profilePhoto: string = "../../../assets/profile-photo-cropped.jpg"

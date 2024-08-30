@@ -9,6 +9,18 @@ export class ProjectsService {
 
   projects: Project[] = [
     {
+      id: 7,
+      name: "Machine Learning Project",
+      summary: "Machine Learning Project",
+      projectPage: "/portfolio/machine-learning/introduction"
+    },
+    {
+      id: 6,
+      name: "Low-Level Audio Feature Correlates to Physiological Arousal",
+      summary: "PhD Research: Year 1",
+      projectPage: "/portfolio/audio-physio-correlates"
+    },
+    {
       id: 0,
       name: "Anteronesia",
       summary: "Videogame prototype exploring anterograde amnesia",
