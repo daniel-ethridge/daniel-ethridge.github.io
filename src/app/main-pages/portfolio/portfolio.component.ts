@@ -17,12 +17,10 @@ export class PortfolioComponent implements OnInit {
   typescript: boolean = false;
 
   constructor(private titleService: Title, private projectService: ProjectsService) {
-    this.titleService.setTitle("Daniel Ethridge - Portfolio");
+    this.titleService.setTitle("Daniel Ethridge | Portfolio");
   }
 
   ngOnInit(): void {
     this.projects = this.projectService.getProjects();
   }
-
-  testFunc(): void {};
 }

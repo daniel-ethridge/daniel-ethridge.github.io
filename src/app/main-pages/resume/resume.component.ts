@@ -8,6 +8,6 @@ import { Title } from '@angular/platform-browser';
 })
 export class ResumeComponent {
   constructor(private titleService: Title) {
-    this.titleService.setTitle("Daniel Ethridge - Resume");
+    this.titleService.setTitle("Daniel Ethridge | Resume");
   }
 }
