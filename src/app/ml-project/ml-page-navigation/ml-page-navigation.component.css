@@ -1,0 +1,2 @@
+.login a p {display:none;}
+.login a:hover p {display:block;}

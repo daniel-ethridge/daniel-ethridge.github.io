@@ -25,6 +25,9 @@ import { MlConclusionsComponent } from './ml-project/ml-conclusions/ml-conclusio
 import { MlDataPrepEdaComponent } from './ml-project/ml-data-prep-eda/ml-data-prep-eda.component';
 import { MlModelsAndMethodsComponent } from './ml-project/ml-models-and-methods/ml-models-and-methods.component';
 import { MlPageNavigationComponent } from './ml-project/ml-page-navigation/ml-page-navigation.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -54,7 +57,10 @@ import { MlPageNavigationComponent } from './ml-project/ml-page-navigation/ml-pa
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    FormsModule
+    FormsModule,
+    MatMenuModule,
+    MatButtonModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
