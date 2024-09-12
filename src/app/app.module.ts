@@ -25,9 +25,16 @@ import { MlConclusionsComponent } from './ml-project/ml-conclusions/ml-conclusio
 import { MlDataPrepEdaComponent } from './ml-project/ml-data-prep-eda/ml-data-prep-eda.component';
 import { MlModelsAndMethodsComponent } from './ml-project/ml-models-and-methods/ml-models-and-methods.component';
 import { MlPageNavigationComponent } from './ml-project/ml-page-navigation/ml-page-navigation.component';
-import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
-import {MatIconModule} from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { MlPcaComponent } from './ml-project/ml-methods/ml-pca/ml-pca.component';
+import { MlClusteringComponent } from './ml-project/ml-methods/ml-clustering/ml-clustering.component';
+import { MlArmComponent } from './ml-project/ml-methods/ml-arm/ml-arm.component';
+import { MlDecisionTreeComponent } from './ml-project/ml-methods/ml-decision-tree/ml-decision-tree.component';
+import { MlNaiveBayesComponent } from './ml-project/ml-methods/ml-naive-bayes/ml-naive-bayes.component';
+import { MlRegressionComponent } from './ml-project/ml-methods/ml-regression/ml-regression.component';
+import { MlSupportVectorComponent } from './ml-project/ml-methods/ml-support-vector/ml-support-vector.component';
+import { MlEnsembleComponent } from './ml-project/ml-methods/ml-ensemble/ml-ensemble.component';
 
 @NgModule({
   declarations: [
@@ -52,17 +59,25 @@ import {MatIconModule} from '@angular/material/icon';
     MlDataPrepEdaComponent,
     MlModelsAndMethodsComponent,
     MlPageNavigationComponent,
+    MlPcaComponent,
+    MlClusteringComponent,
+    MlArmComponent,
+    MlDecisionTreeComponent,
+    MlNaiveBayesComponent,
+    MlRegressionComponent,
+    MlSupportVectorComponent,
+    MlEnsembleComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
-    MatMenuModule,
     MatButtonModule,
-    MatIconModule
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
