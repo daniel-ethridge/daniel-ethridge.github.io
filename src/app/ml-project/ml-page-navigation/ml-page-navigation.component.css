@@ -1,2 +1,3 @@
-.login a p {display:none;}
-.login a:hover p {display:block;}
+.nav-button-style {
+    padding: 0px 5px 15px 5px;
+}
