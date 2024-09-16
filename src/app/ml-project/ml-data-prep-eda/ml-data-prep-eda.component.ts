@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ClassRoutes } from 'src/app/_models/ClassRoutes';
 
 @Component({
   selector: 'app-ml-data-prep-eda',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./ml-data-prep-eda.component.css']
 })
 export class MlDataPrepEdaComponent {
-
+  pageRoute = new ClassRoutes().mlEda;
 }

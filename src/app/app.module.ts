@@ -35,6 +35,8 @@ import { MlNaiveBayesComponent } from './ml-project/ml-methods/ml-naive-bayes/ml
 import { MlRegressionComponent } from './ml-project/ml-methods/ml-regression/ml-regression.component';
 import { MlSupportVectorComponent } from './ml-project/ml-methods/ml-support-vector/ml-support-vector.component';
 import { MlEnsembleComponent } from './ml-project/ml-methods/ml-ensemble/ml-ensemble.component';
+import { FootnoteComponent } from './references/footnote/footnote.component';
+import { ReferencesComponent } from './references/references/references.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +69,8 @@ import { MlEnsembleComponent } from './ml-project/ml-methods/ml-ensemble/ml-ense
     MlRegressionComponent,
     MlSupportVectorComponent,
     MlEnsembleComponent,
+    FootnoteComponent,
+    ReferencesComponent,
   ],
   imports: [
     BrowserModule,

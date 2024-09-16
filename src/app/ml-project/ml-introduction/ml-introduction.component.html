@@ -1,2 +1,40 @@
 <app-ml-page-navigation/>
-<h1 style="text-align: center;">Introduction coming soon!</h1>
+
+
+<div class="container-sm">
+    <h1 class="text-center">
+        What does it take to make it onto the <i>Billboard Top 100</i>?
+    </h1>
+
+    <!-- Paragraph 1 -->
+    <p>
+        Millions of people in the world consume to music every day in both digital formats and live. The music industry's revenue was reported to be $28.6 billion at the beginning of 2024<app-footnote [pageRoute]="pageRoute" [id]="1"/>. It is an obvious and ubiquitous part of life, and advancements in the internet and social media are making it easier for both fans to access music and for artists to grow their fanbases<app-footnote [id]="2" [pageRoute]="pageRoute"/>. For artists, a common dream is often for a song to go viral which can lead to opportunities to transform a simple hobby into a music career. This is, of course, easier said than done. A quick google search for "what makes a viral song" returned a Medium.com article<app-footnote [id]="3" [pageRoute]="pageRoute"/> that lists "catchiness and relatability", "platform optimization", "emotional or cultural resonance", and "quality and production" as four keys. The author also lists TikTok and Spotify as critical for acheiving virality. Another online article<app-footnote [pageRoute]="pageRoute" [id]="4"/> lists marketing, simplicity, and sharability as important factors. The list of articles that describe how to make viral music is endless, but most likely none of them use any kind of scientific methods to back up what they are saying. 
+    </p>
+
+    <p>
+        A metric of song success, the <i>Billboard Hot 100,</i><app-footnote [id]="5" [pageRoute]="pageRoute"/> started in 1958. This a weekly chart that lists the top 100 most popular songs by U.S. artists. Songs are ranked each week based on total music streaming activity, radio airplay, and sales data. Having a song appear on the chart is a badge of honor and thus it is sought after by many artists. For a smaller artist, it could mean the breakthrough they need to truly start a career in music. It makes sense then that studying the songs on the <i>Billboard Hot 100</i> could be a useful exercise in viral song writing. Those songs made the list for a reason, and while many of the songs on the list are by established artists like rapper Post Malone and singer Sabrina Carpenter, the songs by these artists is popular for a reason. By studying the charts, new artists could find common threads in the top songs and learn from that. This, however, is definitely easier said than done.
+    </p>
+
+    <img class="img-center" src="../../../assets/ml-assets/billboard-hot-100-ex.png" alt="First 7 entries of the Billboard Hot 100 for the week of September 14th, 2024">
+
+    <h2>Questions</h2>
+    <ol>
+        <li>What aspects of a song best predict how popular it will become?</li>
+        <li>Does the time of year have any impact on what genre of song makes it to the Billboard Hot 100?</li>
+        <li>For big name artists (eg Taylor Swift, Elton John), to what degree does the quality of their song help them make it onto the <i>Billboard Hot 100</i>? In other words, is it the song or their name at that point that gets them there?</li>
+        <li>To what degree does the genre of song matter for making it to the <i>Billboard Hot 100</i>?</li>
+        <li>How does the valence of a song impact its success?</li>
+        <li>To what degree does the tempo of a song impact the probability of it being on the <i>Billboard Hot 100</i></li>
+        <li>Do loud and boistrous songs perform better than softer, acoustic songs?</li>
+        <li>How does the mode of a song (ie whether it is in a major or minor key) impact its success?</li>
+        <li>Does being a male vs a female singer have an impact on whether or not a song makes it to the <i>Billboard Hot 100</i>?</li>
+        <li>How has the type of song that makes it to the <i>Billboard Hot 100</i> changed between the 1950s and now?</li>
+    </ol>
+
+    <h2>References</h2>
+    <app-references [id]="1" [pageRoute]="pageRoute" referenceLink="https://www.billboard.com/business/business-news/ifpi-global-report-2024-music-business-revenue-market-share-1235637873/"/>
+    <app-references [id]="2" [pageRoute]="pageRoute" referenceLink="https://www.forbes.com/councils/forbesbusinesscouncil/2023/09/22/utilizing-social-media-in-the-music-industry/"/>
+    <app-references [id]="3" [pageRoute]="pageRoute" referenceLink="https://medium.com/@Michael_Arty_MPT_Agency/the-art-of-going-viral-part-1-the-formula-of-a-viral-song-aa64174bf99d"/>
+    <app-references [id]="4" [pageRoute]="pageRoute" referenceLink="https://www.edmprod.com/case-study-how-artists-and-songs-go-viral/"/>
+    <app-references [id]="5" [pageRoute]="pageRoute" referenceLink="https://www.billboard.com/charts/hot-100/"/>
+</div>
