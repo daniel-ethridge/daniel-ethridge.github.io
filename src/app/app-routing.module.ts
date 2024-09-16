@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './main-pages/home/home.component';
+import { ClassRoutes } from './_models/ClassRoutes';
 import { PortfolioComponent } from './main-pages/portfolio/portfolio.component';
 import { ResumeComponent } from './main-pages/resume/resume.component';
 import { ContactComponent } from './main-pages/contact/contact.component';
@@ -28,6 +29,9 @@ import { MlEnsembleComponent } from './ml-project/ml-methods/ml-ensemble/ml-ense
 /*
 Add routing to new pages below. Path then Angular component
 */
+
+let classRoutes = new ClassRoutes();
+
 const routes: Routes = [
   // Main pages
   {path: "home", component: HomeComponent},
@@ -47,8 +51,9 @@ const routes: Routes = [
 
   /* *** Machine Learning Project *** */
   // Main pages
-  {path: "portfolio/machine-learning/introduction", component: MlIntroductionComponent},
-  {path: "portfolio/machine-learning/data-prep-and-eda", component: MlDataPrepEdaComponent},
+  {path: classRoutes.mlIntroduction, component: MlIntroductionComponent},
+  {path: classRoutes.mlEda, component: MlDataPrepEdaComponent},
+  {path: "portfolio/machine-learning/models-and-methods", component: MlModelsAndMethodsComponent},
   {path: "portfolio/machine-learning/conclusions", component: MlConclusionsComponent},
   
   // Methods
@@ -65,8 +70,13 @@ const routes: Routes = [
   {path: "**", component:HomeComponent, pathMatch: 'full'}
 ];
 
+const routerOptions: ExtraOptions = {
+  anchorScrolling: 'enabled'
+}
+
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, routerOptions)],
   exports: [RouterModule]
 })
+
 export class AppRoutingModule { }
