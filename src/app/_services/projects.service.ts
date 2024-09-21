@@ -11,7 +11,7 @@ export class ProjectsService {
     {
       id: 7,
       name: "Machine Learning Project",
-      summary: "Machine Learning Project",
+      summary: "What does it take to make it onto the Billboard Top 100?",
       projectPage: "/portfolio/machine-learning/introduction"
     },
     {
