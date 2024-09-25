@@ -37,6 +37,12 @@ import { MlSupportVectorComponent } from './ml-project/ml-methods/ml-support-vec
 import { MlEnsembleComponent } from './ml-project/ml-methods/ml-ensemble/ml-ensemble.component';
 import { FootnoteComponent } from './references/footnote/footnote.component';
 import { ReferencesComponent } from './references/references/references.component';
+import { DataMiningNavigationComponent } from './data-mining-project/data-mining-navigation/data-mining-navigation.component';
+import { DataMiningIntroComponent } from './data-mining-project/data-mining-intro/data-mining-intro.component';
+import { DataMiningExplorationComponent } from './data-mining-project/data-mining-exploration/data-mining-exploration.component';
+import { DataMiningModelsComponent } from './data-mining-project/data-mining-models/data-mining-models.component';
+import { DataMiningConclusionsComponent } from './data-mining-project/data-mining-conclusions/data-mining-conclusions.component';
+import { DataMiningTeamComponent } from './data-mining-project/data-mining-team/data-mining-team.component';
 
 @NgModule({
   declarations: [
@@ -71,6 +77,12 @@ import { ReferencesComponent } from './references/references/references.componen
     MlEnsembleComponent,
     FootnoteComponent,
     ReferencesComponent,
+    DataMiningIntroComponent,
+    DataMiningNavigationComponent,
+    DataMiningConclusionsComponent,
+    DataMiningExplorationComponent,
+    DataMiningTeamComponent,
+    DataMiningModelsComponent
   ],
   imports: [
     BrowserModule,
