@@ -25,6 +25,11 @@ import { MlDecisionTreeComponent } from './ml-project/ml-methods/ml-decision-tre
 import { MlRegressionComponent } from './ml-project/ml-methods/ml-regression/ml-regression.component';
 import { MlSupportVectorComponent } from './ml-project/ml-methods/ml-support-vector/ml-support-vector.component';
 import { MlEnsembleComponent } from './ml-project/ml-methods/ml-ensemble/ml-ensemble.component';
+import { DataMiningIntroComponent } from './data-mining-project/data-mining-intro/data-mining-intro.component';
+import { DataMiningExplorationComponent } from './data-mining-project/data-mining-exploration/data-mining-exploration.component';
+import { DataMiningModelsComponent } from './data-mining-project/data-mining-models/data-mining-models.component';
+import { DataMiningConclusionsComponent } from './data-mining-project/data-mining-conclusions/data-mining-conclusions.component';
+import { DataMiningTeamComponent } from './data-mining-project/data-mining-team/data-mining-team.component';
 
 /*
 Add routing to new pages below. Path then Angular component
@@ -66,6 +71,12 @@ const routes: Routes = [
   {path: "portfolio/machine-learning/methods/support-vector-machines", component: MlSupportVectorComponent},
   {path: "portfolio/machine-learning/methods/ensemble", component: MlEnsembleComponent},
 
+  /* *** Data Mining Project *** */
+  {path: "portfolio/data-mining/introduction", component: DataMiningIntroComponent},
+  {path: "portfolio/data-mining/data-exploration", component: DataMiningExplorationComponent},
+  {path: "portfolio/data-mining/models", component: DataMiningModelsComponent},
+  {path: "portfolio/data-mining/conclusions", component: DataMiningConclusionsComponent},
+  {path: "portfolio/data-mining/team", component: DataMiningTeamComponent},
 
   {path: "**", component:HomeComponent, pathMatch: 'full'}
 ];

@@ -9,6 +9,12 @@ export class ProjectsService {
 
   projects: Project[] = [
     {
+      id: 8,
+      name: "Data Mining Project",
+      summary: "What can Steam Reviews Teach us about Game Design?",
+      projectPage: "/portfolio/data-mining/introduction"
+    },
+    {
       id: 7,
       name: "Machine Learning Project",
       summary: "What does it take to make it onto the Billboard Top 100?",
