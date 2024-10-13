@@ -30,6 +30,7 @@ import { DataMiningExplorationComponent } from './data-mining-project/data-minin
 import { DataMiningModelsComponent } from './data-mining-project/data-mining-models/data-mining-models.component';
 import { DataMiningConclusionsComponent } from './data-mining-project/data-mining-conclusions/data-mining-conclusions.component';
 import { DataMiningTeamComponent } from './data-mining-project/data-mining-team/data-mining-team.component';
+import { LitTimelineComponent } from './lit-timeline/lit-timeline.component';
 
 /*
 Add routing to new pages below. Path then Angular component
@@ -53,6 +54,9 @@ const routes: Routes = [
   {path: "portfolio/shape-song", component: ShapeSongComponent},
   {path: "portfolio/welcome-to-your-heart", component: WelcomeToYourHeartComponent},
   {path: "portfolio/audio-physio-correlates", component: AudioPhysioCorrComponent},
+
+  // Literature Visualizations
+  {path: "literature-timeline", component: LitTimelineComponent},
 
   /* *** Machine Learning Project *** */
   // Main pages
