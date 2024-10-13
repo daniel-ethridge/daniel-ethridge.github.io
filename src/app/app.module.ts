@@ -43,6 +43,7 @@ import { DataMiningExplorationComponent } from './data-mining-project/data-minin
 import { DataMiningModelsComponent } from './data-mining-project/data-mining-models/data-mining-models.component';
 import { DataMiningConclusionsComponent } from './data-mining-project/data-mining-conclusions/data-mining-conclusions.component';
 import { DataMiningTeamComponent } from './data-mining-project/data-mining-team/data-mining-team.component';
+import { LitTimelineComponent } from './lit-timeline/lit-timeline.component';
 
 @NgModule({
   declarations: [
@@ -82,7 +83,8 @@ import { DataMiningTeamComponent } from './data-mining-project/data-mining-team/
     DataMiningConclusionsComponent,
     DataMiningExplorationComponent,
     DataMiningTeamComponent,
-    DataMiningModelsComponent
+    DataMiningModelsComponent,
+    LitTimelineComponent
   ],
   imports: [
     BrowserModule,
