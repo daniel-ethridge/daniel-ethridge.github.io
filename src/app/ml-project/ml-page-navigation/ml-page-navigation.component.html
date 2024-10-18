@@ -1,5 +1,7 @@
-<mat-menu #ModelsAndMenus>
-    <a mat-menu-item routerLink="/portfolio/machine-learning/models-and-methods">Coming Soon</a>
+<mat-menu #ModelMenu>
+    <a mat-menu-item routerLink="/portfolio/machine-learning/methods/principal-component-analysis">PCA</a>
+    <a mat-menu-item routerLink="/portfolio/machine-learning/methods/clustering">Clustering</a> 
+    <a mat-menu-item routerLink="/portfolio/machine-learning/methods/association-rule-mining">ARM</a>   
 </mat-menu>
 
 <nav class="navbar-expand-md border-bottom mb-3">
@@ -16,7 +18,7 @@
                 </a>
             </li>
             <li class="nav-item nav-button-style">
-                    <button mat-stroked-button [mat-menu-trigger-for]="ModelsAndMenus">Models and Methods</button>
+                    <button mat-stroked-button [mat-menu-trigger-for]="ModelMenu">Models and Methods</button>
             </li>
             <li class="nav-item nav-button-style">
                 <a routerLink="/portfolio/machine-learning/conclusions">

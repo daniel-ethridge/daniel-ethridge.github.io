@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { HeaderComponent } from './header/header/header.component';
 import { NavComponent } from './header/nav/nav.component';
 import { HomeComponent } from './main-pages/home/home.component';
@@ -86,13 +87,14 @@ import { LitTimelineComponent } from './lit-timeline/lit-timeline.component';
     DataMiningModelsComponent,
     LitTimelineComponent
   ],
+  
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
     MatButtonModule,
-    MatMenuModule
+    MatMenuModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

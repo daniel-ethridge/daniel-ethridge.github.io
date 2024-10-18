@@ -5,6 +5,7 @@ import { Component } from '@angular/core';
   templateUrl: './ml-pca.component.html',
   styleUrls: ['./ml-pca.component.css']
 })
+
 export class MlPcaComponent {
 
 }
