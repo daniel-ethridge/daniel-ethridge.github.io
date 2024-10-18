@@ -30,7 +30,9 @@
               "./node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"            
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/mathjax/es5/core.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -46,7 +48,7 @@
                 {
                   "type": "initial",
                   "maximumWarning": "600kb",
-                  "maximumError": "1mb"
+                  "maximumError": "4mb"
                 },
                 {
                   "type": "anyComponentStyle",
