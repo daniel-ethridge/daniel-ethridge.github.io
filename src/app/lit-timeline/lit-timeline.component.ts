@@ -12,13 +12,27 @@ export class LitTimelineComponent {
 
   literature = {} as Literature[];
   alignside: string = "right";
+  years: number[] = [];
+  ids: number[] = [];
 
   constructor(private titleService: Title, private literatureService: LiteratureService) {
     this.titleService.setTitle("Daniel Ethridge | Literature Timeline")
   }
 
   ngOnInit(): void {
-    this.literature = this.literatureService.getLiterature();
+    this.literature = this.literatureService.getLiterature().reverse();
+    this.literature.forEach( (element) => {
+      if (!this.years.includes(element.year)) {
+        this.years.push(element.year);
+        if (element.id) {
+          this.ids.push(element.id);
+        }
+      }
+    })
+  }
+
+  writeYear(id: number) {
+    return this.ids.includes(id);
   }
 
   alignSide() {
