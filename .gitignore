@@ -38,6 +38,11 @@ yarn-error.log
 testem.log
 /typings
 
+# Python stuff
+.venv
+create_lit_review_entry.py
+__pycache__
+
 # System files
 .DS_Store
 Thumbs.db

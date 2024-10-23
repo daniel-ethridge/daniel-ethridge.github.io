@@ -32,8 +32,8 @@
                     <div class="{{alignDot()}}">
                         <div class="card">
                             <h3>{{lit.year}}{{monthMap(lit.month)}}. {{lit.title}}.</h3>
-                            <p *ngIf="lit.authors">Author(s): {{lit.authors}}</p>
-                            <p *ngIf="lit.goal">Goal: {{lit.goal}}</p>
+                            <p *ngIf="lit.authors">Author(s): {{lit.authors.join(", ")}}</p>
+                            <p *ngIf="lit.aims_questions">Aims and Research Questions: {{lit.aims_questions}}</p>
                             <p *ngIf="lit.methods">Methods: {{lit.methods}}</p>
                             <p *ngIf="lit.results">Results: {{lit.results}}</p>
                             <p *ngIf="lit.discussion">Discussion: {{lit.discussion}}</p>

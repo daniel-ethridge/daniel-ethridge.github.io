@@ -2,10 +2,10 @@ export interface Literature {
     title: string,
     year: number,
 
-    authors?: string,
     month?: number,
+    authors?: string[],
     link?: string,
-    goal?: string,
+    aims_questions?: string,
     methods?: string,
     results?: string,
     discussion?: string,

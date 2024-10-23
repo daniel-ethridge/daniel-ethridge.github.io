@@ -26,7 +26,7 @@ export class LiteratureService {
             let timestring: string;
             element.id = newId;
             newId += 1;
-            if (element.month != undefined) {
+            if ((element.month != undefined) && (element.month != 0)) {
                 let monthString: string = element.month.toString();
                 if (monthString.length === 1) {
                     monthString = "0" + monthString;
@@ -79,7 +79,7 @@ export class LiteratureService {
             let lit: Literature = {  // Default lit
                 title: "",
                 id: -1,
-                authors: "",
+                authors: [],
                 year: -1
             };
 
