@@ -10,10 +10,10 @@
                     <div class="row mx-0">
                         <small><b>Literature Tags</b></small>
                         <div class="form-group">
-                            <div *ngFor="let tagList of twoDTags.reverse()" class="row">
+                            <div *ngFor="let tagList of twoDTags" class="row">
                                 <div *ngFor="let tag of tagList" class="col-3">
                                     <div class="form-check">
-                                        <input 
+                                        <input id="{{tag}}checkbox"
                                             class="form-check-input position-static me-2"
                                             type="checkbox"
                                             (change)="filterTags(tag)">
