@@ -94,7 +94,9 @@ export class LiteratureService {
         // Create the sorted array and return
         let sorted: Literature[] = [];
         sortedIds.forEach(element => {
-            sorted.push(getLiteratureById(element));
+            if (!sorted.includes(getLiteratureById(element))) {
+                sorted.push(getLiteratureById(element));
+            }
         });
 
         return sorted;

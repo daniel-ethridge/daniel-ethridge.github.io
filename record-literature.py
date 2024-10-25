@@ -61,7 +61,7 @@ class LitEntry:
     self.months = np.arange(1, 13).tolist()
     self.months = ["None"] + self.months
     self.months_var = tk.StringVar(self.root_)
-    self.months_var.set(self.months[0])  # Default to 1 (January)
+    self.months_var.set(self.months[0])  # Default to None
     tk.OptionMenu(self.right_frame, self.months_var, *self.months).grid(row=3, column=1, pady=10, padx=20)
 
     # Authors
@@ -158,14 +158,9 @@ class LitEntry:
     self.register_results.delete("1.0", "end")
     self.register_discussion.delete("1.0", "end")
 
-    destroy = False
     for widget in self.authorframe.winfo_children():
       if type(widget) == type(tk.Entry()):
-        if destroy:
           widget.destroy()
-        else:
-          cast(tk.Entry(), widget).delete(0, "end")
-          destroy = True
 
     for widget in self.tagframe.winfo_children():
       if type(widget) == type(tk.Entry()):
@@ -405,6 +400,15 @@ class LitEntry:
     self.register_methods.insert("1.0", methods)
     self.register_results.insert("1.0", results)
     self.register_discussion.insert("1.0", discussion)
+
+    # Set month
+    if "month" in keys:
+      if entry["month"] in self.months:
+        self.months_var.set(self.months[entry["month"]])
+      else:
+        self.months_var.set(self.months[0])
+    else:
+      self.months_var.set(self.months[0])
 
     # Set authors
     if "authors" in keys:

@@ -29,7 +29,7 @@ export class LitTimelineComponent {
 
   ngOnInit(): void {
     this.literature = this.literatureService.getLiterature().reverse();
-    
+
     this.setThisIds();
     this.literature.forEach( (element) => {
       element.tags?.forEach( (tag) => {
