@@ -66,8 +66,6 @@ export class LiteratureService {
             return returnKey;
         }
 
-        console.log(timekeys);
-
         // Get the sorted Ids
         let sortedIds: number[] = [];
         timekeys.forEach(element => {

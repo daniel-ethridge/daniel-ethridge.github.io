@@ -45,6 +45,8 @@ import { DataMiningModelsComponent } from './data-mining-project/data-mining-mod
 import { DataMiningConclusionsComponent } from './data-mining-project/data-mining-conclusions/data-mining-conclusions.component';
 import { DataMiningTeamComponent } from './data-mining-project/data-mining-team/data-mining-team.component';
 import { LitTimelineComponent } from './lit-timeline/lit-timeline.component';
+import { CollapseModule } from 'ngx-bootstrap/collapse';
+
 
 @NgModule({
   declarations: [
@@ -95,6 +97,8 @@ import { LitTimelineComponent } from './lit-timeline/lit-timeline.component';
     FormsModule,
     MatButtonModule,
     MatMenuModule,
+    CollapseModule.forRoot(),
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

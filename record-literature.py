@@ -1,9 +1,11 @@
 import json
 import tkinter as tk
 import tkinter.messagebox as mb
-from calendar import month
-
 import numpy as np
+from typing import TYPE_CHECKING, cast
+
+if TYPE_CHECKING:
+  from _typeshed import SupportsWrite, SupportsRead
 
 
 class LitEntry:
@@ -40,7 +42,8 @@ class LitEntry:
     tk.Label(self.right_frame, text="Month", font=self.f).grid(row=3, column=0, sticky=tk.W, pady=10)
     tk.Label(self.right_frame, text="Authors", font=self.f).grid(row=4, column=0, sticky=tk.W, pady=10)
     tk.Label(self.right_frame, text="Link", font=self.f).grid(row=5, column=0, sticky=tk.W, pady=10)
-    tk.Label(self.right_frame, text="aims", font=self.f).grid(row=6, column=0, sticky=tk.W, pady=10)
+    tk.Label(self.right_frame, text="Aims and\nResearch Questions", font=self.f).grid(row=6, column=0, sticky=tk.W,
+                                                                                   pady=10)
     tk.Label(self.right_frame, text="Methods", font=self.f).grid(row=7, column=0, sticky=tk.W, pady=10)
     tk.Label(self.right_frame, text="Results", font=self.f).grid(row=8, column=0, sticky=tk.W, pady=10)
     tk.Label(self.right_frame, text="Discussion", font=self.f).grid(row=9, column=0, sticky=tk.W, pady=10)
@@ -64,8 +67,6 @@ class LitEntry:
     # Authors
     self.authorframe = tk.Frame(self.right_frame, bg='#CCCCCC')  # Create new frame
     self.authorframe.grid(row=4, column=1, columnspan=1)
-    author_entry = tk.Entry(self.authorframe, font=self.f)
-    author_entry.grid(row=0, column=0, pady=10, padx=20, columnspan=2)
     self.author_btn = tk.Button(self.authorframe, text="Add Author", command=self.add_author_entry, width=15,
                                 font=self.f, relief=tk.SOLID, cursor='hand2')
     self.author_btn.grid(row=1, column=0, pady=10, padx=20, columnspan=1)
@@ -75,8 +76,8 @@ class LitEntry:
     self.register_link.grid(row=5, column=1, pady=30, padx=20)  # title
 
     # aims
-    self.register_aims = tk.Text(self.right_frame, wrap="word", font=self.f, width=60, height=5)
-    self.register_aims.grid(row=6, column=1, pady=10, padx=20)  # title
+    self.register_aims_questions = tk.Text(self.right_frame, wrap="word", font=self.f, width=60, height=5)
+    self.register_aims_questions.grid(row=6, column=1, pady=10, padx=20)  # title
 
     # Methods
     self.register_methods = tk.Text(self.right_frame, wrap="word", font=self.f, width=60, height=5)
@@ -115,7 +116,12 @@ class LitEntry:
     # Delete Button
     delete_btn = tk.Button(button_frame, width=15, text="Delete an Entry", font=self.f, relief=tk.SOLID,
                            cursor='hand2', command=self.delete_entry)
-    delete_btn.grid(row=0, column=2, pady=10, padx=20)
+    delete_btn.grid(row=1, column=0, pady=10, padx=20)
+
+    # Reset Button
+    reset_btn = tk.Button(button_frame, width=15, text="Reset Fields", font=self.f, relief=tk.SOLID, cursor="hand2",
+                          command=self.clear_fields)
+    reset_btn.grid(row=1, column=1, pady=10, padx=20)
 
     self.root.columnconfigure(0, weight=1)
     self.root.rowconfigure(0, weight=1)
@@ -147,7 +153,7 @@ class LitEntry:
     self.register_year.delete(0, "end")
     self.months_var.set(self.months[0])
     self.register_link.delete(0, "end")
-    self.register_aims.delete("1.0", "end")
+    self.register_aims_questions.delete("1.0", "end")
     self.register_methods.delete("1.0", "end")
     self.register_results.delete("1.0", "end")
     self.register_discussion.delete("1.0", "end")
@@ -158,7 +164,7 @@ class LitEntry:
         if destroy:
           widget.destroy()
         else:
-          widget.delete(0, "end")
+          cast(tk.Entry(), widget).delete(0, "end")
           destroy = True
 
     for widget in self.tagframe.winfo_children():
@@ -179,10 +185,10 @@ class LitEntry:
       return
 
     author_entries = [element for element in self.authorframe.winfo_children() if type(element) == type(tk.Entry())]
-    authors = [author.get() for author in author_entries]
+    authors = [cast(tk.Entry(), author).get() for author in author_entries]
 
     tag_entries = [element for element in self.tagframe.winfo_children() if type(element) == type(tk.Entry())]
-    tags = [tag.get() for tag in tag_entries]
+    tags = [cast(tk.Entry(), tag).get() for tag in tag_entries]
 
     if self.months_var.get().lower() == "none":
       month_data = 0
@@ -195,7 +201,7 @@ class LitEntry:
       "month": int(month_data),
       "authors": authors,
       "link": self.register_link.get(),
-      "aims_questions": self.register_aims.get("1.0", "end").replace("\n", ""),
+      "aims_questions": self.register_aims_questions.get("1.0", "end").replace("\n", ""),
       "methods": self.register_methods.get("1.0", "end").replace("\n", ""),
       "results": self.register_results.get("1.0", "end").replace("\n", ""),
       "discussion": self.register_discussion.get("1.0", "end").replace("\n", ""),
@@ -204,6 +210,7 @@ class LitEntry:
 
     try:
       with open(self.json_file_loc, "r") as jfile:
+        jfile: SupportsRead
         json_file_data = json.load(jfile)
     except json.decoder.JSONDecodeError:
       json_file_data = []
@@ -211,6 +218,7 @@ class LitEntry:
     json_file_data += data
 
     with open(self.json_file_loc, "w") as jfile:
+      jfile: SupportsWrite[str]
       json.dump(json_file_data, jfile)
 
     self.clear_fields()
@@ -240,7 +248,7 @@ class LitEntry:
     self.author_btn.grid(row=num_rows, column=0, pady=10, padx=20)
     self.remove_author_btn.grid(row=num_rows, column=1, pady=10, padx=20)
 
-    if num_author_entries <= 2:
+    if num_author_entries <= 1:
       self.remove_author_btn.destroy()
       self.remove_author_btn = None
 
@@ -346,12 +354,15 @@ class LitEntry:
         idx += 1
 
     if idx >= len(lit_data):
-      mb.showerror("Could not locate desired entry")
+      mb.showerror("Entry not Found", "Could not locate desired entry")
       return
 
     del lit_data[idx]
     with open(self.json_file_loc, "w") as jfile:
+      jfile: SupportsWrite[str]
       json.dump(lit_data, jfile)
+
+    mb.showinfo("Sucess", "Entry Successfully Deleted")
 
   def confirm_edit_choice(self):
     if self.edit_window is None:
@@ -374,40 +385,48 @@ class LitEntry:
       mb.showerror("Could not locate desired entry")
       return
 
+    # Create text variables to insert
     entry = lit_data[idx]
+    keys = entry.keys()
+    title = entry["title"] if "title" in keys else ""
+    year = entry["year"] if "year" in keys else ""
+    link = entry["link"] if "link" in keys else ""
+    aims_questions = entry["aims_questions"] if "aims_questions" in keys else ""
+    methods = entry["methods"] if "methods" in keys else ""
+    results = entry["results"] if "results" in keys else ""
+    discussion = entry["discussion"] if "discussion" in keys else ""
+
+    # Set fields
     self.clear_fields()
-    self.register_title.insert("1.0", entry["title"])
-    self.register_year.insert(0, entry["year"])
-    self.register_link.insert(0, entry["link"])
-    self.register_aims.insert("1.0", entry["aims"])
-    self.register_methods.insert("1.0", entry["methods"])
-    self.register_results.insert("1.0", entry["results"])
-    self.register_discussion.insert("1.0", entry["discussion"])
+    self.register_title.insert("1.0", title)
+    self.register_year.insert(0, year)
+    self.register_link.insert(0, link)
+    self.register_aims_questions.insert("1.0", aims_questions)
+    self.register_methods.insert("1.0", methods)
+    self.register_results.insert("1.0", results)
+    self.register_discussion.insert("1.0", discussion)
 
     # Set authors
-    first_set = False
-    for author in entry["authors"]:
-      if first_set:
+    if "authors" in keys:
+      for author in entry["authors"]:
         self.add_author_entry()
-      else:
-        first_set = True
-
-      author_entry_fields = [element for element in self.authorframe.winfo_children()
-                             if type(element) == type(tk.Entry())]
-      author_entry_fields[-1].insert(0, author)
+        author_entry_fields = [element for element in self.authorframe.winfo_children()
+                               if type(element) == type(tk.Entry())]
+        cast(tk.Entry(), author_entry_fields[-1]).insert(0, author)
 
     # Set tags
-    for tag in entry["tags"]:
-      self.add_tag_entry()
-      tag_entry_fields = [element for element in self.tagframe.winfo_children()
-                             if type(element) == type(tk.Entry())]
-      tag_entry_fields[-1].insert(0, tag)
+    if "tags" in keys:
+      for tag in entry["tags"]:
+        self.add_tag_entry()
+        tag_entry_fields = [element for element in self.tagframe.winfo_children()
+                               if type(element) == type(tk.Entry())]
+        cast(tk.Entry(), tag_entry_fields[-1]).insert(0, tag)
 
     del lit_data[idx]
     with open(self.json_file_loc, "w") as jfile:
+      jfile: SupportsWrite[str]
       json.dump(lit_data, jfile)
 
 
 lit_entry = LitEntry("./src/app/_services/json/literature.json")
-
 lit_entry.root.mainloop()
