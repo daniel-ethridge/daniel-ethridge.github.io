@@ -28,15 +28,8 @@ export class LitTimelineComponent {
 
   ngOnInit(): void {
     this.literature = this.literatureService.getLiterature().reverse();
-    this.literature.forEach( (element) => {
-      if (!this.years.includes(element.year)) {
-        this.years.push(element.year);
-        if (element.id) {
-          this.ids.push(element.id);
-        }
-      }
-    })
-
+    
+    this.setThisIds();
     this.literature.forEach( (element) => {
       element.tags?.forEach( (tag) => {
         if (!this.tags.includes(tag)) {
@@ -74,6 +67,7 @@ export class LitTimelineComponent {
 
     this.literature = this.literatureService.getLiterature().reverse();
     if (checked_tags.length == 0) {
+      this.setThisIds();
       return
     }
     
@@ -89,6 +83,20 @@ export class LitTimelineComponent {
     })
 
     this.literature = subset_literature;
+    this.setThisIds();
+  }
+
+  setThisIds() {
+    this.ids = [];
+    this.years = [];
+    this.literature.forEach( (element) => {
+      if (!this.years.includes(element.year)) {
+        this.years.push(element.year);
+        if (element.id) {
+          this.ids.push(element.id);
+        }
+      }
+    })
   }
 
   writeYear(id: number) {
