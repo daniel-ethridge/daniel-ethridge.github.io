@@ -21,6 +21,7 @@ export class LitTimelineComponent {
   tagCheck: Map<string, boolean> = new Map();
   isCollapsed: boolean = true;
   numTagsPerColumns: number = 4;
+  tagAndTag: boolean = false;
 
   constructor(private titleService: Title, private literatureService: LiteratureService) {
     this.titleService.setTitle("Daniel Ethridge | Literature Timeline")
@@ -47,16 +48,18 @@ export class LitTimelineComponent {
       }
     }
 
+    this.twoDTags = this.twoDTags.reverse();
+
     this.tags.forEach( (tag) => {
       this.tagCheck.set(tag, false);
     })
-
-
   }
 
-  filterTags(tag: string) {
-    let currentVal = this.tagCheck.get(tag);
-    this.tagCheck.set(tag, !currentVal);
+  filterTags(tag?: string) {
+    if (tag) {
+      let currentVal = this.tagCheck.get(tag);
+      this.tagCheck.set(tag, !currentVal);
+    }
 
     let checked_tags: string[] = []
     this.tagCheck.forEach((value, key) => {
@@ -72,15 +75,30 @@ export class LitTimelineComponent {
     }
     
     let subset_literature: Literature[] = [];
-    this.literature.forEach( (lit) => {
-      let added: boolean = false;
-      lit.tags?.forEach( (tag) => {
-        if ((checked_tags.includes(tag)) && (!added)) {
-          added = true;
+
+    if (this.tagAndTag) {
+      this.literature.forEach( (lit) => {
+        let toAdd: boolean = true;
+        checked_tags.forEach( (tag) => {
+          if (!lit.tags?.includes(tag)) {
+            toAdd = false;
+          }
+        })
+        if (toAdd && lit.tags) {
           subset_literature.push(lit);
         }
       })
-    })
+    } else {
+      this.literature.forEach( (lit) => {
+        let added: boolean = false;
+        lit.tags?.forEach( (tag) => {
+          if ((checked_tags.includes(tag)) && (!added)) {
+            added = true;
+            subset_literature.push(lit);
+          }
+        })
+      })
+    }
 
     this.literature = subset_literature;
     this.setThisIds();
@@ -99,18 +117,13 @@ export class LitTimelineComponent {
     })
   }
 
-  writeYear(id: number) {
-    return this.ids.includes(id);
+  setTagAndTag(value: boolean) {
+    this.tagAndTag = value;
+    this.filterTags();
   }
 
-  printList(arg?: string[]) {
-    if (arg) {
-      if (arg.length > 0) {
-        return true;
-      }
-    }
-
-    return false;
+  writeYear(id: number) {
+    return this.ids.includes(id);
   }
 
   alignSide() {
