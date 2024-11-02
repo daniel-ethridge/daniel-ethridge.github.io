@@ -47,7 +47,6 @@ import { DataMiningTeamComponent } from './data-mining-project/data-mining-team/
 import { LitTimelineComponent } from './lit-timeline/lit-timeline.component';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 
-
 @NgModule({
   declarations: [
     AppComponent,
