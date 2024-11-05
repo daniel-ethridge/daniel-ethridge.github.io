@@ -3,14 +3,14 @@ import tkinter as tk
 import tkinter.messagebox as mb
 import numpy as np
 from typing import TYPE_CHECKING, cast
-
 if TYPE_CHECKING:
   from _typeshed import SupportsWrite, SupportsRead
 
 
 class LitEntry:
-  def __init__(self, json_file_loc):
+  def __init__(self, json_file_loc, bibtex_file_loc):
     self.json_file_loc = json_file_loc
+    self.bibtex_file_loc = bibtex_file_loc
     self.root_ = tk.Tk()
     self.literature_titles_ = []
     self.next_row_c0 = 1
@@ -69,6 +69,7 @@ class LitEntry:
     tk.Label(self.right_frame, text="Month", font=self.f).grid(row=self.generate_row_number(0), column=0, sticky=tk.W, pady=10)
     tk.Label(self.right_frame, text="Authors", font=self.f).grid(row=self.generate_row_number(0), column=0, sticky=tk.W, pady=10)
     tk.Label(self.right_frame, text="Link", font=self.f).grid(row=self.generate_row_number(0), column=0, sticky=tk.W, pady=10)
+    tk.Label(self.right_frame, text="DOI", font=self.f).grid(row=self.generate_row_number(0), column=0, sticky=tk.W, pady=10)
     tk.Label(self.right_frame, text="Document Type", font=self.f).grid(row=self.generate_row_number(0), column=0,
                                                                  sticky=tk.W, pady=10)
     self.other_doc_label = tk.Label(self.right_frame, text="Input Document Type", font=self.f)
@@ -78,11 +79,13 @@ class LitEntry:
     self.journal_name_label = tk.Label(self.right_frame, text="Journal Name", font=self.f)
     self.journal_volume_label = tk.Label(self.right_frame, text="Volume", font=self.f)
     self.journal_issue_label = tk.Label(self.right_frame, text="Issue", font=self.f)
-    self.journal_pages_label = tk.Label(self.right_frame, text="Article Number or Pages", font=self.f)
+    self.journal_pages_label = tk.Label(self.right_frame, text="Pages", font=self.f)
+    self.journal_article_no_label = tk.Label(self.right_frame, text="Article Number", font=self.f)
     self.journal_name_position = self.generate_row_number(0)
     self.journal_volume_position = self.generate_row_number(0)
     self.journal_issue_position = self.generate_row_number(0)
     self.journal_pages_position = self.generate_row_number(0)
+    self.journal_article_no_position = self.generate_row_number(0)
 
     # Specific to conferences
     self.conference_name_label = tk.Label(self.right_frame, text="Conference Name", font=self.f)
@@ -91,12 +94,17 @@ class LitEntry:
     self.conference_publisher_label = tk.Label(self.right_frame, text="Publisher", font=self.f)
     self.conference_address_label = tk.Label(self.right_frame, text="Addrress", font=self.f)
     self.conference_pages_label = tk.Label(self.right_frame, text="Pages", font=self.f)
+    self.conference_article_no_label = tk.Label(self.right_frame, text="Article Number", font=self.f)
     self.conference_name_position = self.generate_row_number(0)
     self.conference_series_position = self.generate_row_number(0)
     self.conference_location_position = self.generate_row_number(0)
     self.conference_publisher_position = self.generate_row_number(0)
     self.conference_address_position = self.generate_row_number(0)
     self.conference_pages_position = self.generate_row_number(0)
+    self.conference_article_no_position = self.generate_row_number(0)
+
+    # Other info
+    tk.Label(self.right_frame, text="Other Document\nInformation", font=self.f).grid(row=self.generate_row_number(0), column=0, sticky=tk.W, pady=10)
 
     tk.Label(self.right_frame, text="Aims and\nResearch Questions", font=self.f).grid(row=self.generate_row_number(0), column=0, sticky=tk.W,
                                                                                    pady=10)
@@ -131,12 +139,14 @@ class LitEntry:
                                 font=self.f, relief=tk.SOLID, cursor='hand2')
     self.author_btn.grid(row=1, column=0, pady=10, padx=20, columnspan=1)
 
-    # Link
+    # Link and DOI
     self.register_link = tk.Entry(self.right_frame, font=self.f, width=50)
-    self.register_link.grid(row=self.generate_row_number(1), column=1, pady=30, padx=20)  # link
+    self.register_link.grid(row=self.generate_row_number(1), column=1, pady=30, padx=20)
+    self.register_doi = tk.Entry(self.right_frame, font=self.f, width=50)
+    self.register_doi.grid(row=self.generate_row_number(1), column=1, pady=30, padx=20)
 
     # Document Type
-    self.doc_type = ["Journal Article", "Conference Paper", "Book", "Other"]
+    self.doc_type = ["Journal Article", "Conference Paper", "Other"]
     self.doc_var = tk.StringVar(self.root_)
     self.doc_var.set(self.doc_type[0])  # Default to None
     tk.OptionMenu(self.right_frame, self.doc_var, *self.doc_type, command=self.doc_choices).grid(
@@ -146,7 +156,7 @@ class LitEntry:
                                                                         pady=10, padx=20)
 
     # Other Doc Type
-    self.other_doc_type = tk.Entry(self.right_frame, font=self.f, width=50)
+    self.register_other_doc_type = tk.Entry(self.right_frame, font=self.f, width=50)
     _ = self.generate_row_number(1)
 
     ### For Journals
@@ -154,7 +164,8 @@ class LitEntry:
     self.register_journal_volume = tk.Entry(self.right_frame, font=self.f, width=50)
     self.register_journal_issue = tk.Entry(self.right_frame, font=self.f, width=50)
     self.register_journal_pages = tk.Entry(self.right_frame, font=self.f, width=50)
-    for i in range(4):
+    self.register_journal_article_no = tk.Entry(self.right_frame, font=self.f, width=50)
+    for i in range(5):
       _ = self.generate_row_number(1)
 
     # For conferences
@@ -164,11 +175,15 @@ class LitEntry:
     self.register_conference_publisher = tk.Entry(self.right_frame, font=self.f, width=50)
     self.register_conference_address = tk.Entry(self.right_frame, font=self.f, width=50)
     self.register_conference_pages = tk.Entry(self.right_frame, font=self.f, width=50)
-    for i in range(6):
+    self.register_conference_article_no = tk.Entry(self.right_frame, font=self.f, width=50)
+    for i in range(7):
       _ = self.generate_row_number(1)
 
     # Set up for journal
     self.doc_choices(self.doc_type[0])
+
+    self.register_other_doc_info = tk.Text(self.right_frame, wrap="word", font=self.f, width=60, height=5)
+    self.register_other_doc_info.grid(row=self.generate_row_number(1), column=1, pady=10, padx=20)  # title
 
     # aims
     self.register_aims_questions = tk.Text(self.right_frame, wrap="word", font=self.f, width=60, height=5)
@@ -249,19 +264,23 @@ class LitEntry:
       self.journal_issue_label.grid(row=self.journal_issue_position, column=0, pady=30, padx=20)
       self.journal_volume_label.grid(row=self.journal_volume_position, column=0, pady=30, padx=20)
       self.journal_pages_label.grid(row=self.journal_pages_position, column=0, pady=30, padx=20)
+      self.journal_article_no_label.grid(row=self.journal_article_no_position, column=0, pady=30, padx=20)
       self.register_journal_name.grid(row=self.journal_name_position, column=1, pady=30, padx=20)
       self.register_journal_issue.grid(row=self.journal_issue_position, column=1, pady=30, padx=20)
       self.register_journal_volume.grid(row=self.journal_volume_position, column=1, pady=30, padx=20)
       self.register_journal_pages.grid(row=self.journal_pages_position, column=1, pady=30, padx=20)
+      self.register_journal_article_no.grid(row=self.journal_article_no_position, column=1, pady=30, padx=20)
     else:
       self.journal_name_label.grid_forget()
       self.journal_issue_label.grid_forget()
       self.journal_volume_label.grid_forget()
       self.journal_pages_label.grid_forget()
+      self.journal_article_no_label.grid_forget()
       self.register_journal_name.grid_forget()
       self.register_journal_issue.grid_forget()
       self.register_journal_volume.grid_forget()
       self.register_journal_pages.grid_forget()
+      self.register_journal_article_no.grid_forget()
 
     if choice == self.doc_type[self.doc_type.index("Conference Paper")]:
       self.register_conference_name.grid(row=self.conference_name_position, column=1, pady=30, padx=20)
@@ -270,12 +289,14 @@ class LitEntry:
       self.register_conference_publisher.grid(row=self.conference_publisher_position, column=1, pady=30, padx=20)
       self.register_conference_address.grid(row=self.conference_address_position, column=1, pady=30, padx=20)
       self.register_conference_pages.grid(row=self.conference_pages_position, column=1, pady=30, padx=20)
+      self.register_conference_article_no.grid(row=self.conference_article_no_position, column=1, pady=30, padx=20)
       self.conference_name_label.grid(row=self.conference_name_position, column=0, pady=30, padx=20)
       self.conference_series_label.grid(row=self.conference_series_position, column=0, pady=30, padx=20)
       self.conference_location_label.grid(row=self.conference_location_position, column=0, pady=30, padx=20)
       self.conference_publisher_label.grid(row=self.conference_publisher_position, column=0, pady=30, padx=20)
       self.conference_address_label.grid(row=self.conference_address_position, column=0, pady=30, padx=20)
       self.conference_pages_label.grid(row=self.conference_pages_position, column=0, pady=30, padx=20)
+      self.conference_article_no_label.grid(row=self.conference_article_no_position, column=0, pady=30, padx=20)
     else:
       self.register_conference_name.grid_forget()
       self.register_conference_series.grid_forget()
@@ -283,18 +304,21 @@ class LitEntry:
       self.register_conference_publisher.grid_forget()
       self.register_conference_address.grid_forget()
       self.register_conference_pages.grid_forget()
+      self.register_conference_article_no.grid_forget()
+
       self.conference_name_label.grid_forget()
       self.conference_series_label.grid_forget()
       self.conference_location_label.grid_forget()
       self.conference_publisher_label.grid_forget()
       self.conference_address_label.grid_forget()
       self.conference_pages_label.grid_forget()
+      self.conference_article_no_label.grid_forget()
 
     if choice == self.doc_type[self.doc_type.index("Other")]:
-      self.other_doc_type.grid(row=self.other_doc_position, column=1, pady=30, padx=20)
+      self.register_other_doc_type.grid(row=self.other_doc_position, column=1, pady=30, padx=20)
       self.other_doc_label.grid(row=self.other_doc_position, column=0, sticky=tk.W, pady=10)
     else:
-      self.other_doc_type.grid_forget()
+      self.register_other_doc_type.grid_forget()
       self.other_doc_label.grid_forget()
 
   def clear_fields(self):
@@ -302,10 +326,28 @@ class LitEntry:
     self.register_year.delete(0, "end")
     self.months_var.set(self.months[0])
     self.register_link.delete(0, "end")
+    self.register_doi.delete(0, "end")
+
+    # Journal
     self.register_journal_name.delete(0, "end")
     self.register_journal_volume.delete(0, "end")
     self.register_journal_issue.delete(0, "end")
     self.register_journal_pages.delete(0, "end")
+    self.register_journal_article_no.delete(0, "end")
+
+    # Conference
+    self.register_conference_name.delete(0, "end")
+    self.register_conference_series.delete(0, "end")
+    self.register_conference_location.delete(0, "end")
+    self.register_conference_publisher.delete(0, "end")
+    self.register_conference_address.delete(0, "end")
+    self.register_conference_pages.delete(0, "end")
+    self.register_conference_article_no.delete(0, "end")
+
+    # Other
+    self.register_other_doc_info.delete("1.0", "end")
+    self.register_other_doc_type.delete(0, "end")
+
     self.register_aims_questions.delete("1.0", "end")
     self.register_methods.delete("1.0", "end")
     self.register_results.delete("1.0", "end")
@@ -319,7 +361,7 @@ class LitEntry:
       if type(widget) == type(tk.Entry()):
         widget.destroy()
 
-  def generate_row_number(self, col_number: int, forced_row=None):
+  def generate_row_number(self, col_number: int):
     if col_number == 0:
       return_row = self.next_row_c0
       self.next_row_c0 += 1
@@ -359,12 +401,34 @@ class LitEntry:
       "month": int(month_data),
       "authors": authors,
       "link": self.register_link.get(),
+      "doi": self.register_doi.get(),
+      "document_type": self.doc_var.get(),
+      "other_info": self.register_other_doc_info.get("1.0", "end"),
       "aims_questions": self.register_aims_questions.get("1.0", "end").replace("\n", ""),
       "methods": self.register_methods.get("1.0", "end").replace("\n", ""),
       "results": self.register_results.get("1.0", "end").replace("\n", ""),
       "discussion": self.register_discussion.get("1.0", "end").replace("\n", ""),
       "tags": tags
     }]
+
+    if self.doc_var.get() == "Journal Article":
+      data[0]["journal_name"] = self.register_journal_name.get()
+      data[0]["journal_volume"] = self.register_journal_volume.get()
+      data[0]["journal_issue"] = self.register_journal_issue.get()
+      data[0]["journal_pages"] = self.register_journal_pages.get()
+      data[0]["journal_article_no"] = self.register_journal_article_no.get()
+
+    elif self.doc_var.get() == "Conference Paper":
+      data[0]["conference_name"] = self.register_conference_name.get()
+      data[0]["conference_series"] = self.register_conference_series.get()
+      data[0]["conference_location"] = self.register_conference_location.get()
+      data[0]["conference_publisher"] = self.register_conference_publisher.get()
+      data[0]["conference_address"] = self.register_conference_address.get()
+      data[0]["conference_pages"] = self.register_conference_pages.get()
+      data[0]["conference_article_no"] = self.register_conference_article_no.get()
+
+    elif self.doc_var.get() == "Other":
+      data[0]["document_type"] = self.register_other_doc_type.get()
 
     try:
       with open(self.json_file_loc, "r") as jfile:
@@ -375,10 +439,12 @@ class LitEntry:
 
     json_file_data += data
 
+    json_file_data = sorted(json_file_data, key=lambda d: d["title"])
     with open(self.json_file_loc, "w") as jfile:
       jfile: SupportsWrite[str]
       json.dump(json_file_data, jfile)
 
+    self.create_bibtex()
     self.clear_fields()
     mb.showinfo("Success", "Literature entry successfully added!")
 
@@ -504,6 +570,7 @@ class LitEntry:
     with open(self.json_file_loc, "r") as f:
       lit_data = json.load(f)
 
+    lit_data = sorted(lit_data, key=lambda d: d["title"])
     idx = 0
     for entry in lit_data:
       if entry["title"] == self.lit_var.get():
@@ -520,6 +587,7 @@ class LitEntry:
       jfile: SupportsWrite[str]
       json.dump(lit_data, jfile)
 
+    self.create_bibtex()
     mb.showinfo("Sucess", "Entry Successfully Deleted")
 
   def confirm_edit_choice(self):
@@ -532,6 +600,7 @@ class LitEntry:
     with open(self.json_file_loc, "r") as f:
       lit_data = json.load(f)
 
+    lit_data = sorted(lit_data, key=lambda d: d["title"])
     idx = 0
     for entry in lit_data:
       if entry["title"] == self.lit_var.get():
@@ -543,21 +612,27 @@ class LitEntry:
       mb.showerror("Could not locate desired entry")
       return
 
-    self.register_journal_name = tk.Entry(self.right_frame, font=self.f, width=50)
-    self.register_journal_volume = tk.Entry(self.right_frame, font=self.f, width=50)
-    self.register_journal_issue = tk.Entry(self.right_frame, font=self.f, width=50)
-    self.register_journal_pages = tk.Entry(self.right_frame, font=self.f, width=50)
-
     # Create text variables to insert
     entry = lit_data[idx]
     keys = entry.keys()
-    title = entry["title"] if "title" in keys else ""
+    title_ = entry["title"] if "title" in keys else ""
     year = entry["year"] if "year" in keys else ""
     link = entry["link"] if "link" in keys else ""
-    journal_name = entry["link"] if "journal_name" in keys else ""
-    journal_volume = entry["link"] if "journal_volume" in keys else ""
-    journal_issue = entry["link"] if "journal_issue" in keys else ""
-    journal_pages = entry["link"] if "journal_pages" in keys else ""
+    doi = entry["doi"] if "doi" in keys else ""
+    journal_name = entry["journal_name"] if "journal_name" in keys else ""
+    journal_volume = entry["journal_volume"] if "journal_volume" in keys else ""
+    journal_issue = entry["journal_issue"] if "journal_issue" in keys else ""
+    journal_pages = entry["journal_pages"] if "journal_pages" in keys else ""
+    journal_article_no = entry["journal_article_no"] if "journal_article_no" in keys else ""
+
+    conference_name = entry["conference_name"] if "conference_name" in keys else ""
+    conference_series = entry["conference_series"] if "conference_series" in keys else ""
+    conference_location = entry["conference_location"] if "conference_location" in keys else ""
+    conference_publisher = entry["conference_publisher"] if "conference_publisher" in keys else ""
+    conference_address = entry["conference_address"] if "conference_address" in keys else ""
+    conference_pages = entry["conference_pages"] if "conference_pages" in keys else ""
+    conference_article_no = entry["conference_article_no"] if "conference_article_no" in keys else ""
+
     aims_questions = entry["aims_questions"] if "aims_questions" in keys else ""
     methods = entry["methods"] if "methods" in keys else ""
     results = entry["results"] if "results" in keys else ""
@@ -565,13 +640,27 @@ class LitEntry:
 
     # Set fields
     self.clear_fields()
-    self.register_title.insert("1.0", title)
+    self.register_title.insert("1.0", title_)
     self.register_year.insert(0, year)
     self.register_link.insert(0, link)
+    self.register_doi.insert(0, doi)
+
+    # Journal fields
     self.register_journal_name.insert(0, journal_name)
     self.register_journal_volume.insert(0, journal_volume)
     self.register_journal_issue.insert(0, journal_issue)
     self.register_journal_pages.insert(0, journal_pages)
+    self.register_journal_article_no.insert(0, journal_article_no)
+
+    # Conference fields
+    self.register_conference_name.insert(0, conference_name)
+    self.register_conference_series.insert(0, conference_series)
+    self.register_conference_location.insert(0, conference_location)
+    self.register_conference_publisher.insert(0, conference_publisher)
+    self.register_conference_address.insert(0, conference_address)
+    self.register_conference_pages.insert(0, conference_pages)
+    self.register_conference_article_no.insert(0, conference_article_no)
+
     self.register_aims_questions.insert("1.0", aims_questions)
     self.register_methods.insert("1.0", methods)
     self.register_results.insert("1.0", results)
@@ -589,7 +678,9 @@ class LitEntry:
     # Set Document type
     if "document_type" in keys:
       if entry["document_type"] in self.doc_type:
-        self.doc_var.set(self.doc_type[entry["document_type"]])
+        self.doc_var.set(entry["document_type"])
+        if entry["document_type"] == "Other":
+          self.register_other_doc_type.insert(0, entry["document_type"])
       else:
         self.doc_var.set(self.doc_type[0])
     else:
@@ -616,6 +707,156 @@ class LitEntry:
       jfile: SupportsWrite[str]
       json.dump(lit_data, jfile)
 
+    self.create_bibtex()
+    self.doc_choices(self.doc_var.get())
 
-lit_entry = LitEntry("./src/app/_services/json/literature.json")
+  def create_bibtex(self):
+
+    with open(self.json_file_loc, "r") as jfile:
+      jfile: SupportsRead
+      json_file_data = json.load(jfile)
+
+    for i, val in enumerate(json_file_data):
+      if "other_info" in val.keys():
+        json_file_data[i]["other_info"] = json_file_data[i]["other_info"].replace(" - ", " = ")
+
+    with open(self.json_file_loc, "w") as jfile:
+      jfile: SupportsWrite
+      json.dump(json_file_data, jfile)
+
+    with open(self.json_file_loc, "r") as f:
+      lit_data = json.load(f)
+
+    doc_map = {
+      "Journal Article": "article",
+      "Conference Paper": "inproceedings",
+      "Other": "misc"
+    }
+
+    month_map = {
+      1: "jan",
+      2: "feb",
+      3: "mar",
+      4: "apr",
+      5: "may",
+      6: "jun",
+      7: "jul",
+      8: "oct",
+      9: "sep",
+      10: "oct",
+      11: "nov",
+      12: "dec"
+    }
+
+    def add_value(current_string, name, value_):
+      current_string += f",\n{name} = {{{value_}}}"
+      return current_string
+
+    with (open(self.bibtex_file_loc, "w") as f):
+      for entry in lit_data:
+        other_info = entry["other_info"] if "other_info" in entry.keys() else None
+        other_dict = None
+        if other_info is not None:
+          other_info = other_info.split("\n")
+          other_info = [[info] for info in other_info if len(info) > 0]
+          other_dict = {}
+          for info in other_info:
+            info = info[0].replace(" = ", "=").replace("= ", "=").replace(" =", "=").split("=")
+            other_dict[info[0]] = info[1]
+
+        if "document_type" in entry.keys():
+          try:
+            doc_type = doc_map[entry["document_type"]]
+          except KeyError:
+            doc_type = entry["document_type"]
+        else:
+          doc_type = "misc"
+
+        title_ = entry["title"]
+        short_title = title_.split()[0]
+        year = str(entry["year"])
+        month = entry["month"] if "month" in entry.keys() and entry["month"] != 0 else None
+        link = entry["link"] if "link" in entry.keys() and entry["link"] != "" else None
+        doi = entry["doi"] if "doi" in entry.keys() and entry["doi"] != "" else None
+        if "authors" in entry.keys() and len(entry["authors"]) != 0:
+          author = entry["authors"][0].split()[-1]
+          authors = [[author][0].split() for author in entry["authors"]]
+          authors = [[author[-1], " ".join(author[:-1])] if len(author) > 1 else author for author in authors]
+          authors = [", ".join(author) if len(author) > 1 else "".join(author) for author in authors]
+          authors = " and ".join(authors)
+        else:
+          author = "noauthor"
+          authors = None
+
+        entry_string = (f"@{doc_type}{{{author}_{short_title}_{year},\n"
+                        f"title = {{{title_}}},\n"
+                        f"year = {{{year}}}")
+
+        if month is not None:
+          entry_string = add_value(entry_string, "month", month_map[month])
+        if link is not None:
+          entry_string = add_value(entry_string, "url", link)
+        if doi is not None:
+          entry_string = add_value(entry_string, "doi", doi)
+        if authors is not None:
+          entry_string = add_value(entry_string, "author", authors)
+
+        if doc_type == "article":
+          journal_name = entry["journal_name"] if "journal_name" in entry.keys() and entry["journal_name"] != "" else None
+          volume = entry["journal_volume"] if "journal_volume" in entry.keys() and entry["journal_volume"] != "" else None
+          issue = entry["journal_issue"] if "journal_issue" in entry.keys() and entry["journal_issue"] != "" else None
+          pages = entry["journal_pages"] if "journal_pages" in entry.keys() and entry["journal_pages"] != "" else None
+          article_no = entry["journal_article_no"] if "journal_article_no" in entry.keys() and \
+            entry["journal_article_no"] != "" else None
+          if journal_name is not None:
+            entry_string = add_value(entry_string, "journal", journal_name)
+          if volume is not None:
+            entry_string = add_value(entry_string, "volume", volume)
+          if issue is not None:
+            entry_string = add_value(entry_string, "issue", issue)
+          if pages is not None:
+            entry_string = add_value(entry_string, "pages", pages)
+          if article_no is not None:
+            entry_string = add_value(entry_string, "articleno", article_no)
+
+        elif doc_type == "inproceedings":
+          conference_name = entry["conference_name"] if "conference_name" in entry.keys() and \
+            entry["conference_name"] != "" else None
+          conference_series = entry["conference_series"] if "conference_series" in entry.keys() and \
+            entry["conference_series"] != "" else None
+          conference_location = entry["conference_location"] if "conference_location" in entry.keys() and \
+            entry["conference_location"] != "" else None
+          conference_publisher = entry["conference_publisher"] if "conference_publisher" in entry.keys() and \
+            entry["conference_publisher"] != "" else None
+          conference_address = entry["conference_address"] if "conference_address" in entry.keys() and \
+            entry["conference_address"] != "" else None
+          conference_pages = entry["conference_pages"] if "conference_pages" in entry.keys() and \
+            entry["conference_pages"] != "" else None
+          conference_article_no = entry["conference_article_no"] if "conference_article_no" in entry.keys() and \
+            entry["conference_article_no"] != "" else None
+          if conference_name is not None:
+            entry_string = add_value(entry_string, "booktitle", conference_name)
+          if conference_series is not None:
+            entry_string = add_value(entry_string, "series", conference_series)
+          if conference_location is not None:
+            entry_string = add_value(entry_string, "location", conference_location)
+          if conference_publisher is not None:
+            entry_string = add_value(entry_string, "publisher", conference_publisher)
+          if conference_address is not None:
+            entry_string = add_value(entry_string, "address", conference_address)
+          if conference_pages is not None:
+            entry_string = add_value(entry_string, "pages", conference_pages)
+          if conference_article_no is not None:
+            entry_string = add_value(entry_string, "articleno", conference_article_no)
+
+        if other_dict is not None:
+          for key, value in other_dict.items():
+            entry_string = add_value(entry_string, key, value)
+
+        entry_string += "\n}"
+        f.write(entry_string)
+        f.write("\n\n")
+
+
+lit_entry = LitEntry("./src/assets/literature.json", "./src/assets/literature.bib")
 lit_entry.root.mainloop()
