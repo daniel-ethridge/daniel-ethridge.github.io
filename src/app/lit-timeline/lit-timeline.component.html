@@ -1,8 +1,10 @@
 
 <div class="container-sm">
     <div class="mb-2">
-        <div>
-            <button class="btn btn-outline-primary mb-2 me-2" (click)="isCollapsed = !isCollapsed">Filter</button>
+        <div class="row">
+            <button class="btn btn-outline-primary mb-2 me-2 col-2" (click)="downloadBibtex()">Download Bibtex of Papers</button>
+            <button class="btn btn-outline-primary mb-2 me-2 col-1" (click)="isCollapsed = !isCollapsed">Filter</button>
+            <label class="col-6" style="padding: 15px" for="verboseInfo"><input type="checkbox" id="verboseInfo" name="verboseInfo" [defaultChecked]="detailedInfo" (click)="showDetails(!detailedInfo)"> Show Venue Information</label>  
         </div>
         <div [collapse]="isCollapsed" [isAnimated]="true">
             <div class="border mb-2 shadow-sm" sytle="width: 250px;">
@@ -48,7 +50,23 @@
                         <p *ngIf="lit.results">Results: {{lit.results}}</p>
                         <p *ngIf="lit.discussion">Discussion: {{lit.discussion}}</p>
                         <p *ngIf="lit.tags && lit.tags.length > 0">Tags: {{lit.tags.join(", ")}}</p>
-                        <p *ngIf="lit.link"><a href="{{lit.link}}" target="_blank">Link</a></p>
+                        <div *ngIf="detailedInfo">
+                            <!-- Journals -->
+                            <p *ngIf="lit.journal_name">Journal: {{lit.journal_name}}</p>
+                            <p *ngIf="lit.journal_volume">Volume: {{lit.journal_volume}}</p>
+                            <p *ngIf="lit.journal_issue">Issue: {{lit.journal_issue}}</p>
+                            <p *ngIf="lit.journal_pages">Page(s): {{lit.journal_pages}}</p>
+
+                            <!-- Conferences -->
+                            <p *ngIf="lit.conference_name">Conference: {{lit.conference_name}}</p>
+                            <p *ngIf="lit.conference_series">Series: {{lit.conference_series}}</p>
+                            <p *ngIf="lit.conference_location">Location: {{lit.conference_location}}</p>
+                            <p *ngIf="lit.conference_publisher">Publisher: {{lit.conference_publisher}}</p>
+                            <p *ngIf="lit.conference_address">Address: {{lit.conference_address}}</p>
+                            <p *ngIf="lit.conference_pages">Page(s): {{lit.conference_pages}}</p>
+                        </div>
+                        <p *ngIf="lit.doi"><a href="https://doi.org/{{lit.doi}}" target="_blank">DOI</a></p>
+                        <p *ngIf="lit.link && !lit.doi"><a href="{{lit.link}}" target="_blank">Link</a></p>
                     </div>
                 </div><br>
             </div>
