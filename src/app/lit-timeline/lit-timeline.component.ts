@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Renderer2 } from '@angular/core';
 import { Literature } from '../_models/Literature';
 import { Title } from '@angular/platform-browser';
 import { LiteratureService } from '../_services/literature.service';
@@ -22,8 +22,9 @@ export class LitTimelineComponent {
   isCollapsed: boolean = true;
   numTagsPerColumns: number = 4;
   tagAndTag: boolean = false;
+  detailedInfo: boolean = false;
 
-  constructor(private titleService: Title, private literatureService: LiteratureService) {
+  constructor(private titleService: Title, private literatureService: LiteratureService, private renderer: Renderer2) {
     this.titleService.setTitle("Daniel Ethridge | Literature Timeline")
   }
 
@@ -53,6 +54,19 @@ export class LitTimelineComponent {
     this.tags.forEach( (tag) => {
       this.tagCheck.set(tag, false);
     })
+  }
+
+  showDetails(checked: boolean) {
+    this.detailedInfo = checked;
+  }
+
+  downloadBibtex() {
+    const link = this.renderer.createElement('a');
+    link.setAttribute('target', "_blank");
+    link.setAttribute('href', '../../assets/literature.bib');
+    link.setAttribute('download', 'literature.bib');
+    link.click();
+    link.remove();
   }
 
   filterTags(tag?: string) {

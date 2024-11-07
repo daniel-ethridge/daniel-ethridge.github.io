@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Literature } from "../_models/Literature";
-import literatureData from "./json/literature.json"
+import literatureData from "../../assets/literature.json"
 
 @Injectable({
     providedIn: 'root'
