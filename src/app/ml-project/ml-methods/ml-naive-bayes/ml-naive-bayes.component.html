@@ -1,1 +1,44 @@
-<p>ml-naive-bayes works!</p>
+<app-ml-page-navigation/>
+
+<div class="container-sm">
+    <h1 class="text-center">Naïve Bayes</h1>
+    <h2>An Extension of Conditional Probability</h2>
+    <p>
+        Naïve Bayes, like other supervised learning models, learns a  can be used to predict an outcome based on data. It is built off of Baye's Theorem which at its core is simply conditional probability of dependent events:
+
+        $${{math.beginAlign()}}
+            
+            P(Y|X) & = {{math.fraction("P(Y \\cap X)", "P(X)")}} \\\\
+            P(Y|X) & =  {{math.fraction("P(X|Y)P(Y)", "P(X)")}},
+
+        {{math.endAlign()}}$$
+
+    <p>
+        where $Y$ is a $N \times 1$ vector and $X$ is a $M \times $N matrix. $y_1$ is the $n$th element in $Y$ and ${{math.sub("x", "m,n")}}$ is the element in $X$ in the $m$th row and the $n$th column. Imagine that $y_1$ is the current outcome value of interest based on a single row of $X$. By Baye's theorem, 
+
+        $$
+        {{math.beginAlign()}}
+
+            P(y_1|X) & = {{math.fraction("P(X | y_1)P(y_1)", "P(X)")}} \\\\
+
+            P(y_1|x_1 \cap x_2 \cap ... \cap x_m) & = {{math.fraction("P(x_1 \\cap x_2 \\cap ... \\cap x_m| y_1)P(y_1)", "P(x_1 \\cap x_2 \\cap ... \\cap x_m)")}} \\\\
+        {{math.endAlign()}}
+        $$
+
+    <h2>Naïve Bayes</h2>
+    <p>
+        With dependent events events, this formula becomes unweildy for large amounts of features (i.e. large values of $M$). See <a href="https://en.wikipedia.org/wiki/Chain_rule_(probability)" target="_blank">the chain rule for probability</a> for an explanation. Enter the naïve part of Naïve Bayes. The algorithm makes an assumption that the features of $X$ are independent. While this is mostly likely seldom the case, it simplifies the math greatly. The final formula, following from above, becomes
+        $$
+
+        {{math.beginAlign()}}
+            P(y_1|x_1 \cap x_2 \cap ... \cap x_m) & = {{math.fraction("P(x_1 \\cap x_2 \\cap ... \\cap x_m| y_1)P(y_1)", "P(x_1 \\cap x_2 \\cap ... \\cap x_m)")}} \\\\
+
+            & = {{math.fraction("P(x_1|y_1) \\cdot P(x_2|y_1) \\cdot ... \\cdot P(x_m|y_1) \\cdot P(y_1)", "P(x_1) \\cdot P(x_2) \\cdot ... \\cdot P(x_m)")}}
+        {{math.endAlign()}}
+        $$
+
+    <p>
+        The Naïve Bayes model calculates all necessary probabilities when given a training dataset and can predict an outcome based on a new data vector using the formula. 
+
+    
+</div>

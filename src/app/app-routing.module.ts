@@ -70,7 +70,7 @@ const routes: Routes = [
   {path: "portfolio/machine-learning/methods/clustering", component: MlClusteringComponent},
   {path: "portfolio/machine-learning/methods/association-rule-mining", component: MlArmComponent},
   {path: "portfolio/machine-learning/methods/naive-bayes", component: MlNaiveBayesComponent},
-  {path: "portfolio/machine-learning/methods/decision-trees", component: MlDecisionTreeComponent},
+  {path: "portfolio/machine-learning/methods/decision-tree", component: MlDecisionTreeComponent},
   {path: "portfolio/machine-learning/methods/regression", component: MlRegressionComponent},
   {path: "portfolio/machine-learning/methods/support-vector-machines", component: MlSupportVectorComponent},
   {path: "portfolio/machine-learning/methods/ensemble", component: MlEnsembleComponent},
