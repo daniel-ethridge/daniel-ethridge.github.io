@@ -4,8 +4,7 @@ DATE_TODAY=$(date)
 
 git branch
 git merge main
-git add src/assets/literature.json -n
-git add src/assets/literature.json
+git add src/assets/literature.json src/assets/literature.bib
 git commit -m "Added literature: $DATE_TODAY"
 git push
 
