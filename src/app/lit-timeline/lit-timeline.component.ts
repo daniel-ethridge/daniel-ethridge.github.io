@@ -23,6 +23,7 @@ export class LitTimelineComponent {
   numTagsPerColumns: number = 4;
   tagAndTag: boolean = false;
   detailedInfo: boolean = false;
+  paperIdx: number = 0;
 
   constructor(private titleService: Title, private literatureService: LiteratureService, private renderer: Renderer2) {
     this.titleService.setTitle("Daniel Ethridge | Literature Timeline")
@@ -54,6 +55,11 @@ export class LitTimelineComponent {
     this.tags.forEach( (tag) => {
       this.tagCheck.set(tag, false);
     })
+  }
+
+  paperCount() {
+    this.paperIdx += 1;
+    return this.paperIdx;
   }
 
   showDetails(checked: boolean) {
