@@ -396,7 +396,7 @@ class LitEntry:
       month_data = self.months_var.get()
 
     data = [{
-      "title": self.register_title.get("1.0", "end").replace("\n", ""),
+      "title": self.register_title.get("1.0", "end").replace("\n", " "),
       "year": year,
       "month": int(month_data),
       "authors": authors,
@@ -404,10 +404,10 @@ class LitEntry:
       "doi": self.register_doi.get(),
       "document_type": self.doc_var.get(),
       "other_info": self.register_other_doc_info.get("1.0", "end"),
-      "aims_questions": self.register_aims_questions.get("1.0", "end").replace("\n", ""),
-      "methods": self.register_methods.get("1.0", "end").replace("\n", ""),
-      "results": self.register_results.get("1.0", "end").replace("\n", ""),
-      "discussion": self.register_discussion.get("1.0", "end").replace("\n", ""),
+      "aims_questions": self.register_aims_questions.get("1.0", "end").replace("\n", " "),
+      "methods": self.register_methods.get("1.0", "end").replace("\n", " "),
+      "results": self.register_results.get("1.0", "end").replace("\n", " "),
+      "discussion": self.register_discussion.get("1.0", "end").replace("\n", " "),
       "tags": tags
     }]
 
