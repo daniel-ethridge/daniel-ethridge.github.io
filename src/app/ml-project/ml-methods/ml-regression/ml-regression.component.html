@@ -1,1 +1,250 @@
-<p>ml-regression works!</p>
+<app-ml-page-navigation/>
+
+<div class="container-sm">
+    <h1 class="text-center">Regression</h1>
+    <p>
+    <h2 id="lin-reg-intro">What is Linear Regression?</h2>
+    <p>
+        <em>This section presents a basic overview of linear regression. To dive into the mathematics, see <a href="/portfolio/machine-learning/methods/regression#lin-reg-math">The Math Behind Linear Regression</a>.</em>
+    <p>
+        Linear regression is a method that aims to predict an outcome variable based on one or more predictor variables. The outcome and all the predictor variables are continous and quantitative. For one predictor, it can be written as 
+        
+        $$ outcome = b + w \cdot predictor $$
+        
+        The term $w$ is known as a weight and $b$ is known as a bias. Note that this is the same linear equation commonly learned in high school, $y=mx+b$, where $m$ is the slope and $b$ is the y-intercept. It can be easily expanded to include more predictor variables:
+
+        $$ outcome = b + w_1 \cdot predictor_1 + w_2 \cdot predictor_2 + ... + w_n \cdot predictor_n, $$
+
+        where $n$ is the number of predictor variables. This equation represents what is known as the General Linear Model (GLM). Linear regression aims to find the values of $b$ and $w_1$ to $w_n$ such that the line represented by the equation is the line of best fit for the data.
+
+    <h2 id="log-reg-intro">What is Logistic Regression?</h2>
+    <p>
+        Linear regression is useful if the outcome variable is a continuous variable. Sometimes that is not the case. In the case that the outcome variable is binary and discrete, logistic regression is useful. Some examples of binary, discrete outcome variables are: 
+
+    <ul>
+        <li>Yes / No</li>
+        <li>Cat / Dog</li>
+        <li>Success / Failure</li>
+    </ul>
+
+    <p>
+        In each of these there are two and only two possible outcomes. Logistic regression is a form of the Generalized Linear Model. In a Generalized Linear Model, the linear equation for linear regression is inserted into what is know as a link function. In the case of logistic regression, this link function is known as the sigmoid function as shown below:
+
+        $$
+            \sigma(z) = {{math.fraction("1", "1+e^{-z}")}}
+        $$
+    <img src="../../../../assets/ml-assets/ml-supervised/sigmoid.png" alt="Graph of the sigmoid function" class="img-center">
+
+    <p>
+        Inserting the linear regression formula into the link function looks like this:
+
+        $$
+            \sigma(z) = {{math.fraction("1", "1+e^{-(b + w_1 \\cdot predictor_1 + w_2 \\cdot predictor_2 + ... + w_n \\cdot predictor_n)}")}}
+        $$
+
+    <p>
+        Visually, it can be seen that the function maps any input to between 0 and 1. For the purposes of classification, any output below $0.5$ is classified as the first class, and any output above $0.5$ is classified as the second class.
+
+    <h2>Differences and Similarities of Logistic and Linear Regression</h2>
+    <p>
+        The most poignant difference between logistic and linear regression is that linear regression is used for continuous outcome variables and logistic regression is used for discrete outcome variables. They are somewhat similar in their approach, however, as they both involve the linear equation 
+        $$
+        outcome = b + w_1 \cdot predictor_1 + w_2 \cdot predictor_2 + ... + w_n \cdot predictor_n.
+        $$
+
+        As stated above, they differ in that logistic regression utilizes what is known as a link function to transform this equation into a form between 0 and 1. In this case, that link function is the link function. For more on the general linear model and on generalized linear models, I recommend <a href="https://www.youtube.com/watch?v=SqN-qlQOM5A" target="_blank">this</a> video by statistics expert and Rowan University professor Dr. Dustin Fife.
+
+
+    <h2>Applying Logistic Regression to the Spotify Dataset</h2>
+    <h5>All code can be found <a href="https://github.com/daniel-ethridge/MachineLearning/tree/main/supervised" target="_blank">here</a> and all data <a href="https://drive.google.com/drive/folders/1WeLVT3kzSicaQgk-oUrgrRzlK8CQ2uHG" target="_blank">here</a>.</h5>
+
+    <p>
+        The current spotify data looks like this: <br>
+        <img class="img-center-s" src="../../../../assets/ml-assets/spotify-data.png" alt=""><br>
+
+    <h5>The value that we are going to try and predict with logistic regression is whether or not a song is instrumental.</h5>
+    <p>
+        The spotify API states that an instrumentalness score of below 0.5 is likely not instrumental, while a score of above 0.5 is. After dropping unnecessary columns and creating the label, the data looks like this: <br>
+        <img class="img-center-s" src="../../../../assets/ml-assets/prepped-spotify-data-supervised.png" alt=""><br>
+
+    <p>
+        For supervised learning, we need labeled data to train the model. The label for this data is "instrumental". So we will first separate the actual data from the label. The image on the left is the data, while the image on the right is the label vector.
+
+    <div class="row">
+        <div class="col-sm-6">
+            <img class="img-center-m" src="../../../../assets/ml-assets/ml-supervised/supervised-data.png" alt="">
+        </div>
+        <div class="col-sm-6">
+            <img class="img-center-m" src="../../../../assets/ml-assets/ml-supervised/supervised-labels.png" alt="">
+        </div>
+    </div>
+
+    <p>
+        It is important in supervised learning to have equal numbers of each class, but for this data that is not the case as shown below:
+        <img class="img-center-s" src="../../../../assets/ml-assets/ml-supervised/instrumental_counts.png" alt="">
+
+    <p>
+        While there are several ways to potentially fix this issue, one method is to use what is known as oversampling. This in essence randomly duplicates samples from the minority class (in this case 1) so that the cases are even. This can be accomplished with the python package <code>imblearn</code> and the included class <code>RandomOverSampler</code>. Doing so fixes the imbalance:
+        <img class="img-center-s" src="../../../../assets/ml-assets/ml-supervised/instrumental_counts_sampled.png" alt="">
+
+    <p>
+        The data now needs to be split into a training set and a testing set. This disjoin split is important to be able to evaluate the model. If the model is evaluated on the same data it is trained on, it might perform great. But there is no way to know if it will generalize well to other data. Thus, it needs to perform well on data that it has not seen. The model is trained on the training set, and then the labels of the testing set are predicted. The model is then evaluated by comparing the predicted labels to the actual labels. Splitting data into a training and testing set is easily accomplished with scikit learn's <code>train__test_split</code> method. See the images below. From left to right and going down, they are training data, testing data, training labels, and testing labels. Notice the larger size of the training data. 75% of the data is randomly assigned as training data, and 25% of the data is randomly assigned as testing data.
+        
+        <div class="row">
+            <div class="col-sm-6">
+                <img class="img-center" src="../../../../assets/ml-assets/ml-supervised/x-train.png" alt="">
+            </div>
+            <div class="col-sm-6">
+                <img class="img-center" src="../../../../assets/ml-assets/ml-supervised/x-test.png" alt="">
+            </div>
+            <div class="col-sm-6">
+                <img class="img-center" src="../../../../assets/ml-assets/ml-supervised/y-train.png" alt="">
+            </div>
+            <div class="col-sm-6">
+                <img class="img-center" src="../../../../assets/ml-assets/ml-supervised/y-test.png" alt="">
+            </div>
+        </div>
+
+    <p>
+        We will fit this model, and we'll also fit a Naive Bayes model to test it against. After building and constructing both models, the follow confusion matrices and metrics are calculated. The confusion matrix on the left is for logistic regression, and the confusion matrix on the right is for Naive Bayes.
+
+        <div class="row">
+            <div class="col-sm-6">
+                <img class="img-center" src="../../../../assets/ml-assets/ml-supervised/log_reg_conf_matrix.png" alt="">
+            </div>
+            <div class="col-sm-6">
+                <img class="img-center" src="../../../../assets/ml-assets/ml-supervised/nb_conf_matrix.png" alt="">
+        </div>
+        <img class="img-center-s" src="../../../../assets/ml-assets/ml-supervised/log_reg_nb_metrics.png" alt="">
+
+    <p>
+        Based on the above metrics, clearly logistic regression performed better than Naive Bayes. It is possible that logistic regression performed worse due to overfitting, but that is unknown unless it is tested for. In any case, pertaining to the larger questions at hand, it seems that whether or not a song is instrumental can be predicted by the other spotify attributes. Thus it means that to a degree, there are discernable acoustic features other than the presence of a voice that are more common in instrumental music and vice versa.
+
+
+    <h4><em>Everything below is heavy on the math. Proceed at will.</em></h4>
+    <h2 id="lin-reg-math">The Math Behind Linear Regression</h2>
+    <em>This section goes into depth on the math behind linear regression. For a basic overview see <a href="/portfolio/machine-learning/methods/regression#lin-reg-intro">What is Linear Regression?</a></em>. 
+    <h3>Linear Regression Formally Defined</h3>
+    <p>
+        The linear regression equation is $${{math.hat("Y")}} = b + WX,$$
+
+    <p>
+        where ${{math.hat("Y")}}$ is a $N \times 1$ vector of predicted outcomes, $b$ is the bias, $W$ is a $1 \times M$ vector of weights, and $X$ is a $M \times N$ matrix. $N$ is the number of records in a dataset and $M$ is the number of features. ${{math.hat("y_n")}}$ is the $n$th element in ${{math.hat("Y")}}$, $b_n$ is the $n$th element in $B$, $w_m$ is the $m$th element in W, and ${{math.sub("x", "m,n")}}$ is the element in the $m$th row and $n$th column of $X$.
+    
+    <p>
+        As an example, let $N=3$ and let $M=2$:
+
+    $$
+    {{math.beginAlign()}}
+
+    {{math.beginMatrix()}}
+    {{math.hat("y_1")}} \cr {{math.hat("y_2")}} \cr {{math.hat("y_3")}}
+    {{math.endMatrix()}}
+
+    & = b + 
+
+    {{math.beginMatrix()}}
+    w_1 & w_2
+    {{math.endMatrix()}}
+
+    {{math.beginMatrix()}}
+    {{math.sub("x", "1,1")}} & {{math.sub("x", "1,2")}} & {{math.sub("x", "1,3")}} \cr
+    {{math.sub("x", "2,1")}} & {{math.sub("x", "2,2")}} & {{math.sub("x", "2,3")}}
+    {{math.endMatrix()}} \\\\
+
+    {{math.beginMatrix()}}
+    {{math.hat("y_1")}} \cr {{math.hat("y_2")}} \cr {{math.hat("y_3")}}
+    {{math.endMatrix()}}
+
+    & = b +
+
+    {{math.beginMatrix()}}
+    w_1{{math.sub("x", "1,1")}} + w_2{{math.sub("x", "2,1")}} \cr 
+    w_1{{math.sub("x", "1,2")}} + w_2{{math.sub("x", "2,2")}} \cr 
+    w_1{{math.sub("x", "1,3")}} + w_2{{math.sub("x", "2,3")}}
+    {{math.endMatrix()}}
+
+    {{math.endAlign()}}
+    $$
+
+    <h3>Mean Squared Error: The Loss Function</h3>
+    <p>
+        The initial state of linear regression is to start with random values for the weights and bias. Using these values, we calculate the predicted outcome vector ${{math.hat("Y")}}$. We can calculate the amount of error from the real values using the mean squared error function
+
+        $$
+            L = {{math.fraction("1", "N")}}{{math.sum("i=1", "N")}}(y_i - {{math.hat("y_i")}})^2
+        $$,
+
+    <p>
+        where L is the total error, or "loss". The end goal is to find values for $b$ and $W$ such that $L$ is minimized. For this, we use gradient descent.
+        
+
+    <h3>Gradient Descent</h3>
+    <img class="img-center-s" src="../../../../assets/ml-assets/ml-supervised/parabola.png" alt="A Parabola">
+    <p>
+        Take a look at the parabola above given by $f(x)=x^2$, and notice the point $(-2, 4)$. Imagine that the point is a ball. Which way is the ball going to roll? To the right of course because of gravity. It will roll all the way to the bottom of the parabola, and it might start travelling up the hill on the right. But eventually it will come to rest at the bottom ($x=0$).
+    <p>
+        Now consider the slope of the parabola at any given point. To the left of $x=0$, the slope is negative. To the right, the slope is positive. Thinking about the ball analogy again:
+    
+    <ul>
+        <li>The ball wants to travel right, or increase its $x$-coordinate, when there is a negative slope.</li>
+        <li>The ball wants to travel left, or decrease its $x$-coordinate, when there is a positive slope.</li>
+    </ul>
+    <p>
+        This can be mathematically represented as $x_{{'{new}'}} = x_{{'{old}'}} - {{math.fraction("dy", "dx")}}$. Commonly a term $\alpha$, known as the learning rate, is applied to control the rate at which the value of $x$ will update. The final form of gradient descent is then $$x_{{'{new}'}} = x_{{'{old}'}} - \alpha{{math.fraction("dy", "dx")}}.$$
+    
+    <h3>Minimizing the Loss Function</h3>
+        Using this idea of subtracting the derivative, we can minimize the mean squared error by first calculating the partial derivatives with respect to each weight and the bias. Then we subtract that derivative from the term to acheive a new value. This process is repeated until we reach a derivative of 0 for all terms. The partial derivative with respect to the bias $b$ is 
+
+    $$
+    {{math.beginAlign()}}
+    
+    {{math.fraction("\\partial L", "\\partial b")}} & = [{{math.fraction("1", "N")}}{{math.sum("i=1", "N")}}(y_i - {{math.hat("y_i")}})^2]' \\
+
+    & = {{math.fraction("1", "N")}}[{{math.sum("i=1", "N")}}(y_i - (b + w_1{{math.sub("x", "1,i")}} + ... + w_m{{math.sub("x", "m,i")}}))^2]' \\
+
+    & = {{math.fraction("1", "N")}}[{{math.sum("i=1", "N")}}(y_i - (b + {{math.sum("j=1", "M")}}w_j{{math.sub("x", "j,i")}}))^2]' \\
+
+    & = {{math.fraction("2", "N")}}{{math.sum("i=1", "N")}}[y_i - (b + {{math.sum("j=1", "M")}}w_j{{math.sub("x", "j,i")}})[{{math.hat("y_i")}} - (b + {{math.sum("j=1", "M")}}w_j{{math.sub("x", "j,i")}})]'] \\
+
+    & = {{math.fraction("2", "N")}}{{math.sum("i=1", "N")}}[y_i - (b + {{math.sum("j=1", "M")}}w_j{{math.sub("x", "j,i")}})(0-(1+0))] \\
+
+    & = {{math.fraction("-2", "N")}}{{math.sum("i=1", "N")}}y_i - (b + {{math.sum("j=1", "M")}}w_j{{math.sub("x", "j,i")}})
+
+    {{math.endAlign()}}
+    $$
+
+    <p>
+        The formula for ${{math.fraction("\\partial L", "\\partial w_m")}}$ can be found in a similar manner:
+
+    $$
+    {{math.beginAlign()}}
+    
+    {{math.fraction("\\partial L", "\\partial w_m")}} & = [{{math.fraction("1", "N")}}{{math.sum("i=1", "N")}}(y_i - {{math.hat("y_i")}})^2]' \\
+
+    & = {{math.fraction("1", "N")}}[{{math.sum("i=1", "N")}}(y_i - (b + w_1{{math.sub("x", "1,i")}} + ... + w_m{{math.sub("x", "m,i")}}))^2]' \\
+
+    & = {{math.fraction("1", "N")}}[{{math.sum("i=1", "N")}}(y_i - (b + {{math.sum("j=1", "M")}}w_j{{math.sub("x", "j,i")}}))^2]' \\
+
+    & = {{math.fraction("2", "N")}}{{math.sum("i=1", "N")}}[y_i - (b + {{math.sum("j=1", "M")}}w_j{{math.sub("x", "j,i")}})[{{math.hat("y_i")}} - (b + {{math.sum("j=1", "M")}}w_j{{math.sub("x", "j,i")}})]'] \\
+
+    & = {{math.fraction("2", "N")}}{{math.sum("i=1", "N")}}[y_i - (b + {{math.sum("j=1", "M")}}w_j{{math.sub("x", "j,i")}})(0-(0+{{math.sub("x", "m,i")}}))] \\
+
+    & = {{math.fraction("-2", "N")}}{{math.sum("i=1", "N")}}{{math.sub("x", "m,i")}}(y_i - (b + {{math.sum("j=1", "M")}}w_j{{math.sub("x", "j,i")}}))
+
+    {{math.endAlign()}}
+    $$
+
+    <p>
+        We iteratively apply these formulas to adjust the values of the bias and the weights until the partial derivatives equal 0:
+        
+        $$
+        {{math.beginAlign()}}
+        {{math.sub("b", "new")}} & = {{math.sub("b", "old")}} - \alpha{{math.fraction("\\partial L", "\\partial b")}} \\
+        {{math.sub("w", "m,new")}} & = {{math.sub("w", "m,old")}} - \alpha{{math.fraction("\\partial L", "\\partial w_m")}}
+        
+        {{math.endAlign()}}
+        $$
+
+        Repeating this process of calculating loss and performing gradient descent continues until the partial derivatives equal 0.
+</div>

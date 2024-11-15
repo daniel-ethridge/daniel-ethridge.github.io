@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MathScript } from '../../../_models/MathScript';
 
 @Component({
   selector: 'app-ml-regression',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./ml-regression.component.css']
 })
 export class MlRegressionComponent {
-
+  math: MathScript = new MathScript();
 }
