@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MathScript } from 'src/app/_models/MathScript';
 
 @Component({
   selector: 'app-ml-decision-tree',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./ml-decision-tree.component.css']
 })
 export class MlDecisionTreeComponent {
-
+  math: MathScript = new MathScript();
 }
