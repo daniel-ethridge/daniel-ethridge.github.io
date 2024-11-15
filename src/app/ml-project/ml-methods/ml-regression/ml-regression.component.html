@@ -45,8 +45,85 @@
     <p>
         Visually, it can be seen that the function maps any input to between 0 and 1. For the purposes of classification, any output below $0.5$ is classified as the first class, and any output above $0.5$ is classified as the second class.
 
+    <h2>Differences and Similarities of Logistic and Linear Regression</h2>
+    <p>
+        The most poignant difference between logistic and linear regression is that linear regression is used for continuous outcome variables and logistic regression is used for discrete outcome variables. They are somewhat similar in their approach, however, as they both involve the linear equation 
+        $$
+        outcome = b + w_1 \cdot predictor_1 + w_2 \cdot predictor_2 + ... + w_n \cdot predictor_n.
+        $$
+
+        As stated above, they differ in that logistic regression utilizes what is known as a link function to transform this equation into a form between 0 and 1. In this case, that link function is the link function. For more on the general linear model and on generalized linear models, I recommend <a href="https://www.youtube.com/watch?v=SqN-qlQOM5A" target="_blank">this</a> video by statistics expert and Rowan University professor Dr. Dustin Fife.
+
+
+    <h2>Applying Logistic Regression to the Spotify Dataset</h2>
+    <h5>All code can be found <a href="https://github.com/daniel-ethridge/MachineLearning/tree/main/supervised" target="_blank">here</a> and all data <a href="https://drive.google.com/drive/folders/1WeLVT3kzSicaQgk-oUrgrRzlK8CQ2uHG" target="_blank">here</a>.</h5>
+
+    <p>
+        The current spotify data looks like this: <br>
+        <img class="img-center-s" src="../../../../assets/ml-assets/spotify-data.png" alt=""><br>
+
+    <h5>The value that we are going to try and predict with logistic regression is whether or not a song is instrumental.</h5>
+    <p>
+        The spotify API states that an instrumentalness score of below 0.5 is likely not instrumental, while a score of above 0.5 is. After dropping unnecessary columns and creating the label, the data looks like this: <br>
+        <img class="img-center-s" src="../../../../assets/ml-assets/prepped-spotify-data-supervised.png" alt=""><br>
+
+    <p>
+        For supervised learning, we need labeled data to train the model. The label for this data is "instrumental". So we will first separate the actual data from the label. The image on the left is the data, while the image on the right is the label vector.
+
+    <div class="row">
+        <div class="col-sm-6">
+            <img class="img-center-m" src="../../../../assets/ml-assets/ml-supervised/supervised-data.png" alt="">
+        </div>
+        <div class="col-sm-6">
+            <img class="img-center-m" src="../../../../assets/ml-assets/ml-supervised/supervised-labels.png" alt="">
+        </div>
+    </div>
+
+    <p>
+        It is important in supervised learning to have equal numbers of each class, but for this data that is not the case as shown below:
+        <img class="img-center-s" src="../../../../assets/ml-assets/ml-supervised/instrumental_counts.png" alt="">
+
+    <p>
+        While there are several ways to potentially fix this issue, one method is to use what is known as oversampling. This in essence randomly duplicates samples from the minority class (in this case 1) so that the cases are even. This can be accomplished with the python package <code>imblearn</code> and the included class <code>RandomOverSampler</code>. Doing so fixes the imbalance:
+        <img class="img-center-s" src="../../../../assets/ml-assets/ml-supervised/instrumental_counts_sampled.png" alt="">
+
+    <p>
+        The data now needs to be split into a training set and a testing set. This disjoin split is important to be able to evaluate the model. If the model is evaluated on the same data it is trained on, it might perform great. But there is no way to know if it will generalize well to other data. Thus, it needs to perform well on data that it has not seen. The model is trained on the training set, and then the labels of the testing set are predicted. The model is then evaluated by comparing the predicted labels to the actual labels. Splitting data into a training and testing set is easily accomplished with scikit learn's <code>train__test_split</code> method. See the images below. From left to right and going down, they are training data, testing data, training labels, and testing labels. Notice the larger size of the training data. 75% of the data is randomly assigned as training data, and 25% of the data is randomly assigned as testing data.
+        
+        <div class="row">
+            <div class="col-sm-6">
+                <img class="img-center" src="../../../../assets/ml-assets/ml-supervised/x-train.png" alt="">
+            </div>
+            <div class="col-sm-6">
+                <img class="img-center" src="../../../../assets/ml-assets/ml-supervised/x-test.png" alt="">
+            </div>
+            <div class="col-sm-6">
+                <img class="img-center" src="../../../../assets/ml-assets/ml-supervised/y-train.png" alt="">
+            </div>
+            <div class="col-sm-6">
+                <img class="img-center" src="../../../../assets/ml-assets/ml-supervised/y-test.png" alt="">
+            </div>
+        </div>
+
+    <p>
+        We will fit this model, and we'll also fit a Naive Bayes model to test it against. After building and constructing both models, the follow confusion matrices and metrics are calculated. The confusion matrix on the left is for logistic regression, and the confusion matrix on the right is for Naive Bayes.
+
+        <div class="row">
+            <div class="col-sm-6">
+                <img class="img-center" src="../../../../assets/ml-assets/ml-supervised/log_reg_conf_matrix.png" alt="">
+            </div>
+            <div class="col-sm-6">
+                <img class="img-center" src="../../../../assets/ml-assets/ml-supervised/nb_conf_matrix.png" alt="">
+        </div>
+        <img class="img-center-s" src="../../../../assets/ml-assets/ml-supervised/log_reg_nb_metrics.png" alt="">
+
+    <p>
+        Based on the above metrics, clearly logistic regression performed better than Naive Bayes. It is possible that logistic regression performed worse due to overfitting, but that is unknown unless it is tested for. In any case, pertaining to the larger questions at hand, it seems that whether or not a song is instrumental can be predicted by the other spotify attributes. Thus it means that to a degree, there are discernable acoustic features other than the presence of a voice that are more common in instrumental music and vice versa.
+
+
+    <h4><em>Everything below is heavy on the math. Proceed at will.</em></h4>
     <h2 id="lin-reg-math">The Math Behind Linear Regression</h2>
-    <em>This section goes into depth on the math behind linear regression. For a basic overview see <a href="/portfolio/machine-learning/methods/regression#lin-reg-intro">What is Linear Regression?</a></em>.    
+    <em>This section goes into depth on the math behind linear regression. For a basic overview see <a href="/portfolio/machine-learning/methods/regression#lin-reg-intro">What is Linear Regression?</a></em>. 
     <h3>Linear Regression Formally Defined</h3>
     <p>
         The linear regression equation is $${{math.hat("Y")}} = b + WX,$$
@@ -95,7 +172,7 @@
         The initial state of linear regression is to start with random values for the weights and bias. Using these values, we calculate the predicted outcome vector ${{math.hat("Y")}}$. We can calculate the amount of error from the real values using the mean squared error function
 
         $$
-            L = {{math.sum("i=1", "N")}}(y_i - {{math.hat("y_i")}})^2
+            L = {{math.fraction("1", "N")}}{{math.sum("i=1", "N")}}(y_i - {{math.hat("y_i")}})^2
         $$,
 
     <p>
@@ -122,17 +199,17 @@
     $$
     {{math.beginAlign()}}
     
-    {{math.fraction("\\partial L", "\\partial b")}} & = [{{math.sum("i=1", "N")}}(y_i - {{math.hat("y_i")}})^2]' \\
+    {{math.fraction("\\partial L", "\\partial b")}} & = [{{math.fraction("1", "N")}}{{math.sum("i=1", "N")}}(y_i - {{math.hat("y_i")}})^2]' \\
 
-    & = [{{math.sum("i=1", "N")}}(y_i - (b + w_1{{math.sub("x", "1,i")}} + ... + w_m{{math.sub("x", "m,i")}}))^2]' \\
+    & = {{math.fraction("1", "N")}}[{{math.sum("i=1", "N")}}(y_i - (b + w_1{{math.sub("x", "1,i")}} + ... + w_m{{math.sub("x", "m,i")}}))^2]' \\
 
-    & = [{{math.sum("i=1", "N")}}(y_i - (b + {{math.sum("j=1", "M")}}w_j{{math.sub("x", "j,i")}}))^2]' \\
+    & = {{math.fraction("1", "N")}}[{{math.sum("i=1", "N")}}(y_i - (b + {{math.sum("j=1", "M")}}w_j{{math.sub("x", "j,i")}}))^2]' \\
 
-    & = 2{{math.sum("i=1", "N")}}[y_i - (b + {{math.sum("j=1", "M")}}w_j{{math.sub("x", "j,i")}})[{{math.hat("y_i")}} - (b + {{math.sum("j=1", "M")}}w_j{{math.sub("x", "j,i")}})]'] \\
+    & = {{math.fraction("2", "N")}}{{math.sum("i=1", "N")}}[y_i - (b + {{math.sum("j=1", "M")}}w_j{{math.sub("x", "j,i")}})[{{math.hat("y_i")}} - (b + {{math.sum("j=1", "M")}}w_j{{math.sub("x", "j,i")}})]'] \\
 
-    & = 2{{math.sum("i=1", "N")}}[y_i - (b + {{math.sum("j=1", "M")}}w_j{{math.sub("x", "j,i")}})(0-(1+0))] \\
+    & = {{math.fraction("2", "N")}}{{math.sum("i=1", "N")}}[y_i - (b + {{math.sum("j=1", "M")}}w_j{{math.sub("x", "j,i")}})(0-(1+0))] \\
 
-    & = -2{{math.sum("i=1", "N")}}y_i - (b + {{math.sum("j=1", "M")}}w_j{{math.sub("x", "j,i")}})
+    & = {{math.fraction("-2", "N")}}{{math.sum("i=1", "N")}}y_i - (b + {{math.sum("j=1", "M")}}w_j{{math.sub("x", "j,i")}})
 
     {{math.endAlign()}}
     $$
@@ -143,17 +220,17 @@
     $$
     {{math.beginAlign()}}
     
-    {{math.fraction("\\partial L", "\\partial w_m")}} & = [{{math.sum("i=1", "N")}}(y_i - {{math.hat("y_i")}})^2]' \\
+    {{math.fraction("\\partial L", "\\partial w_m")}} & = [{{math.fraction("1", "N")}}{{math.sum("i=1", "N")}}(y_i - {{math.hat("y_i")}})^2]' \\
 
-    & = [{{math.sum("i=1", "N")}}(y_i - (b + w_1{{math.sub("x", "1,i")}} + ... + w_m{{math.sub("x", "m,i")}}))^2]' \\
+    & = {{math.fraction("1", "N")}}[{{math.sum("i=1", "N")}}(y_i - (b + w_1{{math.sub("x", "1,i")}} + ... + w_m{{math.sub("x", "m,i")}}))^2]' \\
 
-    & = [{{math.sum("i=1", "N")}}(y_i - (b + {{math.sum("j=1", "M")}}w_j{{math.sub("x", "j,i")}}))^2]' \\
+    & = {{math.fraction("1", "N")}}[{{math.sum("i=1", "N")}}(y_i - (b + {{math.sum("j=1", "M")}}w_j{{math.sub("x", "j,i")}}))^2]' \\
 
-    & = 2{{math.sum("i=1", "N")}}[y_i - (b + {{math.sum("j=1", "M")}}w_j{{math.sub("x", "j,i")}})[{{math.hat("y_i")}} - (b + {{math.sum("j=1", "M")}}w_j{{math.sub("x", "j,i")}})]'] \\
+    & = {{math.fraction("2", "N")}}{{math.sum("i=1", "N")}}[y_i - (b + {{math.sum("j=1", "M")}}w_j{{math.sub("x", "j,i")}})[{{math.hat("y_i")}} - (b + {{math.sum("j=1", "M")}}w_j{{math.sub("x", "j,i")}})]'] \\
 
-    & = 2{{math.sum("i=1", "N")}}[y_i - (b + {{math.sum("j=1", "M")}}w_j{{math.sub("x", "j,i")}})(0-(0+{{math.sub("x", "m,i")}}))] \\
+    & = {{math.fraction("2", "N")}}{{math.sum("i=1", "N")}}[y_i - (b + {{math.sum("j=1", "M")}}w_j{{math.sub("x", "j,i")}})(0-(0+{{math.sub("x", "m,i")}}))] \\
 
-    & = -2{{math.sum("i=1", "N")}}{{math.sub("x", "m,i")}}(y_i - (b + {{math.sum("j=1", "M")}}w_j{{math.sub("x", "j,i")}}))
+    & = {{math.fraction("-2", "N")}}{{math.sum("i=1", "N")}}{{math.sub("x", "m,i")}}(y_i - (b + {{math.sum("j=1", "M")}}w_j{{math.sub("x", "j,i")}}))
 
     {{math.endAlign()}}
     $$
@@ -168,4 +245,6 @@
         
         {{math.endAlign()}}
         $$
+
+        Repeating this process of calculating loss and performing gradient descent continues until the partial derivatives equal 0.
 </div>
