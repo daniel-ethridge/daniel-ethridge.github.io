@@ -1,1 +1,139 @@
-<p>ml-naive-bayes works!</p>
+<app-ml-page-navigation/>
+
+<div class="container-sm">
+    <h1 class="text-center">Naïve Bayes</h1>
+    <h2>An Extension of Conditional Probability</h2>
+    <p>
+        Naïve Bayes, like other supervised learning models, learns a  can be used to predict an outcome based on data. It is built off of Baye's Theorem which at its core is simply conditional probability of dependent events:
+
+        $${{math.beginAlign()}}
+            
+            P(Y|X) & = {{math.fraction("P(Y \\cap X)", "P(X)")}} \\\\
+            P(Y|X) & =  {{math.fraction("P(X|Y)P(Y)", "P(X)")}},
+
+        {{math.endAlign()}}$$
+
+    <p>
+        where $Y$ is a $N \times 1$ vector and $X$ is a $M \times $N matrix. $y_1$ is the $n$th element in $Y$ and ${{math.sub("x", "m,n")}}$ is the element in $X$ in the $m$th row and the $n$th column. Imagine that $y_1$ is the current outcome value of interest based on a single row of $X$. By Baye's theorem, 
+
+        $$
+        {{math.beginAlign()}}
+
+            P(y_1|X) & = {{math.fraction("P(X | y_1)P(y_1)", "P(X)")}} \\\\
+
+            P(y_1|x_1 \cap x_2 \cap ... \cap x_m) & = {{math.fraction("P(x_1 \\cap x_2 \\cap ... \\cap x_m| y_1)P(y_1)", "P(x_1 \\cap x_2 \\cap ... \\cap x_m)")}} \\\\
+        {{math.endAlign()}}
+        $$
+
+    <h2>Naïve Bayes</h2>
+    <p>
+        With dependent events events, this formula becomes unweildy for large amounts of features (i.e. large values of $M$). See <a href="https://en.wikipedia.org/wiki/Chain_rule_(probability)" target="_blank">the chain rule for probability</a> for an explanation. Enter the naïve part of Naïve Bayes. The algorithm makes an assumption that the features of $X$ are independent. While this is mostly likely seldom the case, it simplifies the math greatly. The final formula, following from above, becomes
+        $$
+
+        {{math.beginAlign()}}
+            P(y_1|x_1 \cap x_2 \cap ... \cap x_m) & = {{math.fraction("P(x_1 \\cap x_2 \\cap ... \\cap x_m| y_1)P(y_1)", "P(x_1 \\cap x_2 \\cap ... \\cap x_m)")}} \\\\
+
+            & = {{math.fraction("P(x_1|y_1) \\cdot P(x_2|y_1) \\cdot ... \\cdot P(x_m|y_1) \\cdot P(y_1)", "P(x_1) \\cdot P(x_2) \\cdot ... \\cdot P(x_m)")}}
+        {{math.endAlign()}}
+        $$
+
+    <p>
+        The Naïve Bayes model calculates all necessary probabilities when given a training dataset and can predict an outcome based on a new data vector using the formula. 
+
+    <h3>Types of Naïve Bayes</h3>
+    There are multiple types of Naïve Bayes algorithms. Which one to utilize depends on the type of training data. Four main types are:
+
+    <ul>
+        <li>Gaussian Naïve Bayes</li>
+        <li>Multinomial Naïve Bayes</li>
+        <li>Bernoulli Naïve Bayes</li>
+        <li>Categorical Naïve Bayes</li>
+    </ul>
+
+    <p>
+        
+        They are all named after the distributions that the input data can come from. Gaussian Naive Bayes has input where each feature vector takes the form of a normal, or gaussian, distribution. Multinomial, Bernoulli, and Categorical Naive Bayes all deal with discrete distributions.
+
+    <p>
+        The multinomial distribution revolves around two parameters $k$ and $n$. Suppose there is an event with some number of possible outcomes, and this event will happen some number of times. Each outcome has its own probability of happening. Take this event to be drawing a marble out of a bag with replacement, and in the bag there are 5 blue (B) marbles, 3 green (G) marbles, and 2 red (R) marbles. For each draw, $P(B) = 0.5$, $P(G)=0.3$, and $P(R) = 0.2$. We have three outcomes. Assume that a marble is selected from the bag 5 times. 
+
+    <p>
+        Let us return to $k$ and $n$. The letter $k$ corresponds to the number of possible outcomes. In this example, $k=3$, and $n$ corresponds to the number of times the event occurs. In this example, $n=5$. 
+
+    <p>
+        The remaining two distributions, Bernoulli and Categorical, are specific cases of the Multinomial distribution. If $k=2$ and $n=1$, it is the Bernoulli distribution. If $k>2$ and $n=1$, it is the Categorical distribution.
+
+    <p>
+        If the data is continuous and normally distributed, Gaussian Naive Bayes is the right choice. If the data is discrete, it will be:
+    
+    <ul>
+        <li>Categorical: For multiple categories</li>
+        <li>Multinomial: Often for count data</li>
+        <li>Bernoulli: For 2 categories</li>
+    </ul>
+
+    <h2>Naive Bayes for Spotify Data</h2>
+    <h5>All code can be found <a href="https://github.com/daniel-ethridge/MachineLearning/tree/main/supervised" target="_blank">here</a> and all data <a href="https://drive.google.com/drive/folders/1WeLVT3kzSicaQgk-oUrgrRzlK8CQ2uHG" target="_blank">here</a>.</h5>
+
+    <p>
+        The current spotify data looks like this: <br>
+        <img class="img-center-s" src="../../../../assets/ml-assets/spotify-data.png" alt=""><br>
+
+    <h5>The value that we are going to try and predict with Naive Bayes is whether or not a song is instrumental.</h5>
+    <p>
+        The spotify API states that an instrumentalness score of below 0.5 is likely not instrumental, while a score of above 0.5 is. After dropping unnecessary columns and creating the label, the data looks like this: <br>
+        <img class="img-center-s" src="../../../../assets/ml-assets/prepped-spotify-data-supervised.png" alt=""><br>
+
+    <p>
+        For supervised learning, we need labeled data to train the model. The label for this data is "instrumental". So we will first separate the actual data from the label. The image on the left is the data, while the image on the right is the label vector.
+
+    <div class="row">
+        <div class="col-sm-6">
+            <img class="img-center-m" src="../../../../assets/ml-assets/ml-supervised/supervised-data.png" alt="">
+        </div>
+        <div class="col-sm-6">
+            <img class="img-center-m" src="../../../../assets/ml-assets/ml-supervised/supervised-labels.png" alt="">
+        </div>
+    </div>
+
+    <p>
+        It is important in supervised learning to have equal numbers of each class, but for this data that is not the case as shown below:
+        <img class="img-center-s" src="../../../../assets/ml-assets/ml-supervised/instrumental_counts.png" alt="">
+
+    <p>
+        While there are several ways to potentially fix this issue, one method is to use what is known as oversampling. This in essence randomly duplicates samples from the minority class (in this case 1) so that the cases are even. This can be accomplished with the python package <code>imblearn</code> and the included class <code>RandomOverSampler</code>. Doing so fixes the imbalance:
+        <img class="img-center-s" src="../../../../assets/ml-assets/ml-supervised/instrumental_counts_sampled.png" alt="">
+
+    <p>
+        The data now needs to be split into a training set and a testing set. This disjoin split is important to be able to evaluate the model. If the model is evaluated on the same data it is trained on, it might perform great. But there is no way to know if it will generalize well to other data. Thus, it needs to perform well on data that it has not seen. The model is trained on the training set, and then the labels of the testing set are predicted. The model is then evaluated by comparing the predicted labels to the actual labels. Splitting data into a training and testing set is easily accomplished with scikit learn's <code>train__test_split</code> method. See the images below. From left to right and going down, they are training data, testing data, training labels, and testing labels. Notice the larger size of the training data. 75% of the data is randomly assigned as training data, and 25% of the data is randomly assigned as testing data.
+
+        <div class="row">
+            <div class="col-sm-6">
+                <img class="img-center" src="../../../../assets/ml-assets/ml-supervised/x-train.png" alt="">
+            </div>
+            <div class="col-sm-6">
+                <img class="img-center" src="../../../../assets/ml-assets/ml-supervised/x-test.png" alt="">
+            </div>
+            <div class="col-sm-6">
+                <img class="img-center" src="../../../../assets/ml-assets/ml-supervised/y-train.png" alt="">
+            </div>
+            <div class="col-sm-6">
+                <img class="img-center" src="../../../../assets/ml-assets/ml-supervised/y-test.png" alt="">
+            </div>
+        </div>
+
+    <p>
+        After training the model, the follow confusion matrix and metrics are created:
+
+        <div class="row">
+            <div class="col-sm-6">
+                <img class="img-center" src="../../../../assets/ml-assets/ml-supervised/nb_conf_matrix.png" alt="">
+            </div>
+            <div class="col-sm-6">
+                <img class="img-center-m" src="../../../../assets/ml-assets/ml-supervised/nb-metrics.png" alt="">
+            </div>
+        </div>
+
+    <p>
+        Naive bayes performs above chance in predicting whether a song is instrumental or not, but other models perform better (see the decision tree and logistic regression tabs). Still, with Naive Bayes, there is above a 60% chance of correctly predicting whether or not a song is instrumental or not. In other words, we can somewhat predict if a song has a vocalist based on the other acoustic features alone which is fascinating!!
+</div>

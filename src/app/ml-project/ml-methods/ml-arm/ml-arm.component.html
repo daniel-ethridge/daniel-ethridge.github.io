@@ -18,70 +18,108 @@
 
     <h4>Support</h4>
         <p>
-            Support for an item is defined as the probability that it appears in a transaction given a total set of transactions. For example, take a set of 10 transactions. If the item <em>A</em> occurs 3 times. Then <em>supp(A) = P(A) = 3/10</em>, where <em>P(A)</em> is the probability of A. Likewise, imagine the amount of times that the item <em>A</em> and <em>B</em> occur together in transactions. This is represented as the mathematical intersection: 
-        
-        <h6 class="text-center"><em>supp(A, B) = P(A ∩ B)</em></h6>
-    <p>
-        Note that <em>supp(A, B) = supp(B, A)</em>.
-
+            Support for an item is defined as the probability that it appears in a transaction given a total set of transactions. For example, take a set of 10 transactions. If the item $A$ occurs 3 times. Then $supp(A) = P(A) = {{math.fraction("3", "10")}}$, where $P(A)$ is the probability of A. Likewise, imagine the amount of times that the item $A$ and $B$ occur together in transactions. This is represented as the mathematical intersection: $$ supp(A, B) = P(A \cap B). $$
 
     <h4>Confidence</h4>
         <p>
             Using the above example, confidence asks a slightly different question. Using the example above: Given that <em>B</em> is in the transaction, what is probability that A is present? This is equivalent to conditional probability: 
 
-        <h6 class="text-center"><em>conf(A, B) = P(B|A) = P(A ∩ B)/P(A) = supp(A, B)/P(A)</em></h6>
+            $$
+            {{math.beginAlign()}}
+
+                conf(A, B) & = P(B|A) \\\\
+                & = {{math.fraction("P(A \\cap B)", "P(A)")}} \\\\
+                & = {{math.fraction("supp(A, B)", "P(A)")}}.
+            
+            {{math.endAlign()}}
+            $$
 
     <h4>Lift</h4>
         <p>
             The discussion of lift is a measure of correlation. The formula is not immediately intuitive, but a discussion of the differences between independent and dependent probability help. There are three key ideas at play: <a href="https://www.inchcalculator.com/wp-content/uploads/2021/01/probability-union.png" target="_blank">union (P(A U B))</a>, <a href="https://thirdspacelearning.com/wp-content/uploads/2022/05/Probability-notation-intersection-image-1.png" target="_blank">intersection (P(A ∩ B))</a>, and <a href="https://assets.tivadardanka.com/2022_10_conditional_probability_featured_c9d47cc379.jpg" target="_blank">conditional probability (P(A|B))</a>.
 
-    <h5>Indepdent Events</h5>
+    <h5>Indepdent and Dependent Events</h5>
         <p>
-            When two events are independent, the outcomes do not affect each other at all. This leads to the following definitions:
-        <ul>
-            <li><em>P(A U B) = P(A) + P(B)</em></li>
-            <li><em>P(A ∩ B) = P(A) * P(B)</em></li>
-            <li><em>P(A|B) = P(A)</em></li>
-        </ul>
-
-    <h5>Dependent Events</h5>
-        When two events are dependent, they do affect each other. There is overlap. This leads to separate definitions:
-        <ul>
-            <li><em>P(A U B) = P(A) + P(B) - P(A ∩ B)</em></li>
-            <li><em>P(A ∩ B) = P(A|B)*P(B)</em></li>
-            <li><em>P(A|B) = P(A ∩ B)/P(B)</em></li> 
-        </ul>
+            When two events are independent, the outcomes do not affect each other at all. When two events are dependent, they do affect each other. There is overlap.
+        
+        <table class="center">
+            <tr>
+                <th></th>
+                <th>Independent Probability</th>
+                <th>Dependent Probability</th>
+            </tr>
+            <tr>
+                <th>Union: $P(A \cup B)$</th>
+                <td>$P(A) + P(B)$</td>
+                <td>$P(A) + P(B) - P(A ∩ B)$</td>
+            </tr>
+            <tr>
+                <th>Intersection: $P(A \cap B)$</th>
+                <td>$P(A) \cdot P(B)$</td>
+                <td>$P(A|B) \cdot P(B) = P(B|A) \cdot P(A)$</td>
+            </tr>
+            <tr>
+                <th>Conditional: $P(A|B)$</th>
+                <td>$P(A)$</td>
+                <td>${{math.fraction("P(A ∩ B)", "P(B)")}}$</td>
+            </tr>
+        </table><br>
 
     <h5>What does this have to do with lift??</h5>
         Lift is a measure of correlation between two items in a transaction. If it is greater than 1, there is a correlation. A lift of 1 means no correlation, and a lift of less than 1 means a negative correlation. We are looking for lift greater than one.
 
-        The formula for lift is:
+        The formula for lift is 
 
-        <h6 class="text-center"><em>lift(A, B) = supp(A, B) / supp(A)*supp(B) = P(A ∩ B)/P(A)*P(B)</em></h6>
+        $$
+        {{math.beginAlign()}}
 
-        <p>
-            The equation is basically confidence with the addition of <em>P(B)</em> in the denominator. The interesting bit here comes in the numerator of the lift. If A and B are independent, then the formula becomes: 
+        lift(A, B) & = {{math.fraction("supp(A, B)", "supp(A) \\cdot supp(B)")}} \\\\
+        & = {{math.fraction("P(A ∩ B)", "P(A)P(B)")}}.
 
-        <h6 class="text-center"><em>lift(A, B) = P(A ∩ B) / P(A)*P(B) = P(A)*P(B) / P(A)*P(B) = 1</em></h6>
-
-        <p>
-            It makes sense that the numerator and the denominator would be the same if the events are independent, and the math checks out. If the events are dependent, then the formula is:
-
-        <h6 class="text-center"><em>lift(A, B) = P(A ∩ B) / P(A)*P(B) = P(A|B)*P(B) / P(A)*P(B) = P(A|B) / P(A)</em></h6>
+        {{math.endAlign()}}
+        $$
 
         <p>
-            So for dependent events, lift becomes the ratio of the probability of A given that B is true to the probability of A. In other words: 
+            The equation is equivalent to confidence with the addition of $P(B)$ in the denominator. The interesting bit here comes in the numerator of the lift. If A and B are independent, then the formula becomes
+
+            $$
+            {{math.beginAlign()}}
+    
+            lift(A, B) & = {{math.fraction("supp(A, B)", "supp(A) \\cdot supp(B)")}} \\\\
+            & = {{math.fraction("P(A \\cap B)", "P(A)P(B)")}} \\\\
+            & = {{math.fraction("P(A)P(B)", "P(A)P(B)")}} \\\\
+            & = 1.
+    
+            {{math.endAlign()}}
+            $$
+
+        <p>
+            We see that a lift of 1 means independent events. If the events are dependent, then the formula is
+
+            $$
+            {{math.beginAlign()}}
+    
+            lift(A, B) & = {{math.fraction("supp(A, B)", "supp(A) \\cdot supp(B)")}} \\\\
+            & = {{math.fraction("P(A \\cap B)", "P(A)P(B)")}} \\\\
+            & = {{math.fraction("P(A|B) \\cdot P(B)", "P(A)P(B)")}} \\\\
+            & = {{math.fraction("P(A|B)", "P(A)")}}.
+    
+            {{math.endAlign()}}
+            $$
+
+        <p>
+            We see that for dependent events:
         <ul>
-            <li>If A becomes more likely when B is given to be true, A and B are positively correlated.</li>
-            <li>If A becomes less likely when B is given to be true, A and B are negatively correlated.</li>
+            <li>If A becomes more likely when B is known to be true, A and B are positively correlated.</li>
+            <li>If A becomes less likely when B is known to be true, A and B are negatively correlated.</li>
         </ul>
 
     <h5>To Summarize</h5>
     Below are the equations for support, confidence, and lift for a rule {{'{A}'}} -> {{'{B}'}}:
     <ul>
-        <li><em>supp(A, B) = P(A ∩ B)</em></li>
-        <li><em>conf(A, B) = P(B|A) = P(A ∩ B) / P(B)</em></li>
-        <li><em>lift(A, B) = P(A ∩ B) / P(A)P(B)</em></li>
+        <li>$supp(A, B) = P(A \cap B)$</li> 
+        <li>$conf(A, B) = {{math.fraction("supp(A, B)", "P(A)")}}$</li>
+        <li>$lift(A, B) = {{math.fraction("supp(A, B)", "supp(A) \\cdot supp(B)")}}$</li>
     </ul>
 
     <h3>The Apriori Algorithm</h3>

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MathScript } from '../../../_models/MathScript';
 
 @Component({
   selector: 'app-ml-arm',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./ml-arm.component.css']
 })
 export class MlArmComponent {
-
+  math: MathScript = new MathScript();
 }
