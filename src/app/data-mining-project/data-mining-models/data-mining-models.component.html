@@ -4,10 +4,7 @@
     <p>
         In order to model the data, we took a few different approaches and utilized a combination of unsupervised and supervised methods.
 
-    <h2>Unsupervised Methods</h2>
-    For the unsupervised methods, we utilized association rule mining (ARM) and k-means clustering.
-
-    <h3>Association Rule Mining</h3>
+    <h2 style="text-align: center;">Association Rule Mining</h2>
     <p>
         We applied association rule mining to the reviews of the games. We looked at Steam Apps that were classified as a "game" (in other words, we didn't look at DLC or other non-game Steam Apps), and we looked at differences among the top 10 genres. We filtered game reviews by the ratio of positive reviews to negative reviews of a game. If a game had more positive reviews than negative, it was considered a positive and vice versa. We acknowledge that this is not the best method, especially considering Steam reviews are tagged as either positive or negative. A bug in code caused that review tag to not be collected. Grouping reviews by how positively overall the game they are associated with is the best approximation.
 
@@ -103,38 +100,7 @@
     <p>
         Negative review are much more scattered about. While RPGs center around story (which in this case might indicate a bad story) to a degree, the other plots are less centralized around a common theme which could indicate that some elements of a game could be good, but one bad element of a game can ruin the whole thing. 
 
-    <h3>K-Means Clustering Analysis</h3>
-    We also performed K-Means clustering. We grouped Steam products based on total reviews, price, and publisher. The steps include:
-
-    <ol>
-        <li>
-            Data Preprocessing: Converts publisher into numerical columns using One-Hot Encoding. Scales numerical features (Total_Reviews and Price) to have a mean of 0 and a standard deviation of 1.
-        </li>
-        <li>
-            Clustering: With an optimal k=3, clusters group products into categories like high review/high price(premium), moderate review/mid-range price (popular mid-tier), and low review/low price (budget).
-        </li>
-        <li>
-            Visualizations: A scatterplot visualizes clusters by total reviews and price, with each cluster color-coded.
-        </li>
-        <li>
-            Key Insights: Products are segmented into distinct price and popularity tiers, aiding in market understanding.
-        </li>
-    </ol>
-
-    <div class="row">
-        <div class="col-sm-12">
-            <img class="img-center" src="../../../assets/data-mining-assets/visualisations/other/k-means-clustering.png">
-        </div>
-        <div class="col-sm-12">
-            <img class="img-center" src="../../../assets/data-mining-assets/visualisations/other/bar-plot.png">
-        </div>
-        <div class="col-sm-12">
-            <img class="img-center" src="../../../assets/data-mining-assets/visualisations/other/box-plot.png">
-        </div>
-    </div>
-
-    <h2>Supervised Learning</h2>
-    <h3>CLIP</h3>
+    <h2 style="text-align: center;">CLIP</h2>
     <h4>Model Explanation</h4>
     <p>
         CLIP is a multimodal model, proposed by OpenAI, that aligns textual and image embeddings into a joint space. It was trained to predict which caption fits best for an image among candidates, allowing it to learn associations of visual and textual data. Trained on diverse image-text pairs, CLIP can execute tasks such as image classification, retrieval, and zero-shot learning without fine-tuning specifically for individual tasks. Using a dual encoder architecture, it processes images through a vision model-e.g., ResNet or ViT-and processes text using a transformer to produce embeddings to be compared. Such flexibility and generalization make CLIP a very powerful model for different visual-linguistic applications.
@@ -184,4 +150,122 @@
 
     <p>
         Moreover, the ability of CLIP to extract meaningful insights from images will help in content moderation, ensuring the proper classification of the games. By pairing visual data with descriptive text, CLIP bridges the gap between visual representation and semantic understanding and is a powerful tool for indexing, filtering, and analysis of games efficiently and in a scalable manner.
+
+    <h2 style="text-align: center;">Gradient Boosting</h2>
+    <h3>Model Explanation</h3>
+    <p>
+        Gradient Boosting is a powerful machine learning technique that generates models sequentially, each new model correcting errors of the previous ones. A weak learner, usually decision trees, is combined into a strong predictive model through minimizing a loss function. Gradient Boosting has a wide range of applications in regression and classification problems, where it maintains accuracy and flexibility.
+    
+    <h3>Why We Used It</h3>
+    <p>
+        We applied Gradient Boosting to the image data set for an effective modeling of dependencies between features including brightness, saturation, hue and contrast, impacting the visual characteristics. Its ability to deal with non-linear patterns and emphasize misclassified examples ensures accurate predictions. Gradient Boosting flexibility and robustness make this approach ideal for capturing subtle variations and improvement of image-based classification or regression results in general.
+
+    <p>
+        The dataset was created:
+
+    <div class="row">
+        <div class="col-sm-12">
+            <img class="img-center" src="../../../assets/data-mining-assets/visualisations/clip/create-dataset.png" alt="">
+        </div>
+    </div>
+
+    <p>
+        To train the gradient boosting model, we had to create a new dataset from the image URLs, which contained the app ids and image values such as brightness, contrast, saturation and hue. We made this so that we can find patterns in underlying aspects of the images and game success.
+    
+    <h3>MODEL EVALUATION (using Mean Square Error)</h3>
+    <div class="row">
+        <div class="col-sm-12">
+            <img class="img-center" src="../../../assets/data-mining-assets/visualisations/clip/gb-mse.png" alt="">
+        </div>
+    </div>
+    <p>
+        We use Mean Squared Error to calculate an average of the squared difference between predicted and actual values. The lower the MSE, the better the accuracy of the model. At a value of 130, the model performance is good, showing that the predictions are relatively near to the actual values; thus, effective learning takes place.
+
+    <h3>Output</h3>
+    <div class="row">
+        <div class="col-sm-12">
+            <img class="img-center" src="../../../assets/data-mining-assets/visualisations/clip/gb-output.png" alt="">
+        </div>
+    </div>
+
+    <p>
+        As we can see, the model predicts the success rate , which is the ratio of number of positive reviews to number of negative reviews. It rates higher success rate to games with more interesting game image screenshots and lesser success rates to dull or confusing game image screenshots.
+
+    <div class="row">
+        <div class="col-sm-12">
+            <img class="img-center" src="../../../assets/data-mining-assets/visualisations/clip/gb-heatmap.png" alt="">
+        </div>
+    </div>
+
+    <p>
+        This is a correlation heatmap, showing correlation between various features, as we can see most features are unrelated except contrast and brightness which have some correlation.
+
+
+    <div class="row">
+        <div class="col-sm-12">
+            <img class="img-center" src="../../../assets/data-mining-assets/visualisations/clip/gb-saturation.png" alt="">
+        </div>
+    </div>
+    <p>
+        This scatterplot shows the relationship between review ratio (success rate) and saturation of images. As we can see the more saturation implies less review ratio, implying more saturated images might be worse for game success.
+
+    <div class="row">
+        <div class="col-sm-12">
+            <img class="img-center" src="../../../assets/data-mining-assets/visualisations/clip/gb-contrast.png" alt="">
+        </div>
+    </div>
+    <p>
+        This scatterplot is the relation between contrast and success rate. As we can see a contrast between 50 and 80 is the sweet spot. Anything more or less results in less success rate.
+
+    <div class="row">
+        <div class="col-sm-12">
+            <img class="img-center" src="../../../assets/data-mining-assets/visualisations/clip/gb-hue.png" alt="">
+        </div>
+    </div>
+    <p>
+        This graph is the boxplot relationship between hue and success rate. It shows that all colors have similar success rate and there is no correlation between color/Hue and success of a game. It means that consumers don’t prefer one color or the other. Hues between 101-127 (green-yellow) have slightly higher success rate, but nothing can be said with certainty.
+
+
+    <div class="row">
+        <div class="col-sm-12">
+            <img class="img-center" src="../../../assets/data-mining-assets/visualisations/clip/gb-brightness.png" alt="">
+        </div>
+    </div>
+    <p>
+        This graph shows the relationship between brightness of game images and success rate of those games. As we can see, there is no clear relationship between brightness and game success. 
+
+    <h3>What We Learned</h3>
+    <p>
+        From this model, we extracted a few important points about how far image features such as brightness, contrast, and saturation will reflect success rates of games through reviews. Thus, the model predicted an optimal range of 50 to 80 for contrast for high success rates, while very low or high values of contrast will negatively affect the review score. Interestingly, saturation is negatively correlated with the success rate, which might indicate that highly saturated images could turn players off. On the other hand, hue did not correlate significantly with success, which would indicate that the consumer's preference is not strongly connected with specific colors. Also, no obvious influence of brightness could be found on the success rate, meaning it's not a determining factor. The model performs well with an MSE of 130, showing that it learns the relationship between the image features and game success quite effectively. This shows the importance of specific image attributes such as contrast in predicting game success.
+
+
+    <h2 style="text-align: center;">K-Means Clustering Analysis</h2>
+    We also performed K-Means clustering. We grouped Steam products based on total reviews, price, and publisher. The steps include:
+
+    <ol>
+        <li>
+            Data Preprocessing: Converts publisher into numerical columns using One-Hot Encoding. Scales numerical features (Total_Reviews and Price) to have a mean of 0 and a standard deviation of 1.
+        </li>
+        <li>
+            Clustering: With an optimal k=3, clusters group products into categories like high review/high price(premium), moderate review/mid-range price (popular mid-tier), and low review/low price (budget).
+        </li>
+        <li>
+            Visualizations: A scatterplot visualizes clusters by total reviews and price, with each cluster color-coded.
+        </li>
+        <li>
+            Key Insights: Products are segmented into distinct price and popularity tiers, aiding in market understanding.
+        </li>
+    </ol>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <img class="img-center" src="../../../assets/data-mining-assets/visualisations/other/k-means-clustering.png">
+        </div>
+        <div class="col-sm-12">
+            <img class="img-center" src="../../../assets/data-mining-assets/visualisations/other/bar-plot.png">
+        </div>
+        <div class="col-sm-12">
+            <img class="img-center" src="../../../assets/data-mining-assets/visualisations/other/box-plot.png">
+        </div>
+    </div>
 </div>  
