@@ -103,5 +103,33 @@
     <p>
         Negative review are much more scattered about. While RPGs center around story (which in this case might indicate a bad story) to a degree, the other plots are less centralized around a common theme which could indicate that some elements of a game could be good, but one bad element of a game can ruin the whole thing. 
 
-    
+    <h3>K-Means Clustering Analysis</h3>
+    We also performed K-Means clustering. We grouped Steam products based on total reviews, price, and publisher. The steps include:
+
+    <ol>
+        <li>
+            Data Preprocessing: Converts publisher into numerical columns using One-Hot Encoding. Scales numerical features (Total_Reviews and Price) to have a mean of 0 and a standard deviation of 1.
+        </li>
+        <li>
+            Clustering: With an optimal k=3, clusters group products into categories like high review/high price(premium), moderate review/mid-range price (popular mid-tier), and low review/low price (budget).
+        </li>
+        <li>
+            Visualizations: A scatterplot visualizes clusters by total reviews and price, with each cluster color-coded.
+        </li>
+        <li>
+            Key Insights: Products are segmented into distinct price and popularity tiers, aiding in market understanding.
+        </li>
+    </ol>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <img class="img-center" src="../../../assets/data-mining-assets/visualisations/other/k-means-clustering.png">
+        </div>
+        <div class="col-sm-12">
+            <img class="img-center" src="../../../assets/data-mining-assets/visualisations/other/bar-plot.png">
+        </div>
+        <div class="col-sm-12">
+            <img class="img-center" src="../../../assets/data-mining-assets/visualisations/other/box-plot.png">
+        </div>
+    </div>
 </div>  
