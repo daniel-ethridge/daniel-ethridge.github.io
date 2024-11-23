@@ -1,2 +1,107 @@
 <app-data-mining-navigation></app-data-mining-navigation>
-<h1 style="text-align: center;">Models coming soon!</h1>
+<div class="container-sm">
+    <h1 style="text-align: center;">Models</h1>
+    <p>
+        In order to model the data, we took a few different approaches and utilized a combination of unsupervised and supervised methods.
+
+    <h2>Unsupervised Methods</h2>
+    For the unsupervised methods, we utilized association rule mining (ARM) and k-means clustering.
+
+    <h3>Association Rule Mining</h3>
+    <p>
+        We applied association rule mining to the reviews of the games. We looked at Steam Apps that were classified as a "game" (in other words, we didn't look at DLC or other non-game Steam Apps), and we looked at differences among the top 10 genres. We filtered game reviews by the ratio of positive reviews to negative reviews of a game. If a game had more positive reviews than negative, it was considered a positive and vice versa. We acknowledge that this is not the best method, especially considering Steam reviews are tagged as either positive or negative. A bug in code caused that review tag to not be collected. Grouping reviews by how positively overall the game they are associated with is the best approximation.
+
+    <p>
+        ARM requires transaction data. To create the transaction data, we first extracted the necessary reviews according to liked and disliked games and genre. We removed any line break characters, removed capital letters, punctuation, numbers, non-latin characters, duplicate words, and a set of words (such as "game", "ever", "it", "etc") that provide no meaning. Afterwards, we saved the cleaned words as basket data. The two images below show messy data (top) and clean data (right).
+
+    <div class="row">
+        <div class="col-sm-12">
+            <img class="img-center col-sm-12" src="../../../assets/data-mining-assets/visualisations/arm/raw-arm-text.png" alt="">
+        </div>
+        <div class="col-sm-12">
+            <img class="img-center" src="../../../assets/data-mining-assets/visualisations/arm/transaction-data-for-arm.png" alt="">
+        </div>
+    </div>
+
+    <p>
+        Using thresholds of 0.01 and 0.4 for support and confidence, respectively, we generated the following plots that describe the found association rules.
+
+        <div class="row">
+            <div class="col-sm-6">
+                <img class="img-center-l" src="../../../assets/data-mining-assets/visualisations/arm/liked-action.png">
+            </div>
+            <div class="col-sm-6">
+                <img class="img-center-l" src="../../../assets/data-mining-assets/visualisations/arm/liked-adventure.png">
+            </div>
+            <div class="col-sm-6">
+                <img class="img-center-l" src="../../../assets/data-mining-assets/visualisations/arm/liked-casual.png">
+            </div>
+            <div class="col-sm-6">
+                <img class="img-center-l" src="../../../assets/data-mining-assets/visualisations/arm/liked-indie.png">
+            </div>
+            <div class="col-sm-6">
+                <img class="img-center-l" src="../../../assets/data-mining-assets/visualisations/arm/liked-multiplayer.png">
+            </div>
+            <div class="col-sm-6">
+                <img class="img-center-l" src="../../../assets/data-mining-assets/visualisations/arm/liked-racing.png">
+            </div>
+            <div class="col-sm-6">
+                <img class="img-center-l" src="../../../assets/data-mining-assets/visualisations/arm/liked-rpg.png">
+            </div>
+            <div class="col-sm-6">
+                <img class="img-center-l" src="../../../assets/data-mining-assets/visualisations/arm/liked-simulation.png">
+            </div>
+            <div class="col-sm-6">
+                <img class="img-center-l" src="../../../assets/data-mining-assets/visualisations/arm/liked-sports.png">
+            </div>
+            <div class="col-sm-6">
+                <img class="img-center-l" src="../../../assets/data-mining-assets/visualisations/arm/liked-strategy.png">
+        </div>
+
+    <p>
+        From this, we draw two separate interpretations:
+        <ol>
+            <li>A quality game allows the player on the story and the overall message of a game. Art, music, and game mechanics all seamlessly work together to create an experience rather than any one of those removing the player from the flow of the game.</li>
+            <li>Story is a potential driving factor in a quality game. Without a good story, the game will suffer.</li>
+        </ol>
+
+    <p>
+        Assocation plots for reviews for mostly negative games were also created using support and confidence thresholds of 0.02 and 0.55, respectively.
+
+        <div class="row">
+            <div class="col-sm-6">
+                <img class="img-center-l" src="../../../assets/data-mining-assets/visualisations/arm/disliked-action.png">
+            </div>
+            <div class="col-sm-6">
+                <img class="img-center-l" src="../../../assets/data-mining-assets/visualisations/arm/disliked-adventure.png">
+            </div>
+            <div class="col-sm-6">
+                <img class="img-center-l" src="../../../assets/data-mining-assets/visualisations/arm/disliked-casual.png">
+            </div>
+            <div class="col-sm-6">
+                <img class="img-center-l" src="../../../assets/data-mining-assets/visualisations/arm/disliked-indie.png">
+            </div>
+            <div class="col-sm-6">
+                <img class="img-center-l" src="../../../assets/data-mining-assets/visualisations/arm/disliked-multiplayer.png">
+            </div>
+            <div class="col-sm-6">
+                <img class="img-center-l" src="../../../assets/data-mining-assets/visualisations/arm/disliked-racing.png">
+            </div>
+            <div class="col-sm-6">
+                <img class="img-center-l" src="../../../assets/data-mining-assets/visualisations/arm/disliked-rpg.png">
+            </div>
+            <div class="col-sm-6">
+                <img class="img-center-l" src="../../../assets/data-mining-assets/visualisations/arm/disliked-simulation.png">
+            </div>
+            <div class="col-sm-6">
+                <img class="img-center-l" src="../../../assets/data-mining-assets/visualisations/arm/disliked-sports.png">
+            </div>
+            <div class="col-sm-6">
+                <img class="img-center-l" src="../../../assets/data-mining-assets/visualisations/arm/disliked-strategy.png">
+        </div>
+
+    <p>
+        Negative review are much more scattered about. While RPGs center around story (which in this case might indicate a bad story) to a degree, the other plots are less centralized around a common theme which could indicate that some elements of a game could be good, but one bad element of a game can ruin the whole thing. 
+
+    
+</div>  
