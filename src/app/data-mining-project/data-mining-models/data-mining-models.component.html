@@ -20,6 +20,7 @@
         </div>
     </div>
 
+    <h3>Positive Reviews</h3>
     <p>
         Using thresholds of 0.01 and 0.4 for support and confidence, respectively, we generated the following plots that describe the found association rules.
 
@@ -62,6 +63,7 @@
             <li>Story is a potential driving factor in a quality game. Without a good story, the game will suffer.</li>
         </ol>
 
+    <h3>Negative Reviews</h3>
     <p>
         Assocation plots for reviews for mostly negative games were also created using support and confidence thresholds of 0.02 and 0.55, respectively.
 
@@ -244,16 +246,16 @@
 
     <ol>
         <li>
-            Data Preprocessing: Converts publisher into numerical columns using One-Hot Encoding. Scales numerical features (Total_Reviews and Price) to have a mean of 0 and a standard deviation of 1.
+            Data Preprocessing: Converts publisher into numerical columns using One-Hot Encoding. Scales numerical features (total reviews and price) to have a mean of 0 and a standard deviation of 1.
         </li>
         <li>
-            Clustering: With an optimal k=3, clusters group products into categories like high review/high price(premium), moderate review/mid-range price (popular mid-tier), and low review/low price (budget).
+            Clustering: Clusters groups apps into categories like high review/high price, moderate review/mid-range price, and low review/low price.
         </li>
         <li>
-            Visualizations: A scatterplot visualizes clusters by total reviews and price, with each cluster color-coded.
+            Visualizations: A scatterplot visualizes clusters by total reviews and price.
         </li>
         <li>
-            Key Insights: Products are segmented into distinct price and popularity tiers, aiding in market understanding.
+            Key Insights: Apps are segmented into distinct price and popularity tiers, aiding in understanding of the Steam apps.
         </li>
     </ol>
 
