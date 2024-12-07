@@ -63,7 +63,7 @@ const routes: Routes = [
   {path: classRoutes.mlIntroduction, component: MlIntroductionComponent},
   {path: classRoutes.mlEda, component: MlDataPrepEdaComponent},
   {path: "portfolio/machine-learning/models-and-methods", component: MlModelsAndMethodsComponent},
-  {path: "portfolio/machine-learning/conclusions", component: MlConclusionsComponent},
+  {path: classRoutes.dmConclusion, component: MlConclusionsComponent},
   
   // Methods
   {path: "portfolio/machine-learning/methods/principal-component-analysis", component: MlPcaComponent},
