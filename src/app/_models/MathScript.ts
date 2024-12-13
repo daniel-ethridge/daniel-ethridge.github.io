@@ -38,4 +38,8 @@ export class MathScript {
     sum(subscript: string, superscript: string) {
         return `\\sum_{${subscript}}^{${superscript}}`
     }
+
+    sqrt(value: string) {
+        return `\\sqrt{${value}}`;
+    }
 }

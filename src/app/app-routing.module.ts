@@ -63,7 +63,7 @@ const routes: Routes = [
   {path: classRoutes.mlIntroduction, component: MlIntroductionComponent},
   {path: classRoutes.mlEda, component: MlDataPrepEdaComponent},
   {path: "portfolio/machine-learning/models-and-methods", component: MlModelsAndMethodsComponent},
-  {path: classRoutes.dmConclusion, component: MlConclusionsComponent},
+  {path: classRoutes.mlConclusion, component: MlConclusionsComponent},
   
   // Methods
   {path: "portfolio/machine-learning/methods/principal-component-analysis", component: MlPcaComponent},
@@ -79,7 +79,7 @@ const routes: Routes = [
   {path: "portfolio/data-mining/introduction", component: DataMiningIntroComponent},
   {path: "portfolio/data-mining/data-exploration", component: DataMiningExplorationComponent},
   {path: "portfolio/data-mining/models", component: DataMiningModelsComponent},
-  {path: "portfolio/data-mining/conclusions", component: DataMiningConclusionsComponent},
+  {path: classRoutes.dmConclusion, component: DataMiningConclusionsComponent},
   {path: "portfolio/data-mining/team", component: DataMiningTeamComponent},
 
   {path: "**", component:HomeComponent, pathMatch: 'full'}

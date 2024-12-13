@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MathScript } from 'src/app/_models/MathScript';
 
 @Component({
   selector: 'app-ml-support-vector',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./ml-support-vector.component.css']
 })
 export class MlSupportVectorComponent {
-
+  math: MathScript = new MathScript();
 }
