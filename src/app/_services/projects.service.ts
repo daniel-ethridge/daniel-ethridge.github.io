@@ -1,5 +1,6 @@
 import { Injectable, Type } from '@angular/core';
 import { Project } from '../_models/Project';
+import { ClassRoutes } from '../_models/ClassRoutes';
 
 @Injectable({
   providedIn: 'root'
@@ -7,12 +8,20 @@ import { Project } from '../_models/Project';
 
 export class ProjectsService {
 
+  routes: ClassRoutes = new ClassRoutes();
+
   projects: Project[] = [
+    {
+      id: 9,
+      name: "Text Mining Project",
+      summary: "Two Sides, Countless Victims: Diving into the U.S. Gun Debate",
+      projectPage: this.routes.tmHome
+    },
     {
       id: 8,
       name: "Data Mining Project",
       summary: "What can Steam Reviews Teach us about Game Design?",
-      projectPage: "/portfolio/data-mining/introduction"
+      projectPage: "portfolio/data-mining/introduction"
     },
     {
       id: 7,

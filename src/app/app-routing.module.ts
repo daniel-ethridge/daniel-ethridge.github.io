@@ -31,6 +31,16 @@ import { DataMiningModelsComponent } from './data-mining-project/data-mining-mod
 import { DataMiningConclusionsComponent } from './data-mining-project/data-mining-conclusions/data-mining-conclusions.component';
 import { DataMiningTeamComponent } from './data-mining-project/data-mining-team/data-mining-team.component';
 import { LitTimelineComponent } from './lit-timeline/lit-timeline.component';
+import { TextMiningIntroComponent } from './project-pages/text-mining-project/text-mining-intro/text-mining-intro.component';
+import { TextMiningDataComponent } from './project-pages/text-mining-project/text-mining-data/text-mining-data.component';
+import { TextMiningConclusionsComponent } from './project-pages/text-mining-project/text-mining-conclusions/text-mining-conclusions.component';
+import { TextMiningArmComponent } from './project-pages/text-mining-project/text-mining-models/text-mining-arm/text-mining-arm.component';
+import { TextMiningClusteringComponent } from './project-pages/text-mining-project/text-mining-models/text-mining-clustering/text-mining-clustering.component';
+import { TextMiningDescTreeComponent } from './project-pages/text-mining-project/text-mining-models/text-mining-desc-tree/text-mining-desc-tree.component';
+import { TextMiningLdaComponent } from './project-pages/text-mining-project/text-mining-models/text-mining-lda/text-mining-lda.component';
+import { TextMiningNbComponent } from './project-pages/text-mining-project/text-mining-models/text-mining-nb/text-mining-nb.component';
+import { TextMiningNnComponent } from './project-pages/text-mining-project/text-mining-models/text-mining-nn/text-mining-nn.component';
+import { TextMiningSvmComponent } from './project-pages/text-mining-project/text-mining-models/text-mining-svm/text-mining-svm.component';
 
 /*
 Add routing to new pages below. Path then Angular component
@@ -81,6 +91,19 @@ const routes: Routes = [
   {path: "portfolio/data-mining/models", component: DataMiningModelsComponent},
   {path: classRoutes.dmConclusion, component: DataMiningConclusionsComponent},
   {path: "portfolio/data-mining/team", component: DataMiningTeamComponent},
+
+  /* *** Text Mining Project */
+  {path: classRoutes.tmHome, component: TextMiningIntroComponent},
+  {path: classRoutes.tmIntroduction, component: TextMiningIntroComponent},
+  {path: classRoutes.tmData, component: TextMiningDataComponent},
+  {path: classRoutes.tmConclusions, component: TextMiningConclusionsComponent},
+  {path: classRoutes.tmArm, component: TextMiningArmComponent},
+  {path: classRoutes.tmClustering, component: TextMiningClusteringComponent},
+  {path: classRoutes.tmDescTree, component: TextMiningDescTreeComponent},
+  {path: classRoutes.tmLda, component: TextMiningLdaComponent},
+  {path: classRoutes.tmNb, component: TextMiningNbComponent},
+  {path: classRoutes.tmNn, component: TextMiningNnComponent},
+  {path: classRoutes.tmSvm, component: TextMiningSvmComponent},
 
   {path: "**", component:HomeComponent, pathMatch: 'full'}
 ];

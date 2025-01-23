@@ -46,6 +46,18 @@ import { DataMiningConclusionsComponent } from './data-mining-project/data-minin
 import { DataMiningTeamComponent } from './data-mining-project/data-mining-team/data-mining-team.component';
 import { LitTimelineComponent } from './lit-timeline/lit-timeline.component';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { TextMiningNavigationComponent } from './project-pages/text-mining-project/text-mining-navigation/text-mining-navigation.component';
+import { TextMiningIntroComponent } from './project-pages/text-mining-project/text-mining-intro/text-mining-intro.component';
+import { TextMiningDataComponent } from './project-pages/text-mining-project/text-mining-data/text-mining-data.component';
+import { TextMiningClusteringComponent } from './project-pages/text-mining-project/text-mining-models/text-mining-clustering/text-mining-clustering.component';
+import { TextMiningArmComponent } from './project-pages/text-mining-project/text-mining-models/text-mining-arm/text-mining-arm.component';
+import { TextMiningLdaComponent } from './project-pages/text-mining-project/text-mining-models/text-mining-lda/text-mining-lda.component';
+import { TextMiningNbComponent } from './project-pages/text-mining-project/text-mining-models/text-mining-nb/text-mining-nb.component';
+import { TextMiningDescTreeComponent } from './project-pages/text-mining-project/text-mining-models/text-mining-desc-tree/text-mining-desc-tree.component';
+import { TextMiningSvmComponent } from './project-pages/text-mining-project/text-mining-models/text-mining-svm/text-mining-svm.component';
+import { TextMiningNnComponent } from './project-pages/text-mining-project/text-mining-models/text-mining-nn/text-mining-nn.component';
+import { TextMiningConclusionsComponent } from './project-pages/text-mining-project/text-mining-conclusions/text-mining-conclusions.component';
+
 
 @NgModule({
   declarations: [
@@ -86,7 +98,18 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
     DataMiningExplorationComponent,
     DataMiningTeamComponent,
     DataMiningModelsComponent,
-    LitTimelineComponent
+    LitTimelineComponent,
+    TextMiningNavigationComponent,
+    TextMiningIntroComponent,
+    TextMiningDataComponent,
+    TextMiningClusteringComponent,
+    TextMiningArmComponent,
+    TextMiningLdaComponent,
+    TextMiningNbComponent,
+    TextMiningDescTreeComponent,
+    TextMiningSvmComponent,
+    TextMiningNnComponent,
+    TextMiningConclusionsComponent
   ],
   
   imports: [
