@@ -18,4 +18,6 @@ export class ClassRoutes {
     tmNb: string = "portfolio/text-mining/naive-bayes";
     tmNn: string = "portfolio/text-mining/neural-network";
     tmSvm: string = "portfolio/text-mining/support-vector-machine";
+
+    litSync: string = "lit-sync";
 }

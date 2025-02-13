@@ -41,6 +41,7 @@ import { TextMiningLdaComponent } from './project-pages/text-mining-project/text
 import { TextMiningNbComponent } from './project-pages/text-mining-project/text-mining-models/text-mining-nb/text-mining-nb.component';
 import { TextMiningNnComponent } from './project-pages/text-mining-project/text-mining-models/text-mining-nn/text-mining-nn.component';
 import { TextMiningSvmComponent } from './project-pages/text-mining-project/text-mining-models/text-mining-svm/text-mining-svm.component';
+import { LitSyncComponent } from './lit-sync/lit-sync.component';
 
 /*
 Add routing to new pages below. Path then Angular component
@@ -104,6 +105,8 @@ const routes: Routes = [
   {path: classRoutes.tmNb, component: TextMiningNbComponent},
   {path: classRoutes.tmNn, component: TextMiningNnComponent},
   {path: classRoutes.tmSvm, component: TextMiningSvmComponent},
+
+  {path: classRoutes.litSync, component: LitSyncComponent},
 
   {path: "**", component:HomeComponent, pathMatch: 'full'}
 ];

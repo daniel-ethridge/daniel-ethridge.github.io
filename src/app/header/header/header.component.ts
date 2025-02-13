@@ -19,6 +19,6 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.bannerColor = "lightgrey";
+    this.bannerColor = "#f8f9fa";
   }
 }

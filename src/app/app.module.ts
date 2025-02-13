@@ -57,7 +57,11 @@ import { TextMiningDescTreeComponent } from './project-pages/text-mining-project
 import { TextMiningSvmComponent } from './project-pages/text-mining-project/text-mining-models/text-mining-svm/text-mining-svm.component';
 import { TextMiningNnComponent } from './project-pages/text-mining-project/text-mining-models/text-mining-nn/text-mining-nn.component';
 import { TextMiningConclusionsComponent } from './project-pages/text-mining-project/text-mining-conclusions/text-mining-conclusions.component';
-
+import { AngularFireModule } from '@angular/fire/compat';
+import { firebaseConfig } from '../environments/environment';
+import { getStorage, provideStorage } from '@angular/fire/storage';
+import { LitSyncComponent } from './lit-sync/lit-sync.component';
+import { FileService } from './services/file.service';
 
 @NgModule({
   declarations: [
@@ -109,7 +113,8 @@ import { TextMiningConclusionsComponent } from './project-pages/text-mining-proj
     TextMiningDescTreeComponent,
     TextMiningSvmComponent,
     TextMiningNnComponent,
-    TextMiningConclusionsComponent
+    TextMiningConclusionsComponent,
+    LitSyncComponent
   ],
   
   imports: [
@@ -120,9 +125,14 @@ import { TextMiningConclusionsComponent } from './project-pages/text-mining-proj
     MatButtonModule,
     MatMenuModule,
     CollapseModule.forRoot(),
-    FormsModule
+    FormsModule,
+    AngularFireModule.initializeApp(firebaseConfig),
+    provideStorage(() => getStorage())
   ],
-  providers: [],
+  providers: [
+    [],
+    FileService
+  ],
   bootstrap: [AppComponent]
 })
 
