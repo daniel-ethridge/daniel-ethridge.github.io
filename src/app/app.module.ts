@@ -57,6 +57,8 @@ import { TextMiningDescTreeComponent } from './project-pages/text-mining-project
 import { TextMiningSvmComponent } from './project-pages/text-mining-project/text-mining-models/text-mining-svm/text-mining-svm.component';
 import { TextMiningNnComponent } from './project-pages/text-mining-project/text-mining-models/text-mining-nn/text-mining-nn.component';
 import { TextMiningConclusionsComponent } from './project-pages/text-mining-project/text-mining-conclusions/text-mining-conclusions.component';
+import { FootnotesComponent } from './footnotes/footnotes.component';
+import { CiteDirective } from './_directives/cite.directive';
 
 
 @NgModule({
@@ -109,7 +111,9 @@ import { TextMiningConclusionsComponent } from './project-pages/text-mining-proj
     TextMiningDescTreeComponent,
     TextMiningSvmComponent,
     TextMiningNnComponent,
-    TextMiningConclusionsComponent
+    TextMiningConclusionsComponent,
+    CiteDirective,
+    FootnotesComponent
   ],
   
   imports: [

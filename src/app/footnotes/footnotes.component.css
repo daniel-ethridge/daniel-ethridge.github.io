@@ -1,0 +1,27 @@
+.footnotes {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid #ccc;
+  }
+  
+  .footnote {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+  }
+
+.footnotes-section {
+  margin-top: 2rem;
+  padding-top: 1rem;
+}
+
+.footnotes-section hr {
+  margin-bottom: 1rem;
+}
+
+.footnotes-section ol {
+  padding-left: 1.5rem;
+}
+
+.footnotes-section li {
+  margin-bottom: 0.5rem;
+}

@@ -1,0 +1,9 @@
+<div class="footnotes-section" *ngIf="(citations$ | async)?.length">
+  <hr>
+  <h3>References</h3>
+  <ol>
+    <li *ngFor="let citation of citations$ | async" [id]="citation.referenceId">
+      {{citation.text}} - <a [href]="citation.url" target="_blank">{{citation.linkText}}</a>
+    </li>
+  </ol>
+</div>
