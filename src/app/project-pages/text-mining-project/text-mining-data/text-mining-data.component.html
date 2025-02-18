@@ -1,4 +1,161 @@
 <app-text-mining-navigation></app-text-mining-navigation>
 <div class="container-sm">
-    <h1 style="text-align: center;">Coming Soon!</h1>
+    <h1 style="text-align: center;">Article Data</h1>
+    <h2>A Note on Software and Data</h2>
+    <p>
+        The software for this project is split into two parts: a general purpose textmining python package found <a href="https://github.com/daniel-ethridge/textmine" target="_blank">here</a> and a codebase that utilizes the package found <a href="https://github.com/daniel-ethridge/text-mining-project" target="_blank">here</a>. Data for the project is hosted in a separate github repo <a href="https://github.com/daniel-ethridge/text-mining-project-data" target="_blank">here</a>. 
+
+    <h2>Data Collection</h2>
+    <h3>API Calls</h3>
+    <div class="row mb-3 justify-content-center text-center">
+        <div class="col-12">
+            <img src="../../../../assets/text-mining/module-1/example-api-call.png" alt="Example API call" class="img-fluid mx-auto d-block">
+        </div>
+    </div>
+    <p>
+        The data collection process utilized both api calls and webscraping. The two APIs utilized were the <a href="https://newsapi.org/" target="_blank">newsapi.org</a> API and the <a href="https://developer.nytimes.com/docs/articlesearch-product/1/overview">New York Times</a> developer API (an example of which is shown above). Each API provided urls to web articles which were later downloaded using the Newspaper3K Python package. The query for both was "mass shooting". Raw data from each are presented below. The top image shows data from the NewsApi.org API and the bottom image shows data from the NYT developer API. 
+
+        <div class="row mb-3">
+            <div class="col-12">
+            <img src="../../../../assets/text-mining/module-1/news-api-calls.png" alt="News api call" class="img-fluid">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+            <img src="../../../../assets/text-mining/module-1/raw-nyt-api-call.png" alt="NYT api calls" class="img-fluid">
+            </div>
+        </div>
+    
+    <h3>Web Scraping</h3>
+    <p>
+        The number of articles returned from each API was very small. One-hundred articles were returned from newsapi.org, and 50 articles were returned from the New York Times. Webscraping methods provided much more data. The initial focus was on webscraping individual articles, but that process alone was not providing ample data. The end solution to gather large amounts of data quickly was to webscrape through the search pages of different news websites. The code for this specific task is <a href="https://github.com/daniel-ethridge/textmine/blob/main/textmine/webscrape.py" target="_blank">here</a>. Ultimately, the four webscraped search engines were from The Associated Press, One America News Network (OAN), the New York Post, and Mother Jones. 
+
+    <p>
+        These four news organizations were the ones that the webscraping worked for. CNN and MSNBC could not be scraped in this manner probably due to how the websites were designed. Fox News was working, but the implementation has since broken. Limitations aside, the webscraping strategy yielded enough articles to bring the total article count to approximately 2,800. In order to more easily label each article as left leaning or right leaning (according to <a href="https://mediabiasfactcheck.com/" target="_blank">Media Bias Fact Check</a>), articles not from the New York Times, OAN, the New York Post, Mother Jones, or the Associated Press were not kept. This brought the total number of articles to slightly above 2,600.
+
+    <h2>Data Preprocessing</h2>
+    <p>
+        Cleaning the data was an iterative process. After the articles had been downloaded using Newspaper3K, the url, title, and document text were written to a csv file. A snippet of this is shown below.
+
+        <div class="row mb-3 justify-content-center text-center">
+            <div class="col-12">
+                <img src="../../../../assets/text-mining/module-1/csv-file-text.png" alt="CSV file text" class="img-fluid mx-auto d-block">
+            </div>
+        </div>
+        
+    <p>
+        This csv file was then read into a <a href="https://github.com/daniel-ethridge/text-mining-project/blob/main/data-preprocessing/create_dataframes.ipynb" target="_blank">Jupyter Notebook</a>. In this notebook, punctuation, numbers, and stop words were removed from the text, and then word clouds were iteratively utilized to trim out more words insignificant to the analysis. The main strategy was to use bigrams and trigrams as these would find phrases that perhaps appeared in every article and served not as information but rather as the news organizations signature.
+
+    <div class="row mb-3 justify-content-center text-center">
+        <div class="col-12">
+            <img src="../../../../assets/text-mining/module-1/ap-bigrams.png" alt="AP bigrams" class="img-fluid mx-auto d-block">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-6">
+            <img src="../../../../assets/text-mining/module-1/mother-jones-bigram.png" alt="Mother Jones bigrams" class="img-fluid">
+        </div>
+        <div class="col-6">
+            <img src="../../../../assets/text-mining/module-1/ny-post-bigrams.png" alt="New York Post bigrams" class="img-fluid">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-6">
+            <img src="../../../../assets/text-mining/module-1/nyt-bigram.png" alt="New York Times bigrams" class="img-fluid">
+        </div>
+        <div class="col-6">
+            <img src="../../../../assets/text-mining/module-1/oann-bigam.png" alt="OAN bigrams" class="img-fluid">
+        </div>
+    </div>
+
+    <p>
+        For example:
+        <ul>
+            <li>In the nypost.com image, getty images is shown.</li>
+            <li>Oann displays "advertisements".</li>
+            <li>Mother Jones has a free daily news letter that vistors can sign up for.</li>
+            <li>The NYT has advertisements</li>
+            <li>The Associated Press' links to social media provide noise.</li>
+        </ul>
+
+        As shown below, continued iteration helped to display more and more relevant words to the topic at hand.
+
+        <div class="row mb-3 justify-content-center text-center">
+            <div class="col-12">
+                <img src="../../../../assets/text-mining/module-1/ap-monogramm.png" alt="AP monograms" class="img-fluid mx-auto d-block">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-6">
+                <img src="../../../../assets/text-mining/module-1/mother-jones-monogram.png" alt="Mother Jones monograms" class="img-fluid">
+            </div>
+            <div class="col-6">
+                <img src="../../../../assets/text-mining/module-1/nypost-monogram.png" alt="New York Post monograms" class="img-fluid">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-6">
+                <img src="../../../../assets/text-mining/module-1/nyt-monogram.png" alt="New York Times monograms" class="img-fluid">
+            </div>
+            <div class="col-6">
+                <img src="../../../../assets/text-mining/module-1/oann-monogram.png" alt="OAN monograms" class="img-fluid">
+            </div>
+        </div>
+    
+    <p>
+        Finally, after enough cleaning, the two main labels of this project, right and left (for the political affiliations), were used to guide word cloud creation. According to <a href="https://mediabiasfactcheck.com/">Media Bias Fact Check</a>, the Associated Press, the New York Times, and Mother Jones are all left or left-leaning. The New York Post and One America News Network are both right or right leaning.
+
+        <div class="row mb-3">
+            <div class="col-6">
+                <img src="../../../../assets/text-mining/module-1/left-cloud.png" alt="Left leaning word cloud" class="img-fluid">
+            </div>
+            <div class="col-6">
+                <img src="../../../../assets/text-mining/module-1/right-cloud.png" alt="Right leaning word cloud" class="img-fluid">
+            </div>
+        </div>
+
+    <h2>Data Frames</h2>
+    <p>
+        To analyze data in several ways, having multiple different data frames is useful. The data frames below show data having gone through further preprocessing and then put into data frames. The final preprocessing steps are stemming and lemmatization which help similar words such as "likes" and "like" to not be counted as two separate words given the similarity. First, the bar chart below visualizes the right and left article counts. They are almost the same with left-leaning news organizations being represented a bit more. 
+
+        <div class="row mb-3 justify-content-center text-center">
+            <div class="col-12">
+            <img src="../../../../assets/text-mining/module-1/article-source-distribution.png" alt="Article source distribution" class="img-fluid mx-auto d-block">
+            </div>
+        </div>
+        <br>
+
+        <p>
+            This data frame shows an exmaple of a TFIDF matrix representation with the words being processed by a stemmer.
+        <div class="row mb-3 justify-content-center text-center">
+            <div class="col-12">
+            <img src="../../../../assets/text-mining/module-1/mat-stem.png" alt="Matrix stem" class="img-fluid mx-auto d-block">
+            </div>
+        </div>
+        <br>
+
+        <p>
+            This data frame shows an exmaple of a count matrix representation with the words being processed by a stemmer.
+        <div class="row mb-3 justify-content-center text-center">
+            <div class="col-12">
+            <img src="../../../../assets/text-mining/module-1/stem-count-mat.png" alt="Stem count" class="img-fluid mx-auto d-block">
+            </div>
+        </div>
+        <br>
+
+        <p>
+            Lastly, this matrix shows another example of a TFIDF matrix representation with the words being processed by a lemmatizer.
+        <div class="row mb-3 justify-content-center text-center">
+            <div class="col-12">
+            <img src="../../../../assets/text-mining/module-1/tfidf-lem-matrix.png" alt="TFIDF lemmatization matrix" class="img-fluid mx-auto d-block">
+            </div>
+        </div>
+
+    <h2>Initial Thoughts</h2>
+    <p>
+        First, the inclusion of the word "school" in both the left and the right word cloud is saddening, though entirely unsurprising. The only query used was "mass shooting", so the fact that "school" shows up in both word clouds is scary to say the least. It is undeniable that the United States suffers from more school shootings than many other countries, especially European countries. The largest word on the left hand side being gun may indicate large amounts of talk about gun control and gun laws. The largest word on the right being police might relate to discussion around support for law enforcement.
+
+        <br>
+        <br>
+        <br>
 </div>
