@@ -5,7 +5,7 @@ import { Project } from '../../_models/Project';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css', '../../app.component.css']
+  styleUrls: ['./home.component.css', '../../app.component.css', '../../styles/styles.css']
 })
 export class HomeComponent {
 

@@ -59,6 +59,7 @@ import { TextMiningNnComponent } from './project-pages/text-mining-project/text-
 import { TextMiningConclusionsComponent } from './project-pages/text-mining-project/text-mining-conclusions/text-mining-conclusions.component';
 import { FootnotesComponent } from './footnotes/footnotes.component';
 import { CiteDirective } from './_directives/cite.directive';
+import { AboutMeComponent } from './main-pages/about-me/about-me.component';
 
 
 @NgModule({
@@ -113,7 +114,8 @@ import { CiteDirective } from './_directives/cite.directive';
     TextMiningNnComponent,
     TextMiningConclusionsComponent,
     CiteDirective,
-    FootnotesComponent
+    FootnotesComponent,
+    AboutMeComponent
   ],
   
   imports: [

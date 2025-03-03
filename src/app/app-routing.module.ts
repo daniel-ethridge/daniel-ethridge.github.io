@@ -41,6 +41,7 @@ import { TextMiningLdaComponent } from './project-pages/text-mining-project/text
 import { TextMiningNbComponent } from './project-pages/text-mining-project/text-mining-models/text-mining-nb/text-mining-nb.component';
 import { TextMiningNnComponent } from './project-pages/text-mining-project/text-mining-models/text-mining-nn/text-mining-nn.component';
 import { TextMiningSvmComponent } from './project-pages/text-mining-project/text-mining-models/text-mining-svm/text-mining-svm.component';
+import { AboutMeComponent } from './main-pages/about-me/about-me.component';
 
 /*
 Add routing to new pages below. Path then Angular component
@@ -51,6 +52,7 @@ let classRoutes = new ClassRoutes();
 const routes: Routes = [
   // Main pages
   {path: "home", component: HomeComponent},
+  {path: "about-me", component: AboutMeComponent},
   {path: "portfolio", component: PortfolioComponent},
   {path: "resume", component: ResumeComponent},
   {path: "contact", component: ContactComponent},
