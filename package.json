@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "compile:sass": "sass src/app/styles/custom-bootstrap.scss src/app/styles/custom-bootstrap.css"
   },
   "private": true,
   "dependencies": {
@@ -27,6 +28,7 @@
     "mathjax": "^3.2.2",
     "ngx-bootstrap": "^11.0.2",
     "rxjs": "~7.8.0",
+    "sass": "^1.85.1",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"
   },
