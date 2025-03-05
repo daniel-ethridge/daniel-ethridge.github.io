@@ -1,9 +1,22 @@
-<div class="card shadow text-center card-size">
-    <div class="card-body">
-        <h5 class="card-title">{{project.name}}</h5>
-        <p class="card-text">{{project.summary}}</p>
-        <a href={{project.projectPage}}>
-            <button id="projPageBtn" class="btn btn-primary">Go to Project</button>
-        </a>
-    </div>
+<div class="col">
+    <a href="{{project.projectPage}}" style="text-decoration: none;">
+        <div class="border rounded p-2 mb-3 shadow position-relative" style="border-color: black !important;" 
+            onmouseover="this.querySelector('.hover-overlay').style.opacity='0.25'" 
+            onmouseout="this.querySelector('.hover-overlay').style.opacity='0'">
+            <div class="hover-overlay position-absolute top-0 start-0 w-100 h-100 bg-white" 
+                style="opacity: 0; transition: opacity 0.3s; pointer-events: none;">
+            </div>
+            <div class="row">
+                <div class="col-6 align-items-center">
+                    <img src="{{project.image}}" style="max-width: 100%; height: auto; display: block;" alt="">
+                </div>
+                <div class="col-6 d-flex align-items-center">
+                    <h5 class="d-none d-md-inline text-center">{{project.summary}}</h5>
+                    <p class="d-inline d-md-none text-center">{{project.summary}}</p>
+                </div>
+            </div>
+        </div>
+    </a>
 </div>
+
+

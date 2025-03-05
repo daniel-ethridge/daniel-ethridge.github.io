@@ -94,14 +94,13 @@ p  {
     color: #FFB398;
 }
 
-.nav-bar {
-    background-color: black; 
-    min-height: 7vh;
+.header-background {
+    min-height: 6vh;
 }
 
 .main-background {
     background: linear-gradient(45deg, #3E39D7 0%, #1C3994 13%, #1D5B26 86%, #46864D 100%);
-    min-height: 93vh;
+    min-height: 94vh;
     padding-top: 80px;
     padding-bottom: 40px;
 }
