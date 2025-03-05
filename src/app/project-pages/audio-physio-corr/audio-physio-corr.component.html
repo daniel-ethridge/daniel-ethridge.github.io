@@ -1,36 +1,30 @@
-<body class="project-desc">
-
-    <!-- Header -->
-    <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-8">
-            <h2 class="text-center"><i>PhD Research</i></h2>
+<div class="main-background">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="text-center pb-3">Low-Level Audio Feature Correlates to Physiological Arousal</h1>
+            </div>
+            <div class="col-12">
+                <h3 class="text-center pb-3">A Secondary Analysis of the DEAP Dataset</h3>
+            </div>
         </div>
-        <div class="col-md-2" style="text-align: right;">
-            <a routerLink="/portfolio">
-                <button class="btn btn-primary">Back to Portfolio</button>
+        
+        <h5 class=text-center><a style="color: white" href="https://doi.org/10.1145/3678299.3678327" target="_blank">Link to paper</a></h5>
+        <h5>Co-authors: <a style="color: white" href="https://www.luisxdepablo.com/" target="_blank">Luis X. de Pablo</a> and <a style="color: white" href="https://www.colorado.edu/music/grace-leslie" target="_blank">Grace Leslie</a></h5>
+    
+        <h4 class="mt-5">About the Research</h4>
+        <div style="float: right; margin-left: 20px;">
+            <a href="https://audiomostly.com/2024/" target="_blank">
+                <img src="../../../assets/audio-mostly.jpeg" alt="" 
+                    style="transition: filter 0.3s;"
+                    onmouseover="this.style.filter='brightness(1.5)'" 
+                    onmouseout="this.style.filter='brightness(1)'">
             </a>
         </div>
+        <p>
+            Listening to music causes acute changes in our physiology that we can measure. Heart rate variability (HRV), defined as the beat to beat variation across successive heartbeats, is a popular physiological tool to measure the activity of the autonomic nervous system. Galvanic skin response (GSR) is defined by changes in electrical potentials in the skin and also has been shown to serve as a biomarker of autonomic nervous system activity. Prior work has shown that listening to various genres of music will elicit measurable changes in heart rate, HRV, and GSR. Prior work has not investigated correlations between low level audio features (such as those used in music information retrieval) and physiological responses to music. 
+            
+        <p>
+            This research aimed to fill this gap in knowledge through a secondary analysis of the DEAP dataset. From raw physiological data, we extracted heart rate, HRV features, and GSR features corresponding to when they listened to various music. Then we extracted low-level audio features from the music that participants listened to. Using mixed effects models and multiple regression analyses, we found correlations between the audio domain and the physiological domain. Our results suggested a link between percussive aspects of music with increased physiological arousal which is supported by existing literature. More interestingly, we found similar evidence for a link between voice or voice-like sounds in music and increased physiological arousal.
     </div>
-
-    <h1>PhD Research: Year 1</h1>
-    <p>My PhD research in year 1 revolved around exploring two main questions: </p>
-        <ul style="font-size: 22px;">
-            <li>What physiological responses to music do we observe?</li>
-            <li>what aspects of music can be attributed to the physiological responses we observe?</li>
-        </ul>
-    <p>
-        The first of these questions is largely already answered in the existing literature. The second question, however, is not. Existing work examines higher level features such as genre. While this information is beneficial, it does not provide answers to questions about why music can trigger physiological responses. That information could be used to design audio scapes that invoke specific certain physiological responses for any number of applications from music composition to music therapy.
-    </p>
-
-    <h2>Audio Mostly</h2>
-    <p>
-        I am planning to submit a paper detailing my work on this question to the <a href={{audiomostlyLink}} target="_blank">2024 ACM Audio Mostly Conference</a>. Please check back here for updates on the paper and whether or not it is accepted. For now, the abstract of the paper is below.
-    </p>
-
-    <h2>Abstract</h2>
-    <p>
-    Listening to music causes acute changes in our physiology that we can measure. Heart rate variability (HRV), defined as the beat to beat variation across successive heartbeats, is a popular physiological tool to measure the activity of the autonomic nervous system. Galvanic skin response (GSR) is defined by changes in electrical potentials in the skin and also has been shown to serve as a biomarker of autonomic nervous system activity. Prior work has shown that listening to various genres of music will elicit measurable changes in heart rate, HRV, and GSR. Prior work has not investigated correlations between low level audio features (such as those used in music information retrieval) and physiological responses to music. We begin filling this gap in knowledge with a secondary analysis of the DEAP dataset. We extract heart rate, HRV features, and GSR features from participant data corresponding to when they listened to music. Then we extract low-level audio features from the music that participants listened to. Using mixed effects models and multiple regression analyses, we find correlations between the audio domain and the physiological domain. We conclude with ideas of how to explain the correlations, limitations of the study, and future directions.
-    </p>
-    
-</body>
+</div>
