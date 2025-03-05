@@ -1,13 +1,11 @@
-<h3 class="text-center">
-    Select Work
-</h3>
-<div class="container">
-    <div class="row">
-        <div 
-            *ngFor="let project of projects" 
-            class="col-lg-4 col-md-6 mb-4 text-center" 
-            style="max-width: 380px; min-width: 380px; font-size: 20px;">
-            <app-project-card [project]="project"></app-project-card>
+<div class="main-background">
+    <div class="container">
+        <div class="col-12 text-center"><h1>Projects</h1></div>
+        <div class="row row-cols-1 row-cols-md-2">
+            <div *ngFor="let project of projects">
+                <app-project-card [project]="project"></app-project-card>
+            </div>
         </div>
     </div>
 </div>
+
