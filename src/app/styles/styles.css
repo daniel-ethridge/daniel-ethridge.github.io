@@ -79,12 +79,35 @@ p, li  {
 .green-button {
     width: 100%; 
     margin-bottom: 20px; 
-    background-color: #43834B; 
+    background-color:  #43834B; 
     border: none; 
     border-radius: 25px; 
     padding: 10px; 
     color: white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    transition: filter 0.3s ease;
+
+    &:hover {
+        filter: brightness(130%);
+    }
+}
+
+a {
+    text-decoration: none;
+}
+
+.bright-hover {
+    transition: filter 0.3s ease; /* Add smooth transition */
+    &:hover {
+        filter: brightness(130%);
+    }
+}
+
+.orange-hover {
+    transition: color 0.3s ease; /* Add smooth transition */
+    &:hover {
+        color: #ffda7e;
+    }
 }
 
 .green-text {
