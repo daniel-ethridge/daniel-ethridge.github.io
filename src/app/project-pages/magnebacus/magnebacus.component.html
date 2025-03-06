@@ -1,43 +1,35 @@
-<body class="project-desc">
-    
-    <div class="row">
-        <div class="col-md-4"></div>
-        <div class="col-md-4">
-            <h2 class="text-center"><i>The Magnebacus</i></h2>
-        </div>
-        <div class="col-md-4" style="text-align: right;">
-            <a routerLink="/portfolio">
-                <button class="btn btn-primary">Back to Portfolio</button>
-            </a>
-        </div>
-    </div>
+<div class="main-background">
+    <div class="container">
+        <h1 class="text-center"><i>The Magnebacus</i></h1>
+        <p>
+            The Magnebacus is a novel musical interface that my team and I created for the competition. We took inspiration from the ancient calculator known as the abacus. The user interacts with the instrument by moving any of the 3 beads on any of the 5 rods to control various synthesizer parameters and to control a sequencer. In addition, the Magnebacus features an ultrasonic sensor on top to control a low pass filter as well as environmental sensors. These sensors affect the sound depending on the current humidity and brightness of whatever room or location the instrument is in. The Magnebacus software is comprised of an arduino script and a Max/MSP patch. The instrument served as our entry to the Moog Hackathon for 2021, and we won first place!
 
-    <h6 class="mt-2">Created by: <a href="https://smehdizadeh.github.io/" target="_blank">Sophia Mehdizadeh</a>, Mohammad Jafari, and Daniel Ethridge (Me!)</h6>
-    <h6>2021 <a href="">Moog Hackathon</a> Winners!</h6>
-    <h6>Check out the video below!</h6>
-    <div style="text-align: center;">
-        <a href={{videoLink}} target="_blank">
-            <img src={{videoPictureLink}} alt="magnebacus video">
-        </a>
+        <h3 class="mt-4">The Moog Hackathon</h3>
+        
+        <p>
+            The Moog Hackathon is an annual competition hosted by the School of Music at the Georgia Institute of Technology. It traditionally would take place over the course of 48 hours and in person, but in 2021, it was adapted to a virtual format that lasted approximately one week. During that time, teams were tasked with creating a novel musical interface using the Moog Werkstatt and whatever other tools they desired to utilize. Submissions were judged based on aspects such as usability, interactiion design, sound design, and creativity.
+    
+        <h6 class="mt-2">Team: <a style="color: white;" href="https://smehdizadeh.github.io/" target="_blank">Sophia Mehdizadeh</a>, Mohammad Jafari, and Daniel Ethridge</h6>
+
+        <h6 class="mt-5">Key Video Timestamps:</h6>
+        <ul>
+            <li>0:00 - Overview</li>
+            <li>1:40 - Description</li>
+            <li>3:09 - Performance (Wear headphones for optimal experience)</li>
+        </ul>
+        <div class="d-md-none d-block" style="text-align: center;">
+            <iframe width="100%" height="315" src="https://www.youtube.com/embed/PeHwQo6eCUo?si=wzerV7WO06wR66y_" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div class="d-md-block d-none" style="text-align: center;">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/PeHwQo6eCUo?si=wzerV7WO06wR66y_" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        
+        <!-- <p>Check out the photo gallery and the project poster below!</p> -->
+        <p>Check out the project poster below!
+        <!-- <div class="text-center mb-2">
+            <button class="btn btn-primary">View Photo Gallery</button>
+        </div> -->
+        <img src={{projectPoster}} alt="magnebacus-poster" style="width: 100%;">
     </div>
-    <h6 class="mt-3">Key Video Timestamps:</h6>
-    <ul>
-        <li>0:00 - Overview</li>
-        <li>1:40 - Description</li>
-        <li>3:09 - Performance (Wear headphones for optimal experience)</li>
-    </ul>
-    <h3 class="mt-4">The Moog Hackathon</h3>
-    <p>
-        The Moog Hackathon is an annual competition hosted by the School of Music at the Georgia Institute of Technology. It traditionally would take place over the course of 48 hours and in person, but in 2021, it was adapted to a virtual format that lasted approximately one week. During that time, teams were tasked with creating a novel musical interface using the Moog Werkstatt and whatever other tools they desired to utilize. Submissions were judged based on aspects such as usability, interactiion design, sound design, and creativity.
-    </p>
-    <h3 class="mt-3"><i>The Magnebacus</i></h3>
-    <p>
-        The Magnebacus is a novel musical interface that my team and I created for the competition. We took inspiration from the ancient calculator known as the abacus. The user interacts with the instrument by moving any of the 3 beads on any of the 5 rods to control various synthesizer parameters and to control a sequencer. In addition, the Magnebacus features an ultrasonic sensor on top to control a low pass filter as well as environmental sensors. These sensors affect the sound depending on the current humidity and brightness of whatever room or location the instrument is in. The Magnebacus software is comprised of an arduino script and a Max/MSP patch.
-    </p>
-    <!-- <p>Check out the photo gallery and the project poster below!</p> -->
-    <p>Check out the project poster below!</p>
-    <!-- <div class="text-center mb-2">
-        <button class="btn btn-primary">View Photo Gallery</button>
-    </div> -->
-    <img src={{projectPoster}} alt="magnebacus-poster" style="width: 100%;">
-</body>
+</div>    
+    

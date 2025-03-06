@@ -71,7 +71,7 @@ p, li  {
     font-family: Roboto, "Helvetica Neue", sans-serif;
     color: white;
     @media (min-width: 960px) {
-        font-size: 16pt;
+        font-size: 14pt;
     }
 
 }
