@@ -18,5 +18,4 @@ export class ShapeSongComponent implements OnInit {
   }
 
   videoImg: string = "../../assets/play-shape-song.jpg"
-  videoLink: string = "https://www.youtube.com/watch?v=AnS1vEmkQ9I"
 }
