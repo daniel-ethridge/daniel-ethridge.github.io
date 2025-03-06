@@ -1,315 +1,314 @@
-
-
-<app-ml-page-navigation/>
-
-<div class="container-sm">
-    <h1 class="text-center">Association Rule Mining</h1>
-    <h4><em>Note: If the math elements on the page are not rendering properly, try refreshing the page.</em></h4>
-    <h2>Overview</h2>
-    <h3>What is ARM?</h3>
-    <p>
-        Association Rule Mining, or ARM, is a data mining technique that aims to create rules that tell what items of a dataset typically occur together. For example, imagine all the customers at a grocery store and what their shopping carts might look like. What percentage of the customers are buying milk? If someone buys milk, what is the probability that they also buy bread? Is the purchase of these two items correlated? 
-
-    <p>
-        These are some of the questions that ARM tries to answer. The goal is two create a set of association rules that can give us insight into item cooccurences in a dataset. Rules are defined as relationships between different items in item sets and how often they appear side by side. But how do we determine these association rules?
-
-    <h3>Support, Confidence, and Lift</h3>
+<div class="main-background">
+    <div class="container">
+        <app-ml-page-navigation/>
+        <h1 class="text-center">Association Rule Mining</h1>
+        <h4><em>Note: If the math elements on the page are not rendering properly, try refreshing the page.</em></h4>
+        <h2>Overview</h2>
+        <h3>What is ARM?</h3>
         <p>
-            Three main factors in determining association rules as well as if they are interesting are known as support, confidence, and lift. They are all based on fairly basic probability.
+            Association Rule Mining, or ARM, is a data mining technique that aims to create rules that tell what items of a dataset typically occur together. For example, imagine all the customers at a grocery store and what their shopping carts might look like. What percentage of the customers are buying milk? If someone buys milk, what is the probability that they also buy bread? Is the purchase of these two items correlated? 
 
-    <h4>Support</h4>
         <p>
-            Support for an item is defined as the probability that it appears in a transaction given a total set of transactions. For example, take a set of 10 transactions. If the item $A$ occurs 3 times. Then $supp(A) = P(A) = {{math.fraction("3", "10")}}$, where $P(A)$ is the probability of A. Likewise, imagine the amount of times that the item $A$ and $B$ occur together in transactions. This is represented as the mathematical intersection: $$ supp(A, B) = P(A \cap B). $$
+            These are some of the questions that ARM tries to answer. The goal is two create a set of association rules that can give us insight into item cooccurences in a dataset. Rules are defined as relationships between different items in item sets and how often they appear side by side. But how do we determine these association rules?
 
-    <h4>Confidence</h4>
-        <p>
-            Using the above example, confidence asks a slightly different question. Using the example above: Given that <em>B</em> is in the transaction, what is probability that A is present? This is equivalent to conditional probability: 
+        <h3>Support, Confidence, and Lift</h3>
+            <p>
+                Three main factors in determining association rules as well as if they are interesting are known as support, confidence, and lift. They are all based on fairly basic probability.
 
-            $$
-            {{math.beginAlign()}}
+        <h4>Support</h4>
+            <p>
+                Support for an item is defined as the probability that it appears in a transaction given a total set of transactions. For example, take a set of 10 transactions. If the item $A$ occurs 3 times. Then $supp(A) = P(A) = {{math.fraction("3", "10")}}$, where $P(A)$ is the probability of A. Likewise, imagine the amount of times that the item $A$ and $B$ occur together in transactions. This is represented as the mathematical intersection: $$ supp(A, B) = P(A \cap B). $$
 
-                conf(A, B) & = P(B|A) \\\\
-                & = {{math.fraction("P(A \\cap B)", "P(A)")}} \\\\
-                & = {{math.fraction("supp(A, B)", "P(A)")}}.
+        <h4>Confidence</h4>
+            <p>
+                Using the above example, confidence asks a slightly different question. Using the example above: Given that <em>B</em> is in the transaction, what is probability that A is present? This is equivalent to conditional probability: 
+
+                $$
+                {{math.beginAlign()}}
+
+                    conf(A, B) & = P(B|A) \\\\
+                    & = {{math.fraction("P(A \\cap B)", "P(A)")}} \\\\
+                    & = {{math.fraction("supp(A, B)", "P(A)")}}.
+                
+                {{math.endAlign()}}
+                $$
+
+        <h4>Lift</h4>
+            <p>
+                The discussion of lift is a measure of correlation. The formula is not immediately intuitive, but a discussion of the differences between independent and dependent probability help. There are three key ideas at play: <a href="https://www.inchcalculator.com/wp-content/uploads/2021/01/probability-union.png" target="_blank">union (P(A U B))</a>, <a href="https://thirdspacelearning.com/wp-content/uploads/2022/05/Probability-notation-intersection-image-1.png" target="_blank">intersection (P(A ∩ B))</a>, and <a href="https://assets.tivadardanka.com/2022_10_conditional_probability_featured_c9d47cc379.jpg" target="_blank">conditional probability (P(A|B))</a>.
+
+        <h5>Indepdent and Dependent Events</h5>
+            <p>
+                When two events are independent, the outcomes do not affect each other at all. When two events are dependent, they do affect each other. There is overlap.
             
-            {{math.endAlign()}}
-            $$
+            <table class="center">
+                <tr>
+                    <th></th>
+                    <th>Independent Probability</th>
+                    <th>Dependent Probability</th>
+                </tr>
+                <tr>
+                    <th>Union: $P(A \cup B)$</th>
+                    <td>$P(A) + P(B)$</td>
+                    <td>$P(A) + P(B) - P(A ∩ B)$</td>
+                </tr>
+                <tr>
+                    <th>Intersection: $P(A \cap B)$</th>
+                    <td>$P(A) \cdot P(B)$</td>
+                    <td>$P(A|B) \cdot P(B) = P(B|A) \cdot P(A)$</td>
+                </tr>
+                <tr>
+                    <th>Conditional: $P(A|B)$</th>
+                    <td>$P(A)$</td>
+                    <td>${{math.fraction("P(A ∩ B)", "P(B)")}}$</td>
+                </tr>
+            </table><br>
 
-    <h4>Lift</h4>
+        <h5>What does this have to do with lift??</h5>
         <p>
-            The discussion of lift is a measure of correlation. The formula is not immediately intuitive, but a discussion of the differences between independent and dependent probability help. There are three key ideas at play: <a href="https://www.inchcalculator.com/wp-content/uploads/2021/01/probability-union.png" target="_blank">union (P(A U B))</a>, <a href="https://thirdspacelearning.com/wp-content/uploads/2022/05/Probability-notation-intersection-image-1.png" target="_blank">intersection (P(A ∩ B))</a>, and <a href="https://assets.tivadardanka.com/2022_10_conditional_probability_featured_c9d47cc379.jpg" target="_blank">conditional probability (P(A|B))</a>.
-
-    <h5>Indepdent and Dependent Events</h5>
-        <p>
-            When two events are independent, the outcomes do not affect each other at all. When two events are dependent, they do affect each other. There is overlap.
-        
-        <table class="center">
-            <tr>
-                <th></th>
-                <th>Independent Probability</th>
-                <th>Dependent Probability</th>
-            </tr>
-            <tr>
-                <th>Union: $P(A \cup B)$</th>
-                <td>$P(A) + P(B)$</td>
-                <td>$P(A) + P(B) - P(A ∩ B)$</td>
-            </tr>
-            <tr>
-                <th>Intersection: $P(A \cap B)$</th>
-                <td>$P(A) \cdot P(B)$</td>
-                <td>$P(A|B) \cdot P(B) = P(B|A) \cdot P(A)$</td>
-            </tr>
-            <tr>
-                <th>Conditional: $P(A|B)$</th>
-                <td>$P(A)$</td>
-                <td>${{math.fraction("P(A ∩ B)", "P(B)")}}$</td>
-            </tr>
-        </table><br>
-
-    <h5>What does this have to do with lift??</h5>
-        Lift is a measure of correlation between two items in a transaction. If it is greater than 1, there is a correlation. A lift of 1 means no correlation, and a lift of less than 1 means a negative correlation. We are looking for lift greater than one.
-
-        The formula for lift is 
-
-        $$
-        {{math.beginAlign()}}
-
-        lift(A, B) & = {{math.fraction("supp(A, B)", "supp(A) \\cdot supp(B)")}} \\\\
-        & = {{math.fraction("P(A ∩ B)", "P(A)P(B)")}}.
-
-        {{math.endAlign()}}
-        $$
-
-        <p>
-            The equation is equivalent to confidence with the addition of $P(B)$ in the denominator. The interesting bit here comes in the numerator of the lift. If A and B are independent, then the formula becomes
+            Lift is a measure of correlation between two items in a transaction. If it is greater than 1, there is a correlation. A lift of 1 means no correlation, and a lift of less than 1 means a negative correlation. We are looking for lift greater than one. The formula for lift is 
 
             $$
             {{math.beginAlign()}}
-    
+
             lift(A, B) & = {{math.fraction("supp(A, B)", "supp(A) \\cdot supp(B)")}} \\\\
-            & = {{math.fraction("P(A \\cap B)", "P(A)P(B)")}} \\\\
-            & = {{math.fraction("P(A)P(B)", "P(A)P(B)")}} \\\\
-            & = 1.
-    
+            & = {{math.fraction("P(A ∩ B)", "P(A)P(B)")}}.
+
             {{math.endAlign()}}
             $$
 
-        <p>
-            We see that a lift of 1 means independent events. If the events are dependent, then the formula is
+            <p>
+                The equation is equivalent to confidence with the addition of $P(B)$ in the denominator. The interesting bit here comes in the numerator of the lift. If A and B are independent, then the formula becomes
 
-            $$
-            {{math.beginAlign()}}
-    
-            lift(A, B) & = {{math.fraction("supp(A, B)", "supp(A) \\cdot supp(B)")}} \\\\
-            & = {{math.fraction("P(A \\cap B)", "P(A)P(B)")}} \\\\
-            & = {{math.fraction("P(A|B) \\cdot P(B)", "P(A)P(B)")}} \\\\
-            & = {{math.fraction("P(A|B)", "P(A)")}}.
-    
-            {{math.endAlign()}}
-            $$
-
-        <p>
-            We see that for dependent events:
-        <ul>
-            <li>If A becomes more likely when B is known to be true, A and B are positively correlated.</li>
-            <li>If A becomes less likely when B is known to be true, A and B are negatively correlated.</li>
-        </ul>
-
-    <h5>To Summarize</h5>
-    Below are the equations for support, confidence, and lift for a rule {{'{A}'}} -> {{'{B}'}}:
-    <ul>
-        <li>$supp(A, B) = P(A \cap B)$</li> 
-        <li>$conf(A, B) = {{math.fraction("supp(A, B)", "P(A)")}}$</li>
-        <li>$lift(A, B) = {{math.fraction("supp(A, B)", "supp(A) \\cdot supp(B)")}}$</li>
-    </ul>
-
-    <h3>The Apriori Algorithm</h3>
-        <p>
-            How do we determine association rules? One common method is known as the apriori algorithm. It is an iterative approach that starts with single item associations and works up towards multiple items together in associations. Take the image below:
-
-        <img src="./../../../../assets/ml-assets/food-data.png" alt="Set of transactions" class="img-center" style="width: 20%; height: 20%;">
-
-        <p>
-            In this list of transactions, we first begin by choosing a minimum support and confidence. Minimum support will be 0.4 and minimum confidence will be 0.6. Then we calculate the support itemset:
-
-        <ul>
-            <li>supp(Bread) = 0.6</li>
-            <li>supp(Coke) = 0.6</li>
-            <li>supp(Beer) = 0.6</li>
-            <li>supp(Milk) = 0.8</li>
-            <li>supp(Diaper) = 0.6</li>
-        </ul>
-
-        <p>
-            Everything is above the support threshold, so now we can move to 2-itemsets. For brevity, we will look at bread and milk being on the left hand side.
-        <ul>
-            <li>supp(Bread, Coke) = 0.2</li>
-            <li>supp(Bread, Beer) = 0.4</li>
-            <li>supp(Bread, Diaper) = 0.2</li>
-            <li>supp(Bread, Milk) = 0.4</li>
-            <li>supp(Milk, Bread) = 0.4</li>
-            <li>supp(Milk, Coke) = 0.6</li>
-            <li>supp(Milk, Beer) = 0.4</li>
-            <li>supp(Milk, Diaper) = 0.6</li>
-        </ul>
-
-        <ul>
-            <li>conf(Bread, Coke) = 0.33</li>
-            <li>conf(Bread, Beer) = 0.66</li>
-            <li>conf(Bread, Diaper) = 0.33</li>
-            <li>conf(Bread, Milk) = 0.66</li>
-            <li>conf(Milk, Bread) = 0.5</li>
-            <li>conf(Milk, Coke) = 0.75</li>
-            <li>conf(Milk, Beer) = 0.5</li>
-            <li>conf(Milk, Diaper) = 0.75</li>
-        </ul>
-
-        <p>
-            Now anything that does not have the minimum support AND confidence can be thrown out. Nothing with those specific combinations needs to be tested again which is from where this algorithm gets its efficiency. We move onto 3-itemsets. Let's look at a few:
-
-        <ul>
-            <li>supp({{'{Beer, Milk}'}}, Diaper) = 0.4</li>
-            <li>supp({{'{Diaper, Milk}'}}, Coke) = 0.4</li>
-            <li>supp({{'{Diaper, Milk}'}}, Beer) = 0.4</li>
-            <li>supp({{'{Coke, Milk}'}}, Diaper) = 0.4</li>
-        </ul>
-
-        <ul>
-            <li>conf({{'{Beer, Milk}'}}, Diaper) = 1</li>
-            <li>conf({{'{Diaper, Milk}'}}, Coke) = 0.66</li>
-            <li>conf({{'{Diaper, Milk}'}}, Beer) = 0.66</li>
-            <li>conf({{'{Coke, Milk}'}}, Diaper) = 0.66</li>
-        </ul>
-
-        <p>
-            We can see that the support and confidence for these rules are valid. It also is true that the lift for each of these rules is greater than 1, so these are association rules to keep in mind. However, let us return our attention to the potential rule {{'{Bread}'}} -> {{'{Milk}'}}. 
-
-        <ul>
-            <li>supp(Bread, Milk) = 0.4</li>
-            <li>conf(Bread, Milk) = 0.66</li>
-            <li>lift(Bread, Milk) = 0.83</li>
-        </ul>
-
-        <p>
-            The support and lift show good signs, but the lift actually shows a negative correlation. If we assume tat we have milk, bread actually becomes less likely. So this is not a good rule.
-            
-        <p>
-            The apriori algorithm goes through this iterative process to find more and more complex association rules without haviing to test every single combination of different items and different size itemsets.
-
-        <h2>Last.Fm Data Prep</h2>
-        <p>
-            Association rule mining requires transaction data. Transaction data is a type of unlabeled data where the important aspect is simply having a list of items in a transaction or record. There are no columns, and there are no labels. See the image below:
-
-        <img src="../../../../assets/ml-assets/last-fm-tags-transaction.png" alt="Last.fm tags" class="img-center" style="height: 60%; width: 60%;">
-
-        <p>
-            This shows the top 50 tags from the last fm dataset in transaction format. See the <a href="/portfolio/machine-learning/data-prep-and-eda#lastfmdata" target="_blank">data cleaning process</a>.
-            
-    <h2>Code ARM</h2>
-        <p>
-            For ARM, we will use the R programming language. All code can be found <a href="https://github.com/daniel-ethridge/MachineLearning/tree/main/unsupervised" target="_blank">here</a> and the data <a href="https://drive.google.com/drive/folders/1WeLVT3kzSicaQgk-oUrgrRzlK8CQ2uHG?usp=drive_link" target="_blank">here</a>. The main packages to use are "arules" and "arulesViz". "RColorBrewer" is for aesthetics when plotting and is optional.
-
-        <pre><code>
-            library(arules)
-            library(arulesViz)
-            library(RColorBrewer)
-
-            # Set path
-            setwd(dirname(rstudioapi::getSourceEditorContext()$path))
-
-            song_tags <- arules::read.transactions("./../unsynced-data/lastfm-clean-tags-reduced.csv",
-                                                        rm.duplicates = FALSE, 
-                                                        format = "basket",
-                                                        sep=",",
-                                                        cols=NULL)
-
-            # Perform Apriori to get the rules
-            arm <- arules::apriori(song_tags, parameter = list(support=0.01, 
-                                                                confidence=0.5, minlen=2)) |> 
-            sort(by="confidence")
-
-            inspect(arm)
-        </code></pre>
-
-    <h2>Results</h2>
-        <p>
-            Below is the output of the <code>inspect(arm)</code> command three times. We sort by a different metric each time. Minimum thresholds for support and confidence are set to 0.01 and 0.5, respectively.
-
-        <p>
-            Sorted by support:
-            <img src="../../../../assets/ml-assets/arm-sort-support.png" alt="LFM Tags ARM" class="img-center" style="height: 60%; width: 60%"><br>
-
-        <p>
-            Sorted by confidence:
-            <img src="../../../../assets/ml-assets/arm-sort-confidence.png" alt="LFM Tags ARM" class="img-center" style="height: 60%; width: 60%"><br>
+                $$
+                {{math.beginAlign()}}
         
-        <p>
-            Sorted by lift:
-            <img src="../../../../assets/ml-assets/arm-sort-lift.png" alt="LFM Tags ARM" class="img-center" style="height: 60%; width: 60%"><br>
+                lift(A, B) & = {{math.fraction("supp(A, B)", "supp(A) \\cdot supp(B)")}} \\\\
+                & = {{math.fraction("P(A \\cap B)", "P(A)P(B)")}} \\\\
+                & = {{math.fraction("P(A)P(B)", "P(A)P(B)")}} \\\\
+                & = 1.
+        
+                {{math.endAlign()}}
+                $$
 
-        <p>
-            We can additionally visualize this information in a network graph:
-            <img src="../../../../assets/ml-assets/arm-network.png" alt="ARM network" class="img-center" style="height: 90%; width: 90%"><br>
+            <p>
+                We see that a lift of 1 means independent events. If the events are dependent, then the formula is
 
-        <p>
-            An interesting idea to explore is to explore the differences in associations, if any, between male vocalists and female vocalists. The music industry and even certain music genres have long been dominated by men. Female vocalists may have a harder time breaking into some genres vs others. We can use R to investigate this by specifying a left hand side argument in the code. This time, we will sort by lift:
+                $$
+                {{math.beginAlign()}}
+        
+                lift(A, B) & = {{math.fraction("supp(A, B)", "supp(A) \\cdot supp(B)")}} \\\\
+                & = {{math.fraction("P(A \\cap B)", "P(A)P(B)")}} \\\\
+                & = {{math.fraction("P(A|B) \\cdot P(B)", "P(A)P(B)")}} \\\\
+                & = {{math.fraction("P(A|B)", "P(A)")}}.
+        
+                {{math.endAlign()}}
+                $$
 
-        <pre><code>
-            female_vocalist <- apriori(song_tags, 
-                                        parameter = list(
-                                            support=0.01, 
-                                            confidence=0.1,
-                                            minlen=2),
-                                        appearance = list(default="rhs", lhs="female vocalist")) |> 
-                sort(by="lift")
-        </code></pre>
+            <p>
+                We see that for dependent events:
+            <ul>
+                <li>If A becomes more likely when B is known to be true, A and B are positively correlated.</li>
+                <li>If A becomes less likely when B is known to be true, A and B are negatively correlated.</li>
+            </ul>
 
-        <p>
-            The produced results are below:
-        <img src="../../../../assets/ml-assets/female-arm-lhs.png" alt="Female vocals lhs ARM" class="img-center" style="height: 60%; width: 60%">
-
-        <p>
-            Understanding the metrics in this example:
+        <h5>To Summarize</h5>
+        <p> 
+            Below are the equations for support, confidence, and lift for a rule {{'{A}'}} -> {{'{B}'}}:
         <ul>
-            <li>Supports asks: What is the probability that 'female vocalist' and the rhs appear together?</li>
-            <li>Confidence asks: Given 'female vocalist', what is the probability of the rhs?</li>
-            <li>Lift asks: Does the probability of the rhs increase or decrease when 'female vocalist' is given? In other words, are 'female vocalist' and the rhs correlated?</li>
+            <li>$supp(A, B) = P(A \cap B)$</li> 
+            <li>$conf(A, B) = {{math.fraction("supp(A, B)", "P(A)")}}$</li>
+            <li>$lift(A, B) = {{math.fraction("supp(A, B)", "supp(A) \\cdot supp(B)")}}$</li>
         </ul>
 
-        <p>
-            We can also run the code the other way around. Notice the change to default and rhs in the appearance variable:
-        <pre><code>
-            female_vocalist <- apriori(song_tags, 
-                                        parameter = list(
-                                            support=0.01, 
-                                            confidence=0.1,
-                                            minlen=2),
-                                        appearance = list(default="lhs", rhs="female vocalist")) |> 
-                sort(by="lift")
-        </code></pre>
+        <h3>The Apriori Algorithm</h3>
+            <p>
+                How do we determine association rules? One common method is known as the apriori algorithm. It is an iterative approach that starts with single item associations and works up towards multiple items together in associations. Take the image below:
 
-        <p>
-            Results:
-        <img src="../../../../assets/ml-assets/female-arm-rhs.png" alt="Female vocals lhs ARM" class="img-center" style="height: 60%; width: 60%"><br>
+            <img src="./../../../../assets/ml-assets/food-data.png" alt="Set of transactions" class="img-center" style="width: 20%; height: 20%;">
 
-        <p>
-            If we run the same code for male vocalists, we get the following:
+            <p>
+                In this list of transactions, we first begin by choosing a minimum support and confidence. Minimum support will be 0.4 and minimum confidence will be 0.6. Then we calculate the support itemset:
 
-            <img src="../../../../assets/ml-assets/male-arm-lhs.png" alt="Female vocals lhs ARM" class="img-center" style="height: 60%; width: 60%">
+            <ul>
+                <li>supp(Bread) = 0.6</li>
+                <li>supp(Coke) = 0.6</li>
+                <li>supp(Beer) = 0.6</li>
+                <li>supp(Milk) = 0.8</li>
+                <li>supp(Diaper) = 0.6</li>
+            </ul>
+
+            <p>
+                Everything is above the support threshold, so now we can move to 2-itemsets. For brevity, we will look at bread and milk being on the left hand side.
+            <ul>
+                <li>supp(Bread, Coke) = 0.2</li>
+                <li>supp(Bread, Beer) = 0.4</li>
+                <li>supp(Bread, Diaper) = 0.2</li>
+                <li>supp(Bread, Milk) = 0.4</li>
+                <li>supp(Milk, Bread) = 0.4</li>
+                <li>supp(Milk, Coke) = 0.6</li>
+                <li>supp(Milk, Beer) = 0.4</li>
+                <li>supp(Milk, Diaper) = 0.6</li>
+            </ul>
+
+            <ul>
+                <li>conf(Bread, Coke) = 0.33</li>
+                <li>conf(Bread, Beer) = 0.66</li>
+                <li>conf(Bread, Diaper) = 0.33</li>
+                <li>conf(Bread, Milk) = 0.66</li>
+                <li>conf(Milk, Bread) = 0.5</li>
+                <li>conf(Milk, Coke) = 0.75</li>
+                <li>conf(Milk, Beer) = 0.5</li>
+                <li>conf(Milk, Diaper) = 0.75</li>
+            </ul>
+
+            <p>
+                Now anything that does not have the minimum support AND confidence can be thrown out. Nothing with those specific combinations needs to be tested again which is from where this algorithm gets its efficiency. We move onto 3-itemsets. Let's look at a few:
+
+            <ul>
+                <li>supp({{'{Beer, Milk}'}}, Diaper) = 0.4</li>
+                <li>supp({{'{Diaper, Milk}'}}, Coke) = 0.4</li>
+                <li>supp({{'{Diaper, Milk}'}}, Beer) = 0.4</li>
+                <li>supp({{'{Coke, Milk}'}}, Diaper) = 0.4</li>
+            </ul>
+
+            <ul>
+                <li>conf({{'{Beer, Milk}'}}, Diaper) = 1</li>
+                <li>conf({{'{Diaper, Milk}'}}, Coke) = 0.66</li>
+                <li>conf({{'{Diaper, Milk}'}}, Beer) = 0.66</li>
+                <li>conf({{'{Coke, Milk}'}}, Diaper) = 0.66</li>
+            </ul>
+
+            <p>
+                We can see that the support and confidence for these rules are valid. It also is true that the lift for each of these rules is greater than 1, so these are association rules to keep in mind. However, let us return our attention to the potential rule {{'{Bread}'}} -> {{'{Milk}'}}. 
+
+            <ul>
+                <li>supp(Bread, Milk) = 0.4</li>
+                <li>conf(Bread, Milk) = 0.66</li>
+                <li>lift(Bread, Milk) = 0.83</li>
+            </ul>
+
+            <p>
+                The support and lift show good signs, but the lift actually shows a negative correlation. If we assume tat we have milk, bread actually becomes less likely. So this is not a good rule.
+                
+            <p>
+                The apriori algorithm goes through this iterative process to find more and more complex association rules without haviing to test every single combination of different items and different size itemsets.
+
+            <h2>Last.Fm Data Prep</h2>
+            <p>
+                Association rule mining requires transaction data. Transaction data is a type of unlabeled data where the important aspect is simply having a list of items in a transaction or record. There are no columns, and there are no labels. See the image below:
+
+            <img src="../../../../assets/ml-assets/last-fm-tags-transaction.png" alt="Last.fm tags" class="img-center" style="height: 60%; width: 60%;">
+
+            <p>
+                This shows the top 50 tags from the last fm dataset in transaction format. See the <a href="/portfolio/machine-learning/data-prep-and-eda#lastfmdata" target="_blank">data cleaning process</a>.
+                
+        <h2>Code ARM</h2>
+            <p>
+                For ARM, we will use the R programming language. All code can be found <a href="https://github.com/daniel-ethridge/MachineLearning/tree/main/unsupervised" target="_blank">here</a> and the data <a href="https://drive.google.com/drive/folders/1WeLVT3kzSicaQgk-oUrgrRzlK8CQ2uHG?usp=drive_link" target="_blank">here</a>. The main packages to use are "arules" and "arulesViz". "RColorBrewer" is for aesthetics when plotting and is optional.
+
+            <pre><code>
+                library(arules)
+                library(arulesViz)
+                library(RColorBrewer)
+
+                # Set path
+                setwd(dirname(rstudioapi::getSourceEditorContext()$path))
+
+                song_tags <- arules::read.transactions("./../unsynced-data/lastfm-clean-tags-reduced.csv",
+                                                            rm.duplicates = FALSE, 
+                                                            format = "basket",
+                                                            sep=",",
+                                                            cols=NULL)
+
+                # Perform Apriori to get the rules
+                arm <- arules::apriori(song_tags, parameter = list(support=0.01, 
+                                                                    confidence=0.5, minlen=2)) |> 
+                sort(by="confidence")
+
+                inspect(arm)
+            </code></pre>
+
+        <h2>Results</h2>
+            <p>
+                Below is the output of the <code>inspect(arm)</code> command three times. We sort by a different metric each time. Minimum thresholds for support and confidence are set to 0.01 and 0.5, respectively.
+
+            <p>
+                Sorted by support:
+                <img src="../../../../assets/ml-assets/arm-sort-support.png" alt="LFM Tags ARM" class="img-center" style="height: 60%; width: 60%"><br>
+
+            <p>
+                Sorted by confidence:
+                <img src="../../../../assets/ml-assets/arm-sort-confidence.png" alt="LFM Tags ARM" class="img-center" style="height: 60%; width: 60%"><br>
+            
+            <p>
+                Sorted by lift:
+                <img src="../../../../assets/ml-assets/arm-sort-lift.png" alt="LFM Tags ARM" class="img-center" style="height: 60%; width: 60%"><br>
+
+            <p>
+                We can additionally visualize this information in a network graph:
+                <img src="../../../../assets/ml-assets/arm-network.png" alt="ARM network" class="img-center" style="height: 90%; width: 90%"><br>
+
+            <p>
+                An interesting idea to explore is to explore the differences in associations, if any, between male vocalists and female vocalists. The music industry and even certain music genres have long been dominated by men. Female vocalists may have a harder time breaking into some genres vs others. We can use R to investigate this by specifying a left hand side argument in the code. This time, we will sort by lift:
+
+            <pre><code>
+                female_vocalist <- apriori(song_tags, 
+                                            parameter = list(
+                                                support=0.01, 
+                                                confidence=0.1,
+                                                minlen=2),
+                                            appearance = list(default="rhs", lhs="female vocalist")) |> 
+                    sort(by="lift")
+            </code></pre>
+
+            <p>
+                The produced results are below:
+            <img src="../../../../assets/ml-assets/female-arm-lhs.png" alt="Female vocals lhs ARM" class="img-center" style="height: 60%; width: 60%">
+
+            <p>
+                Understanding the metrics in this example:
+            <ul>
+                <li>Supports asks: What is the probability that 'female vocalist' and the rhs appear together?</li>
+                <li>Confidence asks: Given 'female vocalist', what is the probability of the rhs?</li>
+                <li>Lift asks: Does the probability of the rhs increase or decrease when 'female vocalist' is given? In other words, are 'female vocalist' and the rhs correlated?</li>
+            </ul>
+
+            <p>
+                We can also run the code the other way around. Notice the change to default and rhs in the appearance variable:
+            <pre><code>
+                female_vocalist <- apriori(song_tags, 
+                                            parameter = list(
+                                                support=0.01, 
+                                                confidence=0.1,
+                                                minlen=2),
+                                            appearance = list(default="lhs", rhs="female vocalist")) |> 
+                    sort(by="lift")
+            </code></pre>
+
+            <p>
+                Results:
+            <img src="../../../../assets/ml-assets/female-arm-rhs.png" alt="Female vocals lhs ARM" class="img-center" style="height: 60%; width: 60%"><br>
+
+            <p>
+                If we run the same code for male vocalists, we get the following:
+
+                <img src="../../../../assets/ml-assets/male-arm-lhs.png" alt="Female vocals lhs ARM" class="img-center" style="height: 60%; width: 60%">
+                <br><br>
+                <img src="../../../../assets/ml-assets/male-arm-rhs.png" alt="Female vocals lhs ARM" class="img-center" style="height: 60%; width: 60%">
+
+            <p>
+                We can also visualize these relationships with a network graph:
+            <img src="../../../../assets/ml-assets/female-vocalist-plot.png" alt="female vocalist graph" class="img-center">
             <br><br>
-            <img src="../../../../assets/ml-assets/male-arm-rhs.png" alt="Female vocals lhs ARM" class="img-center" style="height: 60%; width: 60%">
+            <img src="../../../../assets/ml-assets/male-vocalist-graph.png" alt="Male vocalist graph" class="img-center">
 
-        <p>
-            We can also visualize these relationships with a network graph:
-        <img src="../../../../assets/ml-assets/female-vocalist-plot.png" alt="female vocalist graph" class="img-center">
-        <br><br>
-        <img src="../../../../assets/ml-assets/male-vocalist-graph.png" alt="Male vocalist graph" class="img-center">
-
-    <h2>Conclusions</h2>
-        <p>
-            The first set of results about the dataset as a whole gives insight into the types of things that are correlated, and it also gives insight into further genres that could be grouped together. It shows which genres are similar and which are more different. This could also be interpreted as directions for future data cleaning depending on applications. Perhaps house, techno, and electronic could be consolidated. Maybe rap and hip hop could be consolidated. In this instance, it helps to determine not only associations between the tags but also where further cleaning could be performed.
-        <p>
-            In terms of the female vs male vocalist, it seems that female vocalists are more associated with genres like RNB, pop, soul, and jazz, whereas male vocalists are more associated with genres like rock music. This is largely in line with music history and how dominated heavier music has been by men. 
-            <br>
-            <br>
-        </div>
+        <h2>Conclusions</h2>
+            <p>
+                The first set of results about the dataset as a whole gives insight into the types of things that are correlated, and it also gives insight into further genres that could be grouped together. It shows which genres are similar and which are more different. This could also be interpreted as directions for future data cleaning depending on applications. Perhaps house, techno, and electronic could be consolidated. Maybe rap and hip hop could be consolidated. In this instance, it helps to determine not only associations between the tags but also where further cleaning could be performed.
+            <p>
+                In terms of the female vs male vocalist, it seems that female vocalists are more associated with genres like RNB, pop, soul, and jazz, whereas male vocalists are more associated with genres like rock music. This is largely in line with music history and how dominated heavier music has been by men. 
+                <br>
+                <br>
+    </div>
+</div>

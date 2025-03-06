@@ -66,7 +66,7 @@ h6 {
         font-size: 15pt;
     }
 }
-p, li  { 
+p, li, th, td  { 
     font-size: 14pt; 
     font-family: Roboto, "Helvetica Neue", sans-serif;
     color: white;
@@ -74,6 +74,14 @@ p, li  {
         font-size: 14pt;
     }
 
+}
+
+table {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+code {
+    color: #ee9090;
 }
 
 .green-button {
@@ -87,13 +95,17 @@ p, li  {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     transition: filter 0.3s ease;
 
-    &:hover {
+     &:hover {
         filter: brightness(130%);
     }
 }
 
 a {
-    text-decoration: none;
+    color: #AACDFF;
+    transition: brightness 0.3s ease; /* Add smooth transition */
+    &:hover {
+        filter: brightness(125%);
+    }
 }
 
 .bright-hover {
