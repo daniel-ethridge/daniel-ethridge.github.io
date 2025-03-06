@@ -16,6 +16,4 @@ export class ShapeSongComponent implements OnInit {
   ngOnInit(): void {
     this.project = this.ps.getProjectById(4);
   }
-
-  videoImg: string = "../../assets/play-shape-song.jpg"
 }

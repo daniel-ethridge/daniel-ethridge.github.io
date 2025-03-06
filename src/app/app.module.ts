@@ -36,8 +36,6 @@ import { MlNaiveBayesComponent } from './ml-project/ml-methods/ml-naive-bayes/ml
 import { MlRegressionComponent } from './ml-project/ml-methods/ml-regression/ml-regression.component';
 import { MlSupportVectorComponent } from './ml-project/ml-methods/ml-support-vector/ml-support-vector.component';
 import { MlEnsembleComponent } from './ml-project/ml-methods/ml-ensemble/ml-ensemble.component';
-import { FootnoteComponent } from './references/footnote/footnote.component';
-import { ReferencesComponent } from './references/references/references.component';
 import { DataMiningNavigationComponent } from './data-mining-project/data-mining-navigation/data-mining-navigation.component';
 import { DataMiningIntroComponent } from './data-mining-project/data-mining-intro/data-mining-intro.component';
 import { DataMiningExplorationComponent } from './data-mining-project/data-mining-exploration/data-mining-exploration.component';
@@ -93,8 +91,6 @@ import { AboutMeComponent } from './main-pages/about-me/about-me.component';
     MlRegressionComponent,
     MlSupportVectorComponent,
     MlEnsembleComponent,
-    FootnoteComponent,
-    ReferencesComponent,
     DataMiningIntroComponent,
     DataMiningNavigationComponent,
     DataMiningConclusionsComponent,
