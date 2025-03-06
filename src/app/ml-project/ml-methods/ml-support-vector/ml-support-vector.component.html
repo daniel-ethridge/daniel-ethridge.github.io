@@ -1,170 +1,171 @@
-<app-ml-page-navigation/>
+<div class="main-background">
+    <div class="container">
+        <app-ml-page-navigation/>
+        <h1 class="text-center">Support Vector Machines</h1>
+        <h4><em>Note: If the math elements on the page are not rendering properly, try refreshing the page.</em></h4>
+        <img class="img-center-m" src="../../../../assets/ml-assets/ml-supervised/svm.png" alt="">
 
-<div class="container-sm">
-    <h1 class="text-center">Support Vector Machines</h1>
-    <h4><em>Note: If the math elements on the page are not rendering properly, try refreshing the page.</em></h4>
-    <img class="img-center-m" src="../../../../assets/ml-assets/ml-supervised/svm.png" alt="">
+        <h2>A Linear Separator</h2>
+        <p>
+            Imagine a company wants to construct a straight road through the countryside. On either side of this planned road there might be trees on the left and bushes on the right. We cannot move any of the plants as they are already in place, so we need to build as wide a road as we can right through the middle without disturbing any of the vegetation.
 
-    <h2>A Linear Separator</h2>
-    <p>
-        Imagine a company wants to construct a straight road through the countryside. On either side of this planned road there might be trees on the left and bushes on the right. We cannot move any of the plants as they are already in place, so we need to build as wide a road as we can right through the middle without disturbing any of the vegetation.
+        <p>
+            This analogy describes what a support vector machine (SVM) does. An SVM finds a hyperplane through a set of data that separates data points labeled binarily with the goal of maximizing the width of the margin created. 
 
-    <p>
-        This analogy describes what a support vector machine (SVM) does. An SVM finds a hyperplane through a set of data that separates data points labeled binarily with the goal of maximizing the width of the margin created. 
+        <h2>But What if the Data is Not Linearly Separable?</h2>
+        <img class="img-center-s" src="../../../../assets/ml-assets/ml-supervised/circle-data.png" alt="">
+        <p>
+            The image above implies that a support vector machine would not be a candidate for data like this, but that is not the case. What if the data was in 3D?
+        <img class="img-center-s" src="../../../../assets/ml-assets/ml-supervised/svm-kernel-data.png" alt="">
+        <p>
+            Projecting the data up a dimension shows a clear, linear decision boundary between class 1 and class 2. Then, in 2D, the decision boundary would look like a circle, but it's still linear in 3D! The natural next question is how do we project the data to higher dimensions?
 
-    <h2>But What if the Data is Not Linearly Separable?</h2>
-    <img class="img-center-s" src="../../../../assets/ml-assets/ml-supervised/circle-data.png" alt="">
-    <p>
-        The image above implies that a support vector machine would not be a candidate for data like this, but that is not the case. What if the data was in 3D?
-    <img class="img-center-s" src="../../../../assets/ml-assets/ml-supervised/svm-kernel-data.png" alt="">
-    <p>
-        Projecting the data up a dimension shows a clear, linear decision boundary between class 1 and class 2. Then, in 2D, the decision boundary would look like a circle, but it's still linear in 3D! The natural next question is how do we project the data to higher dimensions?
+        <p>
+            The answer lies in the kernel of an SVM. The kernel is a special function that maps data into a higher dimension. For example, take a 2D data point $(a, b)$. There are several kernel functions, but for this example we'll use what is known as the polynomial kernel which takes the form of $(ab+r)^d$. For the variables, we'll use values of $r=1$ and $d=2$. 
 
-    <p>
-        The answer lies in the kernel of an SVM. The kernel is a special function that maps data into a higher dimension. For example, take a 2D data point $(a, b)$. There are several kernel functions, but for this example we'll use what is known as the polynomial kernel which takes the form of $(ab+r)^d$. For the variables, we'll use values of $r=1$ and $d=2$. 
+            $${{math.beginAlign()}}
 
-        $${{math.beginAlign()}}
+            (ab + 1)^2 & = (ab + 1)(ab + 1)\\
+            & = (ab)^2 + ab + ab + 1 \\
+            & = a^2b^2 + 2ab + 1
 
-        (ab + 1)^2 & = (ab + 1)(ab + 1)\\
-        & = (ab)^2 + ab + ab + 1 \\
-        & = a^2b^2 + 2ab + 1
+            {{math.endAlign()}}$$
 
-        {{math.endAlign()}}$$
+        <p>
+            We will now take a seemingly random turn to linear algebra. Consider the two vectors ${{math.beginMatrix()}} a^2 \\ {{math.sqrt("2")}}a \\ 1 {{math.endMatrix()}}$ and ${{math.beginMatrix()}} b^2 \\ {{math.sqrt("2")}}b \\ 1 {{math.endMatrix()}}$. Taking the dot product of these two vector:
 
-    <p>
-        We will now take a seemingly random turn to linear algebra. Consider the two vectors ${{math.beginMatrix()}} a^2 \\ {{math.sqrt("2")}}a \\ 1 {{math.endMatrix()}}$ and ${{math.beginMatrix()}} b^2 \\ {{math.sqrt("2")}}b \\ 1 {{math.endMatrix()}}$. Taking the dot product of these two vector:
+            $${{math.beginAlign()}}
 
-        $${{math.beginAlign()}}
+            {{math.beginMatrix()}} a^2 \\ {{math.sqrt("2")}}a \\ 1 {{math.endMatrix()}} \cdot {{math.beginMatrix()}} b^2 \\ {{math.sqrt("2")}}b \\ 1 {{math.endMatrix()}} & = a^2b^2 + {{math.sqrt("2")}}a({{math.sqrt("2")}}b) + 1(1) \\
+            & = a^2b^2+2ab+1
 
-        {{math.beginMatrix()}} a^2 \\ {{math.sqrt("2")}}a \\ 1 {{math.endMatrix()}} \cdot {{math.beginMatrix()}} b^2 \\ {{math.sqrt("2")}}b \\ 1 {{math.endMatrix()}} & = a^2b^2 + {{math.sqrt("2")}}a({{math.sqrt("2")}}b) + 1(1) \\
-        & = a^2b^2+2ab+1
+            {{math.endAlign()}}$$
 
-        {{math.endAlign()}}$$
+        <p>
+            Notice that the resulting equations are the same. The power of the kernel lies in that it is mathematically equivalent to taking the dot product of vectors in a higher dimension, and that allows us to use the benefit of higher dimensions without actually translating into a higher dimension.
 
-    <p>
-        Notice that the resulting equations are the same. The power of the kernel lies in that it is mathematically equivalent to taking the dot product of vectors in a higher dimension, and that allows us to use the benefit of higher dimensions without actually translating into a higher dimension.
+        <p>
+            As a more concrete example, take the point $(a, b) = (3, 5)$. Notice below how the kernel and a higher dimension dot product give the same answer:
 
-    <p>
-        As a more concrete example, take the point $(a, b) = (3, 5)$. Notice below how the kernel and a higher dimension dot product give the same answer:
+        <table class="center">
+            <tr>
+                <th>
+                    Using Kernel Method
+                </th>
+                <th>
+                    Using Dot Product Method
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    $${{math.beginAlign()}}
 
-    <table class="center">
-        <tr>
-            <th>
-                Using Kernel Method
-            </th>
-            <th>
-                Using Dot Product Method
-            </th>
-        </tr>
-        <tr>
-            <td>
-                $${{math.beginAlign()}}
+                        (3(5) + 1)^2 & = \\
+                        16^2 & = 256
 
-                    (3(5) + 1)^2 & = \\
-                    16^2 & = 256
+                    {{math.endAlign()}}$$
+                </td>
+                <td>
+                    $${{math.beginAlign()}}
 
-                {{math.endAlign()}}$$
-            </td>
-            <td>
-                $${{math.beginAlign()}}
+                    {{math.beginMatrix()}} 3^2 \\ {{math.sqrt("2")}}(3) \\ 1 {{math.endMatrix()}} \cdot {{math.beginMatrix()}} 5^2 \\ {{math.sqrt("2")}}(5) \\ 1 {{math.endMatrix()}} & = \\\\
+                    9(25) + 2(3)5 + 1 & = \\
+                    225 + 30 + 1 & = 256
 
-                {{math.beginMatrix()}} 3^2 \\ {{math.sqrt("2")}}(3) \\ 1 {{math.endMatrix()}} \cdot {{math.beginMatrix()}} 5^2 \\ {{math.sqrt("2")}}(5) \\ 1 {{math.endMatrix()}} & = \\\\
-                9(25) + 2(3)5 + 1 & = \\
-                225 + 30 + 1 & = 256
+                    {{math.endAlign()}}$$
+                </td>
+            </tr>
+        </table>
 
-                {{math.endAlign()}}$$
-            </td>
-        </tr>
-    </table>
+        <h2>SVM for Spotify Data</h2>
+        <h5>All code can be found <a href="https://github.com/daniel-ethridge/MachineLearning/tree/main/supervised" target="_blank">here</a> and all data <a href="https://drive.google.com/drive/folders/1WeLVT3kzSicaQgk-oUrgrRzlK8CQ2uHG" target="_blank">here</a>.</h5>
 
-    <h2>SVM for Spotify Data</h2>
-    <h5>All code can be found <a href="https://github.com/daniel-ethridge/MachineLearning/tree/main/supervised" target="_blank">here</a> and all data <a href="https://drive.google.com/drive/folders/1WeLVT3kzSicaQgk-oUrgrRzlK8CQ2uHG" target="_blank">here</a>.</h5>
+        <p>
+            The current spotify data looks like this: <br>
+            <img class="img-center-s" src="../../../../assets/ml-assets/spotify-data.png" alt=""><br>
 
-    <p>
-        The current spotify data looks like this: <br>
-        <img class="img-center-s" src="../../../../assets/ml-assets/spotify-data.png" alt=""><br>
+        <h5>The value that we are going to try and predict with a decision tree is whether or not a song is instrumental.</h5>
+        <p>
+            The spotify API states that an instrumentalness score of below 0.5 is likely not instrumental, while a score of above 0.5 is. After dropping unnecessary columns and creating the label, the data looks like this: <br>
+            <img class="img-center-s" src="../../../../assets/ml-assets/prepped-spotify-data-supervised.png" alt=""><br>
 
-    <h5>The value that we are going to try and predict with a decision tree is whether or not a song is instrumental.</h5>
-    <p>
-        The spotify API states that an instrumentalness score of below 0.5 is likely not instrumental, while a score of above 0.5 is. After dropping unnecessary columns and creating the label, the data looks like this: <br>
-        <img class="img-center-s" src="../../../../assets/ml-assets/prepped-spotify-data-supervised.png" alt=""><br>
+        <p>
+            For supervised learning, we need labeled data to train the model. The label for this data is "instrumental". So we will first separate the actual data from the label. The image on the left is the data, while the image on the right is the label vector.
 
-    <p>
-        For supervised learning, we need labeled data to train the model. The label for this data is "instrumental". So we will first separate the actual data from the label. The image on the left is the data, while the image on the right is the label vector.
-
-    <div class="row">
-        <div class="col-sm-6">
-            <img class="img-center-m" src="../../../../assets/ml-assets/ml-supervised/supervised-data.png" alt="">
+        <div class="row">
+            <div class="col-sm-6">
+                <img class="img-center-m" src="../../../../assets/ml-assets/ml-supervised/supervised-data.png" alt="">
+            </div>
+            <div class="col-sm-6">
+                <img class="img-center-m" src="../../../../assets/ml-assets/ml-supervised/supervised-labels.png" alt="">
+            </div>
         </div>
-        <div class="col-sm-6">
-            <img class="img-center-m" src="../../../../assets/ml-assets/ml-supervised/supervised-labels.png" alt="">
-        </div>
+
+        <p>
+            It is important in supervised learning to have equal numbers of each class, but for this data that is not the case as shown below:
+            <img class="img-center-s" src="../../../../assets/ml-assets/ml-supervised/instrumental_counts.png" alt="">
+
+        <p>
+            While there are several ways to potentially fix this issue, one method is to use what is known as oversampling. This in essence randomly duplicates samples from the minority class (in this case 1) so that the cases are even. This can be accomplished with the python package <code>imblearn</code> and the included class <code>RandomUnderSampler</code>. Additionally, due to the complexity and runtime of the SVM model, a random set of 10,000 data points are chosen for the model. This helps with run time. Doing so fixes the imbalance:
+            <img class="img-center-s" src="../../../../assets/ml-assets/svm/svm-undersample.png" alt="">
+
+        <p>
+            The data now needs to be split into a training set and a testing set. This disjoin split is important to be able to evaluate the model. If the model is evaluated on the same data it is trained on, it might perform great. But there is no way to know if it will generalize well to other data. Thus, it needs to perform well on data that it has not seen. The model is trained on the training set, and then the labels of the testing set are predicted. The model is then evaluated by comparing the predicted labels to the actual labels. Splitting data into a training and testing set is easily accomplished with scikit learn's <code>train__test_split</code> method. See the images below. From left to right and going down, they are training data, testing data, training labels, and testing labels. Notice the larger size of the training data. 75% of the data is randomly assigned as training data, and 25% of the data is randomly assigned as testing data.
+            
+            <div class="row">
+                <div class="col-sm-6">
+                    <img class="img-center" src="../../../../assets/ml-assets/ml-supervised/x-train.png" alt="">
+                </div>
+                <div class="col-sm-6">
+                    <img class="img-center" src="../../../../assets/ml-assets/ml-supervised/x-test.png" alt="">
+                </div>
+                <div class="col-sm-6">
+                    <img class="img-center" src="../../../../assets/ml-assets/ml-supervised/y-train.png" alt="">
+                </div>
+                <div class="col-sm-6">
+                    <img class="img-center" src="../../../../assets/ml-assets/ml-supervised/y-test.png" alt="">
+                </div>
+            </div>
+
+        <p>
+            As stated before, we can build SVM models using a kernel. Below shows the results of SVM classifcation using three different kernels and three different <a href="https://scikit-learn.org/stable/auto_examples/svm/plot_svm_scale_c.html#sphx-glr-auto-examples-svm-plot-svm-scale-c-py" target="_blank">regularization parameters (c)</a>:
+
+        <img class="img-center-s" src="../../../../assets/ml-assets/svm/svm-table.png" alt="">
+
+        <p>
+            Additionally, below are nine confusion matrices related to this table:
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <img class="img-center-l" src="../../../../assets/ml-assets/svm/svm-linear-1.png" alt="">
+                </div>
+                <div class="col-sm-4">
+                    <img class="img-center-l" src="../../../../assets/ml-assets/svm/svm-linear-20.png" alt="">
+                </div>
+                <div class="col-sm-4">
+                    <img class="img-center-l" src="../../../../assets/ml-assets/svm/svm-linear-100.png" alt="">
+                </div>
+                <div class="col-sm-4">
+                    <img class="img-center-l" src="../../../../assets/ml-assets/svm/svm-rbf-1.png" alt="">
+                </div>
+                <div class="col-sm-4">
+                    <img class="img-center-l" src="../../../../assets/ml-assets/svm/svm-rbf-20.png" alt="">
+                </div>
+                <div class="col-sm-4">
+                    <img class="img-center-l" src="../../../../assets/ml-assets/svm/svm-rbf-100.png" alt="">
+                </div>
+                <div class="col-sm-4">
+                    <img class="img-center-l" src="../../../../assets/ml-assets/svm/svm-sigmoid-1.png" alt="">
+                </div>
+                <div class="col-sm-4">
+                    <img class="img-center-l" src="../../../../assets/ml-assets/svm/svm-sigmoid-20.png" alt="">
+                </div>
+                <div class="col-sm-4">
+                    <img class="img-center-l" src="../../../../assets/ml-assets/svm/svm-sigmoid-100.png" alt="">
+                </div>
+            </div>
+
+        <p>
+            Based on these results, it seems that a linear kernel (or in other words not using a kernel) with a C value of 1 is the best option. Pertaining to the larger questions at hand, it seems that whether or not a song is instrumental can be predicted by the other spotify attributes. Thus it means that to a degree, there are discernable acoustic features other than the presence of a voice that are more common in instrumental music and vice versa. <br><br><br>
     </div>
-
-    <p>
-        It is important in supervised learning to have equal numbers of each class, but for this data that is not the case as shown below:
-        <img class="img-center-s" src="../../../../assets/ml-assets/ml-supervised/instrumental_counts.png" alt="">
-
-    <p>
-        While there are several ways to potentially fix this issue, one method is to use what is known as oversampling. This in essence randomly duplicates samples from the minority class (in this case 1) so that the cases are even. This can be accomplished with the python package <code>imblearn</code> and the included class <code>RandomUnderSampler</code>. Additionally, due to the complexity and runtime of the SVM model, a random set of 10,000 data points are chosen for the model. This helps with run time. Doing so fixes the imbalance:
-        <img class="img-center-s" src="../../../../assets/ml-assets/svm/svm-undersample.png" alt="">
-
-    <p>
-        The data now needs to be split into a training set and a testing set. This disjoin split is important to be able to evaluate the model. If the model is evaluated on the same data it is trained on, it might perform great. But there is no way to know if it will generalize well to other data. Thus, it needs to perform well on data that it has not seen. The model is trained on the training set, and then the labels of the testing set are predicted. The model is then evaluated by comparing the predicted labels to the actual labels. Splitting data into a training and testing set is easily accomplished with scikit learn's <code>train__test_split</code> method. See the images below. From left to right and going down, they are training data, testing data, training labels, and testing labels. Notice the larger size of the training data. 75% of the data is randomly assigned as training data, and 25% of the data is randomly assigned as testing data.
-        
-        <div class="row">
-            <div class="col-sm-6">
-                <img class="img-center" src="../../../../assets/ml-assets/ml-supervised/x-train.png" alt="">
-            </div>
-            <div class="col-sm-6">
-                <img class="img-center" src="../../../../assets/ml-assets/ml-supervised/x-test.png" alt="">
-            </div>
-            <div class="col-sm-6">
-                <img class="img-center" src="../../../../assets/ml-assets/ml-supervised/y-train.png" alt="">
-            </div>
-            <div class="col-sm-6">
-                <img class="img-center" src="../../../../assets/ml-assets/ml-supervised/y-test.png" alt="">
-            </div>
-        </div>
-
-    <p>
-        As stated before, we can build SVM models using a kernel. Below shows the results of SVM classifcation using three different kernels and three different <a href="https://scikit-learn.org/stable/auto_examples/svm/plot_svm_scale_c.html#sphx-glr-auto-examples-svm-plot-svm-scale-c-py" target="_blank">regularization parameters (c)</a>:
-
-    <img class="img-center-s" src="../../../../assets/ml-assets/svm/svm-table.png" alt="">
-
-    <p>
-        Additionally, below are nine confusion matrices related to this table:
-
-        <div class="row">
-            <div class="col-sm-4">
-                <img class="img-center-l" src="../../../../assets/ml-assets/svm/svm-linear-1.png" alt="">
-            </div>
-            <div class="col-sm-4">
-                <img class="img-center-l" src="../../../../assets/ml-assets/svm/svm-linear-20.png" alt="">
-            </div>
-            <div class="col-sm-4">
-                <img class="img-center-l" src="../../../../assets/ml-assets/svm/svm-linear-100.png" alt="">
-            </div>
-            <div class="col-sm-4">
-                <img class="img-center-l" src="../../../../assets/ml-assets/svm/svm-rbf-1.png" alt="">
-            </div>
-            <div class="col-sm-4">
-                <img class="img-center-l" src="../../../../assets/ml-assets/svm/svm-rbf-20.png" alt="">
-            </div>
-            <div class="col-sm-4">
-                <img class="img-center-l" src="../../../../assets/ml-assets/svm/svm-rbf-100.png" alt="">
-            </div>
-            <div class="col-sm-4">
-                <img class="img-center-l" src="../../../../assets/ml-assets/svm/svm-sigmoid-1.png" alt="">
-            </div>
-            <div class="col-sm-4">
-                <img class="img-center-l" src="../../../../assets/ml-assets/svm/svm-sigmoid-20.png" alt="">
-            </div>
-            <div class="col-sm-4">
-                <img class="img-center-l" src="../../../../assets/ml-assets/svm/svm-sigmoid-100.png" alt="">
-            </div>
-        </div>
-
-    <p>
-        Based on these results, it seems that a linear kernel (or in other words not using a kernel) with a C value of 1 is the best option. Pertaining to the larger questions at hand, it seems that whether or not a song is instrumental can be predicted by the other spotify attributes. Thus it means that to a degree, there are discernable acoustic features other than the presence of a voice that are more common in instrumental music and vice versa. <br><br><br>
 </div>

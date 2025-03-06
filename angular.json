@@ -24,9 +24,11 @@
               "src/assets"
             ],
             "styles": [
+              "src/app/styles/custom-theme.scss",
               "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
               "src/app/styles/custom-bootstrap.css",
-              "src/app/styles/styles.css"
+              "src/app/styles/styles.css",
+              "src/app/styles/code-styles.css"
             ],
             "scripts": [
               "./node_modules/mathjax/es5/core.js"
