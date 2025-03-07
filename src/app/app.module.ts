@@ -5,8 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { HeaderComponent } from './header/header/header.component';
-import { NavComponent } from './header/nav/nav.component';
+import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './main-pages/home/home.component';
 import { PortfolioComponent } from './main-pages/portfolio/portfolio.component';
 import { ResumeComponent } from './main-pages/resume/resume.component';
@@ -64,7 +63,6 @@ import { AboutMeComponent } from './main-pages/about-me/about-me.component';
   declarations: [
     AppComponent,
     HeaderComponent,
-    NavComponent,
     HomeComponent,
     PortfolioComponent,
     ResumeComponent,

@@ -1,273 +1,245 @@
-<app-data-mining-navigation></app-data-mining-navigation>
-<div class="container-sm">
-    <h1 style="text-align: center;">Models</h1>
-    <p>
-        In order to model the data, we took a few different approaches and utilized a combination of unsupervised and supervised methods.
+<div class="main-background">
+    <div class="container">
+        <app-data-mining-navigation></app-data-mining-navigation>
+        <h1 style="text-align: center;">Models</h1>
+        <p>
+            In order to model the data, we took a few different approaches and utilized a combination of unsupervised and supervised methods.
 
-    <h2 style="text-align: center;">Association Rule Mining</h2>
-    <p>
-        We applied association rule mining to the reviews of the games. We looked at Steam Apps that were classified as a "game" (in other words, we didn't look at DLC or other non-game Steam Apps), and we looked at differences among the top 10 genres. We filtered game reviews by the ratio of positive reviews to negative reviews of a game. If a game had more positive reviews than negative, it was considered a positive and vice versa. We acknowledge that this is not the best method, especially considering Steam reviews are tagged as either positive or negative. A bug in code caused that review tag to not be collected. Grouping reviews by how positively overall the game they are associated with is the best approximation.
+        <h2 style="text-align: center;">Association Rule Mining</h2>
+        <p>
+            We applied association rule mining to the reviews of the games. We looked at Steam Apps that were classified as a "game" (in other words, we didn't look at DLC or other non-game Steam Apps), and we looked at differences among the top 10 genres. We filtered game reviews by the ratio of positive reviews to negative reviews of a game. If a game had more positive reviews than negative, it was considered a positive and vice versa. We acknowledge that this is not the best method, especially considering Steam reviews are tagged as either positive or negative. A bug in code caused that review tag to not be collected. Grouping reviews by how positively overall the game they are associated with is the best approximation.
 
-    <p>
-        ARM requires transaction data. To create the transaction data, we first extracted the necessary reviews according to liked and disliked games and genre. We removed any line break characters, removed capital letters, punctuation, numbers, non-latin characters, duplicate words, and a set of words (such as "game", "ever", "it", "etc") that provide no meaning. Afterwards, we saved the cleaned words as basket data. The two images below show messy data (top) and clean data (right).
-
-    <div class="row">
-        <div class="col-sm-12">
-            <img class="img-center col-sm-12" src="../../../assets/data-mining-assets/visualisations/arm/raw-arm-text.png" alt="">
-        </div>
-        <div class="col-sm-12">
-            <img class="img-center" src="../../../assets/data-mining-assets/visualisations/arm/transaction-data-for-arm.png" alt="">
-        </div>
-    </div>
-
-    <h3>Positive Reviews</h3>
-    <p>
-        Using thresholds of 0.01 and 0.4 for support and confidence, respectively, we generated the following plots that describe the found association rules.
-
-        <div class="row">
-            <div class="col-sm-6">
-                <img class="img-center-l" src="../../../assets/data-mining-assets/visualisations/arm/liked-action.png">
-            </div>
-            <div class="col-sm-6">
-                <img class="img-center-l" src="../../../assets/data-mining-assets/visualisations/arm/liked-adventure.png">
-            </div>
-            <div class="col-sm-6">
-                <img class="img-center-l" src="../../../assets/data-mining-assets/visualisations/arm/liked-casual.png">
-            </div>
-            <div class="col-sm-6">
-                <img class="img-center-l" src="../../../assets/data-mining-assets/visualisations/arm/liked-indie.png">
-            </div>
-            <div class="col-sm-6">
-                <img class="img-center-l" src="../../../assets/data-mining-assets/visualisations/arm/liked-multiplayer.png">
-            </div>
-            <div class="col-sm-6">
-                <img class="img-center-l" src="../../../assets/data-mining-assets/visualisations/arm/liked-racing.png">
-            </div>
-            <div class="col-sm-6">
-                <img class="img-center-l" src="../../../assets/data-mining-assets/visualisations/arm/liked-rpg.png">
-            </div>
-            <div class="col-sm-6">
-                <img class="img-center-l" src="../../../assets/data-mining-assets/visualisations/arm/liked-simulation.png">
-            </div>
-            <div class="col-sm-6">
-                <img class="img-center-l" src="../../../assets/data-mining-assets/visualisations/arm/liked-sports.png">
-            </div>
-            <div class="col-sm-6">
-                <img class="img-center-l" src="../../../assets/data-mining-assets/visualisations/arm/liked-strategy.png">
-        </div>
-
-    <p>
-        From this, we draw two separate interpretations:
-        <ol>
-            <li>A quality game allows the player on the story and the overall message of a game. Art, music, and game mechanics all seamlessly work together to create an experience rather than any one of those removing the player from the flow of the game.</li>
-            <li>Story is a potential driving factor in a quality game. Without a good story, the game will suffer.</li>
-        </ol>
-
-    <h3>Negative Reviews</h3>
-    <p>
-        Assocation plots for reviews for mostly negative games were also created using support and confidence thresholds of 0.02 and 0.55, respectively.
-
-        <div class="row">
-            <div class="col-sm-6">
-                <img class="img-center-l" src="../../../assets/data-mining-assets/visualisations/arm/disliked-action.png">
-            </div>
-            <div class="col-sm-6">
-                <img class="img-center-l" src="../../../assets/data-mining-assets/visualisations/arm/disliked-adventure.png">
-            </div>
-            <div class="col-sm-6">
-                <img class="img-center-l" src="../../../assets/data-mining-assets/visualisations/arm/disliked-casual.png">
-            </div>
-            <div class="col-sm-6">
-                <img class="img-center-l" src="../../../assets/data-mining-assets/visualisations/arm/disliked-indie.png">
-            </div>
-            <div class="col-sm-6">
-                <img class="img-center-l" src="../../../assets/data-mining-assets/visualisations/arm/disliked-multiplayer.png">
-            </div>
-            <div class="col-sm-6">
-                <img class="img-center-l" src="../../../assets/data-mining-assets/visualisations/arm/disliked-racing.png">
-            </div>
-            <div class="col-sm-6">
-                <img class="img-center-l" src="../../../assets/data-mining-assets/visualisations/arm/disliked-rpg.png">
-            </div>
-            <div class="col-sm-6">
-                <img class="img-center-l" src="../../../assets/data-mining-assets/visualisations/arm/disliked-simulation.png">
-            </div>
-            <div class="col-sm-6">
-                <img class="img-center-l" src="../../../assets/data-mining-assets/visualisations/arm/disliked-sports.png">
-            </div>
-            <div class="col-sm-6">
-                <img class="img-center-l" src="../../../assets/data-mining-assets/visualisations/arm/disliked-strategy.png">
-        </div>
-
-    <p>
-        Negative review are much more scattered about. While RPGs center around story (which in this case might indicate a bad story) to a degree, the other plots are less centralized around a common theme which could indicate that some elements of a game could be good, but one bad element of a game can ruin the whole thing. 
-
-    <h2 style="text-align: center;">CLIP</h2>
-    <h4>Model Explanation</h4>
-    <p>
-        CLIP is a multimodal model, proposed by OpenAI, that aligns textual and image embeddings into a joint space. It was trained to predict which caption fits best for an image among candidates, allowing it to learn associations of visual and textual data. Trained on diverse image-text pairs, CLIP can execute tasks such as image classification, retrieval, and zero-shot learning without fine-tuning specifically for individual tasks. Using a dual encoder architecture, it processes images through a vision model-e.g., ResNet or ViT-and processes text using a transformer to produce embeddings to be compared. Such flexibility and generalization make CLIP a very powerful model for different visual-linguistic applications.
-
-    <h4>Why We Used It</h4>
-    <p>
-        We utilized the CLIP model in our project to examine and find associations between game images and their textual descriptions. The ability of this model to create a common embedding space for text and images allowed us to efficiently perform tasks like image classification and retrieval, helping uncover patterns, understand context, and improve insight into the relationships between visuals and game descriptions.
-
-    <h4>Data Cleaning</h4>
-    <p>
-        The images below show data before (top) and after (bottom) cleaning.
-
-    <div class="row">
-        <div class="col-sm-6">
-            <img class="img-center" src="../../../assets/data-mining-assets/visualisations/clip/clip-messy-data.png" alt=""><br>
-        </div>
-        <div class="col-sm-6">
-            <img class="img-center" src="../../../assets/data-mining-assets/visualisations/clip/clip-clean-data.png" alt=""><br>
-        </div>
-    </div>
-
-    <p>
-        This would serve to clean game descriptions of noise like irrelevant words and characters, hence making the text data concise and meaningful. The preprocessing step helps in improving the quality of the textual embeddings that are generated by the CLIP model, therefore improving its ability to relate game descriptions with their corresponding images accurately. Cleaned data reduces computational complexity and improves overall model performance.
-    <p>
-        Cleaning was also done for image dataset, such as removing 404 error URLs and only filtering screenshots for more consistent training.
-
-    <h4>Model Evaluation (Using Similarity Scores)</h4>
-    <div class="row">
-        <div class="col-sm-12">
-            <img class="img-center-m" src="../../../assets/data-mining-assets/visualisations/clip/clip-similarity.png" alt=""><br>
-        </div>
-    </div>
-    <p>
-        The similarity scores indicate how well text embeddings (e.g., game descriptions) align with image embeddings in the CLIP model. Each value represents the similarity between a text-image pair where higher scores indicate stronger associations. Rows correspond to text embeddings, columns correspond to image embeddings, and together this allows for an evaluation of CLIP's effectiveness at multimodal alignment. The scores are cosine similarity, between 0 and 1. Since we are finding custom descriptions for completely new images, even a score above 0.2 is good.
+        <p>
+            ARM requires transaction data. To create the transaction data, we first extracted the necessary reviews according to liked and disliked games and genre. We removed any line break characters, removed capital letters, punctuation, numbers, non-latin characters, duplicate words, and a set of words (such as "game", "ever", "it", "etc") that provide no meaning. Afterwards, we saved the cleaned words as basket data. The two images below show messy data (top) and clean data (right).
 
         <div class="row">
             <div class="col-sm-12">
-                <img class="img-center" src="../../../assets/data-mining-assets/visualisations/clip/clip-output.png" alt=""><br>
+                <img class="img-center col-sm-12" src="../../../assets/data-mining-assets/visualisations/arm/raw-arm-text.png" alt="">
+            </div>
+            <div class="col-sm-12">
+                <img class="img-center" src="../../../assets/data-mining-assets/visualisations/arm/transaction-data-for-arm.png" alt="">
             </div>
         </div>
-    <p>
-        The CLIP is model is very effective in describing what each game image is. In a matrix of 10 images, it was able to correctly describe each image. Thus proving CLIP is a effective image to text model. The examples of results provided show the capability of the CLIP model in analyzing and describing game screenshots in high detail. For each of the nine game images, CLIP identified relevant tags or genres such as "space combat simulation," "stealth game," "resource management game," and "visual novel," among others. It successfully aligned visual elements from the images with meaningful semantic labels, showcasing its capability to understand and interpret visual data in the gaming context. The CLIP is model is very effective in describing what each game image is. In a matrix of 10 images, it was able to correctly describe each image. Thus proving CLIP is an effective image to text model.
 
-    <h4>What We Learned</h4>
-    <p>
-        This functionality has many applications in the analysis of games. CLIP enables automation in categorizing and tagging games with screenshots, reducing human effort and improving scalability for large gaming datasets. This can be useful for game developers and platforms in streamlining their metadata creation processes, therefore making it easier for end-users to discover or search for games. It also improves the quality of the recommendation systems by allowing them to suggest games with appealing visuals or gameplay themes that appeal to the users' likings.
+        <h3>Positive Reviews</h3>
+        <p>
+            Using thresholds of 0.01 and 0.4 for support and confidence, respectively, we generated the following plots that describe the found association rules.
 
-    <p>
-        Moreover, the ability of CLIP to extract meaningful insights from images will help in content moderation, ensuring the proper classification of the games. By pairing visual data with descriptive text, CLIP bridges the gap between visual representation and semantic understanding and is a powerful tool for indexing, filtering, and analysis of games efficiently and in a scalable manner.
+            <div class="row">
+                <div class="col-sm-6">
+                    <img class="img-center-l" src="../../../assets/data-mining-assets/visualisations/arm/liked-action.png">
+                </div>
+                <div class="col-sm-6">
+                    <img class="img-center-l" src="../../../assets/data-mining-assets/visualisations/arm/liked-adventure.png">
+                </div>
+                <div class="col-sm-6">
+                    <img class="img-center-l" src="../../../assets/data-mining-assets/visualisations/arm/liked-casual.png">
+                </div>
+                <div class="col-sm-6">
+                    <img class="img-center-l" src="../../../assets/data-mining-assets/visualisations/arm/liked-indie.png">
+                </div>
+                <div class="col-sm-6">
+                    <img class="img-center-l" src="../../../assets/data-mining-assets/visualisations/arm/liked-multiplayer.png">
+                </div>
+                <div class="col-sm-6">
+                    <img class="img-center-l" src="../../../assets/data-mining-assets/visualisations/arm/liked-racing.png">
+                </div>
+                <div class="col-sm-6">
+                    <img class="img-center-l" src="../../../assets/data-mining-assets/visualisations/arm/liked-rpg.png">
+                </div>
+                <div class="col-sm-6">
+                    <img class="img-center-l" src="../../../assets/data-mining-assets/visualisations/arm/liked-simulation.png">
+                </div>
+                <div class="col-sm-6">
+                    <img class="img-center-l" src="../../../assets/data-mining-assets/visualisations/arm/liked-sports.png">
+                </div>
+                <div class="col-sm-6">
+                    <img class="img-center-l" src="../../../assets/data-mining-assets/visualisations/arm/liked-strategy.png">
+            </div>
 
-    <h2 style="text-align: center;">Gradient Boosting</h2>
-    <h3>Model Explanation</h3>
-    <p>
-        Gradient Boosting is a powerful machine learning technique that generates models sequentially, each new model correcting errors of the previous ones. A weak learner, usually decision trees, is combined into a strong predictive model through minimizing a loss function. Gradient Boosting has a wide range of applications in regression and classification problems, where it maintains accuracy and flexibility.
-    
-    <h3>Why We Used It</h3>
-    <p>
-        We applied Gradient Boosting to the image data set for an effective modeling of dependencies between features including brightness, saturation, hue and contrast, impacting the visual characteristics. Its ability to deal with non-linear patterns and emphasize misclassified examples ensures accurate predictions. Gradient Boosting flexibility and robustness make this approach ideal for capturing subtle variations and improvement of image-based classification or regression results in general.
+        <p>
+            From this, we draw two separate interpretations:
+            <ol>
+                <li>A quality game allows the player on the story and the overall message of a game. Art, music, and game mechanics all seamlessly work together to create an experience rather than any one of those removing the player from the flow of the game.</li>
+                <li>Story is a potential driving factor in a quality game. Without a good story, the game will suffer.</li>
+            </ol>
 
-    <p>
-        The dataset was created:
+        <h3>Negative Reviews</h3>
+        <p>
+            Assocation plots for reviews for mostly negative games were also created using support and confidence thresholds of 0.02 and 0.55, respectively.
 
-    <div class="row">
-        <div class="col-sm-12">
-            <img class="img-center" src="../../../assets/data-mining-assets/visualisations/clip/create-dataset.png" alt="">
+            <div class="row">
+                <div class="col-sm-6">
+                    <img class="img-center-l" src="../../../assets/data-mining-assets/visualisations/arm/disliked-action.png">
+                </div>
+                <div class="col-sm-6">
+                    <img class="img-center-l" src="../../../assets/data-mining-assets/visualisations/arm/disliked-adventure.png">
+                </div>
+                <div class="col-sm-6">
+                    <img class="img-center-l" src="../../../assets/data-mining-assets/visualisations/arm/disliked-casual.png">
+                </div>
+                <div class="col-sm-6">
+                    <img class="img-center-l" src="../../../assets/data-mining-assets/visualisations/arm/disliked-indie.png">
+                </div>
+                <div class="col-sm-6">
+                    <img class="img-center-l" src="../../../assets/data-mining-assets/visualisations/arm/disliked-multiplayer.png">
+                </div>
+                <div class="col-sm-6">
+                    <img class="img-center-l" src="../../../assets/data-mining-assets/visualisations/arm/disliked-racing.png">
+                </div>
+                <div class="col-sm-6">
+                    <img class="img-center-l" src="../../../assets/data-mining-assets/visualisations/arm/disliked-rpg.png">
+                </div>
+                <div class="col-sm-6">
+                    <img class="img-center-l" src="../../../assets/data-mining-assets/visualisations/arm/disliked-simulation.png">
+                </div>
+                <div class="col-sm-6">
+                    <img class="img-center-l" src="../../../assets/data-mining-assets/visualisations/arm/disliked-sports.png">
+                </div>
+                <div class="col-sm-6">
+                    <img class="img-center-l" src="../../../assets/data-mining-assets/visualisations/arm/disliked-strategy.png">
+            </div>
+
+        <p>
+            Negative review are much more scattered about. While RPGs center around story (which in this case might indicate a bad story) to a degree, the other plots are less centralized around a common theme which could indicate that some elements of a game could be good, but one bad element of a game can ruin the whole thing. 
+
+        <h2 style="text-align: center;">CLIP</h2>
+        <h4>Model Explanation</h4>
+        <p>
+            CLIP is a multimodal model, proposed by OpenAI, that aligns textual and image embeddings into a joint space. It was trained to predict which caption fits best for an image among candidates, allowing it to learn associations of visual and textual data. Trained on diverse image-text pairs, CLIP can execute tasks such as image classification, retrieval, and zero-shot learning without fine-tuning specifically for individual tasks. Using a dual encoder architecture, it processes images through a vision model-e.g., ResNet or ViT-and processes text using a transformer to produce embeddings to be compared. Such flexibility and generalization make CLIP a very powerful model for different visual-linguistic applications.
+
+        <h4>Why We Used It</h4>
+        <p>
+            We utilized the CLIP model in our project to examine and find associations between game images and their textual descriptions. The ability of this model to create a common embedding space for text and images allowed us to efficiently perform tasks like image classification and retrieval, helping uncover patterns, understand context, and improve insight into the relationships between visuals and game descriptions.
+
+        <h4>Data Cleaning</h4>
+        <p>
+            The images below show data before (top) and after (bottom) cleaning.
+
+        <div class="row">
+            <div class="col-sm-6">
+                <img class="img-center" src="../../../assets/data-mining-assets/visualisations/clip/clip-messy-data.png" alt=""><br>
+            </div>
+            <div class="col-sm-6">
+                <img class="img-center" src="../../../assets/data-mining-assets/visualisations/clip/clip-clean-data.png" alt=""><br>
+            </div>
         </div>
+
+        <p>
+            This would serve to clean game descriptions of noise like irrelevant words and characters, hence making the text data concise and meaningful. The preprocessing step helps in improving the quality of the textual embeddings that are generated by the CLIP model, therefore improving its ability to relate game descriptions with their corresponding images accurately. Cleaned data reduces computational complexity and improves overall model performance.
+        <p>
+            Cleaning was also done for image dataset, such as removing 404 error URLs and only filtering screenshots for more consistent training.
+
+        <h4>Model Evaluation (Using Similarity Scores)</h4>
+        <div class="row">
+            <div class="col-sm-12">
+                <img class="img-center-m" src="../../../assets/data-mining-assets/visualisations/clip/clip-similarity.png" alt=""><br>
+            </div>
+        </div>
+        <p>
+            The similarity scores indicate how well text embeddings (e.g., game descriptions) align with image embeddings in the CLIP model. Each value represents the similarity between a text-image pair where higher scores indicate stronger associations. Rows correspond to text embeddings, columns correspond to image embeddings, and together this allows for an evaluation of CLIP's effectiveness at multimodal alignment. The scores are cosine similarity, between 0 and 1. Since we are finding custom descriptions for completely new images, even a score above 0.2 is good.
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <img class="img-center" src="../../../assets/data-mining-assets/visualisations/clip/clip-output.png" alt=""><br>
+                </div>
+            </div>
+        <p>
+            The CLIP is model is very effective in describing what each game image is. In a matrix of 10 images, it was able to correctly describe each image. Thus proving CLIP is a effective image to text model. The examples of results provided show the capability of the CLIP model in analyzing and describing game screenshots in high detail. For each of the nine game images, CLIP identified relevant tags or genres such as "space combat simulation," "stealth game," "resource management game," and "visual novel," among others. It successfully aligned visual elements from the images with meaningful semantic labels, showcasing its capability to understand and interpret visual data in the gaming context. The CLIP is model is very effective in describing what each game image is. In a matrix of 10 images, it was able to correctly describe each image. Thus proving CLIP is an effective image to text model.
+
+        <h4>What We Learned</h4>
+        <p>
+            This functionality has many applications in the analysis of games. CLIP enables automation in categorizing and tagging games with screenshots, reducing human effort and improving scalability for large gaming datasets. This can be useful for game developers and platforms in streamlining their metadata creation processes, therefore making it easier for end-users to discover or search for games. It also improves the quality of the recommendation systems by allowing them to suggest games with appealing visuals or gameplay themes that appeal to the users' likings.
+
+        <p>
+            Moreover, the ability of CLIP to extract meaningful insights from images will help in content moderation, ensuring the proper classification of the games. By pairing visual data with descriptive text, CLIP bridges the gap between visual representation and semantic understanding and is a powerful tool for indexing, filtering, and analysis of games efficiently and in a scalable manner.
+
+        <h2 style="text-align: center;">Gradient Boosting</h2>
+        <h3>Model Explanation</h3>
+        <p>
+            Gradient Boosting is a powerful machine learning technique that generates models sequentially, each new model correcting errors of the previous ones. A weak learner, usually decision trees, is combined into a strong predictive model through minimizing a loss function. Gradient Boosting has a wide range of applications in regression and classification problems, where it maintains accuracy and flexibility.
+        
+        <h3>Why We Used It</h3>
+        <p>
+            We applied Gradient Boosting to the image data set for an effective modeling of dependencies between features including brightness, saturation, hue and contrast, impacting the visual characteristics. Its ability to deal with non-linear patterns and emphasize misclassified examples ensures accurate predictions. Gradient Boosting flexibility and robustness make this approach ideal for capturing subtle variations and improvement of image-based classification or regression results in general.
+
+        <p>
+            The dataset was created:
+
+        <div class="row">
+            <div class="col-sm-12">
+                <img class="img-center" src="../../../assets/data-mining-assets/visualisations/clip/create-dataset.png" alt="">
+            </div>
+        </div>
+
+        <p>
+            To train the gradient boosting model, we had to create a new dataset from the image URLs, which contained the app ids and image values such as brightness, contrast, saturation and hue. We made this so that we can find patterns in underlying aspects of the images and game success.
+        
+        <h3>MODEL EVALUATION (using Mean Square Error)</h3>
+        <div class="row">
+            <div class="col-sm-12">
+                <img class="img-center" src="../../../assets/data-mining-assets/visualisations/clip/gb-mse.png" alt="">
+            </div>
+        </div>
+        <p>
+            We use Mean Squared Error to calculate an average of the squared difference between predicted and actual values. The lower the MSE, the better the accuracy of the model. At a value of 130, the model performance is good, showing that the predictions are relatively near to the actual values; thus, effective learning takes place.
+
+        <h3>Output</h3>
+        <div class="row">
+            <div class="col-sm-12">
+                <img class="img-center" src="../../../assets/data-mining-assets/visualisations/clip/gb-output.png" alt="">
+            </div>
+        </div>
+
+        <p>
+            As we can see, the model predicts the success rate , which is the ratio of number of positive reviews to number of negative reviews. It rates higher success rate to games with more interesting game image screenshots and lesser success rates to dull or confusing game image screenshots.
+
+        <div class="row">
+            <div class="col-sm-12">
+                <img class="img-center" src="../../../assets/data-mining-assets/visualisations/clip/gb-heatmap.png" alt="">
+            </div>
+        </div>
+
+        <p>
+            This is a correlation heatmap, showing correlation between various features, as we can see most features are unrelated except contrast and brightness which have some correlation.
+
+
+        <div class="row">
+            <div class="col-sm-12">
+                <img class="img-center" src="../../../assets/data-mining-assets/visualisations/clip/gb-saturation.png" alt="">
+            </div>
+        </div>
+        <p>
+            This scatterplot shows the relationship between review ratio (success rate) and saturation of images. As we can see the more saturation implies less review ratio, implying more saturated images might be worse for game success.
+
+        <div class="row">
+            <div class="col-sm-12">
+                <img class="img-center" src="../../../assets/data-mining-assets/visualisations/clip/gb-contrast.png" alt="">
+            </div>
+        </div>
+        <p>
+            This scatterplot is the relation between contrast and success rate. As we can see a contrast between 50 and 80 is the sweet spot. Anything more or less results in less success rate.
+
+        <div class="row">
+            <div class="col-sm-12">
+                <img class="img-center" src="../../../assets/data-mining-assets/visualisations/clip/gb-hue.png" alt="">
+            </div>
+        </div>
+        <p>
+            This graph is the boxplot relationship between hue and success rate. It shows that all colors have similar success rate and there is no correlation between color/Hue and success of a game. It means that consumers don’t prefer one color or the other. Hues between 101-127 (green-yellow) have slightly higher success rate, but nothing can be said with certainty.
+
+
+        <div class="row">
+            <div class="col-sm-12">
+                <img class="img-center" src="../../../assets/data-mining-assets/visualisations/clip/gb-brightness.png" alt="">
+            </div>
+        </div>
+        <p>
+            This graph shows the relationship between brightness of game images and success rate of those games. As we can see, there is no clear relationship between brightness and game success. 
+
+        <h3>What We Learned</h3>
+        <p>
+            From this model, we extracted a few important points about how far image features such as brightness, contrast, and saturation will reflect success rates of games through reviews. Thus, the model predicted an optimal range of 50 to 80 for contrast for high success rates, while very low or high values of contrast will negatively affect the review score. Interestingly, saturation is negatively correlated with the success rate, which might indicate that highly saturated images could turn players off. On the other hand, hue did not correlate significantly with success, which would indicate that the consumer's preference is not strongly connected with specific colors. Also, no obvious influence of brightness could be found on the success rate, meaning it's not a determining factor. The model performs well with an MSE of 130, showing that it learns the relationship between the image features and game success quite effectively. This shows the importance of specific image attributes such as contrast in predicting game success.
+            
     </div>
-
-    <p>
-        To train the gradient boosting model, we had to create a new dataset from the image URLs, which contained the app ids and image values such as brightness, contrast, saturation and hue. We made this so that we can find patterns in underlying aspects of the images and game success.
-    
-    <h3>MODEL EVALUATION (using Mean Square Error)</h3>
-    <div class="row">
-        <div class="col-sm-12">
-            <img class="img-center" src="../../../assets/data-mining-assets/visualisations/clip/gb-mse.png" alt="">
-        </div>
-    </div>
-    <p>
-        We use Mean Squared Error to calculate an average of the squared difference between predicted and actual values. The lower the MSE, the better the accuracy of the model. At a value of 130, the model performance is good, showing that the predictions are relatively near to the actual values; thus, effective learning takes place.
-
-    <h3>Output</h3>
-    <div class="row">
-        <div class="col-sm-12">
-            <img class="img-center" src="../../../assets/data-mining-assets/visualisations/clip/gb-output.png" alt="">
-        </div>
-    </div>
-
-    <p>
-        As we can see, the model predicts the success rate , which is the ratio of number of positive reviews to number of negative reviews. It rates higher success rate to games with more interesting game image screenshots and lesser success rates to dull or confusing game image screenshots.
-
-    <div class="row">
-        <div class="col-sm-12">
-            <img class="img-center" src="../../../assets/data-mining-assets/visualisations/clip/gb-heatmap.png" alt="">
-        </div>
-    </div>
-
-    <p>
-        This is a correlation heatmap, showing correlation between various features, as we can see most features are unrelated except contrast and brightness which have some correlation.
-
-
-    <div class="row">
-        <div class="col-sm-12">
-            <img class="img-center" src="../../../assets/data-mining-assets/visualisations/clip/gb-saturation.png" alt="">
-        </div>
-    </div>
-    <p>
-        This scatterplot shows the relationship between review ratio (success rate) and saturation of images. As we can see the more saturation implies less review ratio, implying more saturated images might be worse for game success.
-
-    <div class="row">
-        <div class="col-sm-12">
-            <img class="img-center" src="../../../assets/data-mining-assets/visualisations/clip/gb-contrast.png" alt="">
-        </div>
-    </div>
-    <p>
-        This scatterplot is the relation between contrast and success rate. As we can see a contrast between 50 and 80 is the sweet spot. Anything more or less results in less success rate.
-
-    <div class="row">
-        <div class="col-sm-12">
-            <img class="img-center" src="../../../assets/data-mining-assets/visualisations/clip/gb-hue.png" alt="">
-        </div>
-    </div>
-    <p>
-        This graph is the boxplot relationship between hue and success rate. It shows that all colors have similar success rate and there is no correlation between color/Hue and success of a game. It means that consumers don’t prefer one color or the other. Hues between 101-127 (green-yellow) have slightly higher success rate, but nothing can be said with certainty.
-
-
-    <div class="row">
-        <div class="col-sm-12">
-            <img class="img-center" src="../../../assets/data-mining-assets/visualisations/clip/gb-brightness.png" alt="">
-        </div>
-    </div>
-    <p>
-        This graph shows the relationship between brightness of game images and success rate of those games. As we can see, there is no clear relationship between brightness and game success. 
-
-    <h3>What We Learned</h3>
-    <p>
-        From this model, we extracted a few important points about how far image features such as brightness, contrast, and saturation will reflect success rates of games through reviews. Thus, the model predicted an optimal range of 50 to 80 for contrast for high success rates, while very low or high values of contrast will negatively affect the review score. Interestingly, saturation is negatively correlated with the success rate, which might indicate that highly saturated images could turn players off. On the other hand, hue did not correlate significantly with success, which would indicate that the consumer's preference is not strongly connected with specific colors. Also, no obvious influence of brightness could be found on the success rate, meaning it's not a determining factor. The model performs well with an MSE of 130, showing that it learns the relationship between the image features and game success quite effectively. This shows the importance of specific image attributes such as contrast in predicting game success.
-
-
-    <h2 style="text-align: center;">K-Means Clustering Analysis</h2>
-    We also performed K-Means clustering. We grouped Steam products based on total reviews, price, and publisher. The steps include:
-
-    <ol>
-        <li>
-            Data Preprocessing: Converts publisher into numerical columns using One-Hot Encoding. Scales numerical features (total reviews and price) to have a mean of 0 and a standard deviation of 1.
-        </li>
-        <li>
-            Clustering: Clusters groups apps into categories like high review/high price, moderate review/mid-range price, and low review/low price.
-        </li>
-        <li>
-            Visualizations: A scatterplot visualizes clusters by total reviews and price.
-        </li>
-        <li>
-            Key Insights: Apps are segmented into distinct price and popularity tiers, aiding in understanding of the Steam apps.
-        </li>
-    </ol>
-
-    <div class="row">
-        <div class="col-sm-12">
-            <img class="img-center-m" src="../../../assets/data-mining-assets/visualisations/other/k-means-clustering.png">
-        </div>
-        <div class="col-sm-12">
-            <img class="img-center-m" src="../../../assets/data-mining-assets/visualisations/other/bar-plot.png">
-        </div>
-        <div class="col-sm-12">
-            <img class="img-center-m" src="../../../assets/data-mining-assets/visualisations/other/box-plot.png">
-        </div>
-    </div>
-</div>  
+</div>

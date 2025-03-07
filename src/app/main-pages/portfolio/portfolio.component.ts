@@ -6,15 +6,12 @@ import { ProjectsService } from '../../_services/projects.service';
 @Component({
   selector: 'app-portfolio',
   templateUrl: './portfolio.component.html',
-  styleUrls: ['./portfolio.component.css', '../../styles/styles.css']
+  styleUrls: ['./portfolio.component.css']
 })
 
 export class PortfolioComponent implements OnInit {
 
   projects = {} as Project[];
-
-  isCollapsed: boolean = true;
-  typescript: boolean = false;
 
   constructor(private titleService: Title, private projectService: ProjectsService) {
     this.titleService.setTitle("Daniel Ethridge | Portfolio");
