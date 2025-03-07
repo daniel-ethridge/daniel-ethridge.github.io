@@ -4,7 +4,7 @@ import { ClassRoutes } from 'src/app/_models/ClassRoutes';
 @Component({
   selector: 'app-ml-introduction',
   templateUrl: './ml-introduction.component.html',
-  styleUrls: ['./ml-introduction.component.css', "../../styles/styles.css"]
+  styleUrls: ['./ml-introduction.component.css']
 })
 
 
