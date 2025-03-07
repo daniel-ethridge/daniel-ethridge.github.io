@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ClassRoutes } from '../../_models/ClassRoutes';
+import { ClassRoutes } from 'src/app/_models/ClassRoutes';
 
 @Component({
   selector: 'app-data-mining-conclusions',
