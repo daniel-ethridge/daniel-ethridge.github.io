@@ -2,7 +2,8 @@ import { Directive, ElementRef, Input, OnInit } from '@angular/core';
 import { CitationsService } from '../_services/citations.service';
 
 @Directive({
-  selector: '[citation]'
+    selector: '[citation]',
+    standalone: false
 })
 export class CiteDirective implements OnInit {
   @Input() href: string = '';

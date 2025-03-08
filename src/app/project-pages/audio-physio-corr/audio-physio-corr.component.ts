@@ -3,9 +3,10 @@ import { Project } from 'src/app/_models/Project';
 import { ProjectsService } from 'src/app/_services/projects.service';
 
 @Component({
-  selector: 'app-audio-physio-corr',
-  templateUrl: './audio-physio-corr.component.html',
-  styleUrls: ['./audio-physio-corr.component.scss']
+    selector: 'app-audio-physio-corr',
+    templateUrl: './audio-physio-corr.component.html',
+    styleUrls: ['./audio-physio-corr.component.scss'],
+    standalone: false
 })
 
 export class AudioPhysioCorrComponent implements OnInit {
