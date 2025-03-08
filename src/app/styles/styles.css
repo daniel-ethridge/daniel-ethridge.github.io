@@ -38,6 +38,7 @@ h1 {
 }
 h2 { 
     font-size: 29pt; 
+    margin-top: 50px;
     @media (min-width: 960px) {
         font-size: 37pt;
     }
@@ -73,7 +74,10 @@ p, li, th, td  {
     @media (min-width: 960px) {
         font-size: 14pt;
     }
+}
 
+small {
+    color: white;
 }
 
 table {
@@ -168,7 +172,7 @@ a {
 }
 
 .header-background {
-    min-height: 6vh;
+    background-color: black;
     opacity: 90%;
 }
 
@@ -258,4 +262,3 @@ a {
     animation-delay: 800ms;
     animation-fill-mode: backwards;
 }
-

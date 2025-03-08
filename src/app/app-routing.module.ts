@@ -42,6 +42,7 @@ import { TextMiningNbComponent } from './project-pages/text-mining-project/text-
 import { TextMiningNnComponent } from './project-pages/text-mining-project/text-mining-models/text-mining-nn/text-mining-nn.component';
 import { TextMiningSvmComponent } from './project-pages/text-mining-project/text-mining-models/text-mining-svm/text-mining-svm.component';
 import { AboutMeComponent } from './main-pages/about-me/about-me.component';
+import { MusicEmotionComponent } from './project-pages/music-emotion/music-emotion.component';
 
 /*
 Add routing to new pages below. Path then Angular component
@@ -66,6 +67,7 @@ const routes: Routes = [
   {path: "portfolio/shape-song", component: ShapeSongComponent},
   {path: "portfolio/welcome-to-your-heart", component: WelcomeToYourHeartComponent},
   {path: "portfolio/audio-physio-correlates", component: AudioPhysioCorrComponent},
+  {path: classRoutes.musicEmotion, component: MusicEmotionComponent},
 
   // Literature Visualizations
   {path: "literature-timeline", component: LitTimelineComponent},
