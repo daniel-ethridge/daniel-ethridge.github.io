@@ -3,9 +3,10 @@ import { Project } from 'src/app/_models/Project';
 import { ProjectsService } from 'src/app/_services/projects.service';
 
 @Component({
-  selector: 'app-gtri',
-  templateUrl: './gtri.component.html',
-  styleUrls: ['./gtri.component.scss']
+    selector: 'app-gtri',
+    templateUrl: './gtri.component.html',
+    styleUrls: ['./gtri.component.scss'],
+    standalone: false
 })
 
 export class GtriComponent implements OnInit {

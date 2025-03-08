@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-data-mining-team',
-  templateUrl: './data-mining-team.component.html',
-  styleUrls: ['./data-mining-team.component.scss']
+    selector: 'app-data-mining-team',
+    templateUrl: './data-mining-team.component.html',
+    styleUrls: ['./data-mining-team.component.scss'],
+    standalone: false
 })
 export class DataMiningTeamComponent {
   atharvaPhoto: string = "../../../assets/data-mining-assets/team/atharva-photo.jpg";

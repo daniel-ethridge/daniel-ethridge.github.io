@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-data-mining-models',
-  templateUrl: './data-mining-models.component.html',
-  styleUrls: ['./data-mining-models.component.scss']
+    selector: 'app-data-mining-models',
+    templateUrl: './data-mining-models.component.html',
+    styleUrls: ['./data-mining-models.component.scss'],
+    standalone: false
 })
 export class DataMiningModelsComponent {
 

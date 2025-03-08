@@ -3,9 +3,10 @@ import { Project } from 'src/app/_models/Project';
 import { ProjectsService } from 'src/app/_services/projects.service';
 
 @Component({
-  selector: 'app-compositions',
-  templateUrl: './compositions.component.html',
-  styleUrls: ['./compositions.component.scss']
+    selector: 'app-compositions',
+    templateUrl: './compositions.component.html',
+    styleUrls: ['./compositions.component.scss'],
+    standalone: false
 })
 
 export class CompositionsComponent implements OnInit {
