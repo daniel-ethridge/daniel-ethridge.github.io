@@ -5,7 +5,7 @@ import { ProjectsService } from 'src/app/_services/projects.service';
 @Component({
   selector: 'app-welcome-to-your-heart',
   templateUrl: './welcome-to-your-heart.component.html',
-  styleUrls: ['./welcome-to-your-heart.component.css']
+  styleUrls: ['./welcome-to-your-heart.component.scss']
 })
 export class WelcomeToYourHeartComponent {
 

@@ -4,7 +4,7 @@ import { CitationsService } from '../_services/citations.service';
 @Component({
   selector: 'app-footnotes',
   templateUrl: './footnotes.component.html',
-  styleUrls: ['./footnotes.component.css']
+  styleUrls: ['./footnotes.component.scss']
 })
 
 export class FootnotesComponent {

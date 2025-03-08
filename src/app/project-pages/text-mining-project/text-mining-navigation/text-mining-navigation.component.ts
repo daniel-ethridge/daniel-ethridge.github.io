@@ -4,7 +4,7 @@ import { ClassRoutes } from 'src/app/_models/ClassRoutes';
 @Component({
   selector: 'app-text-mining-navigation',
   templateUrl: './text-mining-navigation.component.html',
-  styleUrls: ['./text-mining-navigation.component.css']
+  styleUrls: ['./text-mining-navigation.component.scss']
 })
 export class TextMiningNavigationComponent {
   routes: ClassRoutes = new ClassRoutes();

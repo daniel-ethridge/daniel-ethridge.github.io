@@ -6,7 +6,7 @@ import { AfterViewInit } from '@angular/core';
 @Component({
   selector: 'app-ml-regression',
   templateUrl: './ml-regression.component.html',
-  styleUrls: ['./ml-regression.component.css']
+  styleUrls: ['./ml-regression.component.scss']
 })
 export class MlRegressionComponent implements AfterViewInit{
   math: MathScript = new MathScript();

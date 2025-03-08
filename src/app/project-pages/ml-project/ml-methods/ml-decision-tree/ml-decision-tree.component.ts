@@ -6,7 +6,7 @@ import { MathRenderer, MathService } from 'src/app/_services/math.service';
 @Component({
   selector: 'app-ml-decision-tree',
   templateUrl: './ml-decision-tree.component.html',
-  styleUrls: ['./ml-decision-tree.component.css']
+  styleUrls: ['./ml-decision-tree.component.scss']
 })
 export class MlDecisionTreeComponent implements AfterViewInit{
   math: MathScript = new MathScript();

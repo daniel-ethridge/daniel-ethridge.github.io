@@ -5,7 +5,7 @@ import { ProjectsService } from 'src/app/_services/projects.service';
 @Component({
   selector: 'app-magnebacus',
   templateUrl: './magnebacus.component.html',
-  styleUrls: ['./magnebacus.component.css', './../../app.component.css']
+  styleUrls: ['./magnebacus.component.scss']
 })
 
 export class MagnebacusComponent implements OnInit {

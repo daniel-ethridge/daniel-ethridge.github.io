@@ -5,7 +5,7 @@ import { ProjectsService } from 'src/app/_services/projects.service';
 @Component({
   selector: 'app-anteronesia',
   templateUrl: './anteronesia.component.html',
-  styleUrls: ['./anteronesia.component.css', '../../styles/styles.css']
+  styleUrls: ['./anteronesia.component.scss']
 })
 
 export class AnteronesiaComponent implements OnInit {
