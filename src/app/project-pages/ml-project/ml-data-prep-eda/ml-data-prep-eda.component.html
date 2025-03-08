@@ -6,16 +6,39 @@
         <div class="container-sm">
             <h2>Data Collection</h2>
             <p>
-                Data collection was completed in two different ways: file downloads and via an API. The file downloads included the Last.Fm dataset<span citation="Last.FM Dataset" href="http://millionsongdataset.com/lastfm/"></span> and a <code class="path">.csv</code> file containing the <i>Billboard Hot 100</i> data<span citation="Billboard Hot 100 Dataset" href="https://github.com/utdata/rwd-billboard-data/blob/main/data-out/hot-100-current.csv"></span> for each week since it started. The API used was the Spotify<span citation="Spotify" href="https://spotify.com"></span> Web API. The endpoints utilized included:
+                Data collection was completed in two different ways: file downloads and via an API. The file downloads included the Last.Fm dataset<span citation="Last.FM Dataset" href="http://millionsongdataset.com/lastfm/"></span> and a <code>.csv</code> file containing the <i>Billboard Hot 100</i> data<span citation="Billboard Hot 100 Dataset" href="https://github.com/utdata/rwd-billboard-data/blob/main/data-out/hot-100-current.csv"></span> for each week since it started. The API used was the Spotify<span citation="Spotify" href="https://spotify.com"></span> Web API. The endpoints utilized included:
                 <ul>
-                    <li><code class="path">https://accounts.spotify.com/api/token</code> in order to generate an access token based on credentials</li>
-                    <li><code class="path" >https://api.spotify.com/v1/search</code> in order to retrieve Spotify IDs based on artist and track names</li>
-                    <li><code class="path">https://api.spotify.com/v1/audio-features</code> in order to retreive Spotify audio features</li>
+                    <li><code>https://accounts.spotify.com/api/token</code> in order to generate an access token based on credentials</li>
+                    <li><code>https://api.spotify.com/v1/search</code> in order to retrieve Spotify IDs based on artist and track names</li>
+                    <li><code>https://api.spotify.com/v1/audio-features</code> in order to retreive Spotify audio features</li>
                 </ul>
 
             <p>
                 For example, the Python function below uses the API to retrieve a list of tracks based on search criteria. This list of tracks can be parsed through to find the needed Spotify ID:
-                <img class="img-center" style="width: 40%" src="../../../assets/ml-assets/api-example.png" alt="Example of API call in Python"/>
+            
+            <pre><code>
+                import requests
+
+                def get_spotify_track_id(track_name, artist_name, access_token):
+                    """
+                    :param track_name: Name of the track
+                    :param artist_name: name of the artist
+                    :param access_token: Spotify access token
+                    :return: Spotify track id
+                    """
+                
+                    base_url = "https://api.spotify.com/v1/search"
+                    query_string = f"artist:{{'{'}}artist_name{{'}'}} track:{{'{'}}track_name{{'}'}}"
+                
+                    params = {{'{'}}
+                        'q': query_string,
+                        'type': 'track',
+                        'access_token': access_token,
+                        'limit': 50
+                    {{'}'}}
+                
+                    return requests.get(base_url, params=params)
+            </code></pre>
 
             <h2>Data Cleaning, Descriptions, and Visualizations</h2>
             <h3>Spotify</h3>
@@ -64,18 +87,19 @@
             <h2 id="lastfmdata">Last.fm</h2>
             <p>
                 The Last.fm dataset serves two main purposes:
-                <ol>
-                    <li>Provide artist and title information to query Spotify</li>
-                    <li>Provide qualitative tags for each track</li>
-                </ol>
+            <ol>
+                <li>Provide artist and title information to query Spotify</li>
+                <li>Provide qualitative tags for each track</li>
+            </ol>
 
+            <p>
                 Below is an example of how the downloaded raw JSON data appeared:
 
             <img class="img-center-l" src="../../../assets/ml-assets/raw-lfm-data.png" alt="Raw Last.Fm">
 
             <br>
             <p>
-                Each file was parsed and packaged together into a single <code class="path">.csv</code> file:
+                Each file was parsed and packaged together into a single <code>.csv</code> file:
 
             <img class="img-center-l" src="../../../assets/ml-assets/lfm-csv.png" alt="Last.Fm CSV sample">
 
@@ -93,25 +117,19 @@
             <p>
                 Duplicate tags have been merged, and unnecessary tags have been removed. The plot now shows interesting peaks with female vocalist, electronic and pop. These insights could lead to further interesting questions to explore. 
 
-            <h2><i>Billboard Hot 100</i></h2>
+            <h2 class="d-block mt-5"><i>Billboard Hot 100</i></h2>
             <p>
                 Inspecting the <i>Billboard Hot 100</i> data showed it to be an already cleaned dataset. To visualize the data, look at the three plots below.
 
-            <div class="row">
-                <img class="img-center-l" src="../../../assets/ml-assets/billboard-artists.png" alt="Billboard top artists">
-            </div>
-            <div class="row">
-                <img class="img-center-l" src="../../../assets/ml-assets/num-weeks-on-chart.png" alt="Number Weeks on chart">
-            </div>
-            <div class="row">
-                <img class="img-center-l" src="../../../assets/ml-assets/peak-positions.png" alt="Peak positions">
+            <div class="row row-cols-1">
+                <img class="col mb-4" src="../../../assets/ml-assets/billboard-artists.png" alt="Billboard top artists">
+                <img class="col mb-4" src="../../../assets/ml-assets/num-weeks-on-chart.png" alt="Number Weeks on chart">
+                <img class="col mb-4" src="../../../assets/ml-assets/peak-positions.png" alt="Peak positions">
             </div>
 
             <p>
                 Given Taylor Swift's popularity and the major success of her Eras tour, it's unsurprising that she tops the list. The following chart shows what many would say is obvious: the number one spot is often held for only a week at a time, and then a new song takes the top spot the following week. A more surprising insight comes from the third plot. If a song makes it to the <i>Billboard Hot 100</i>, it could be likely to eventually rise to the top.
 
-
-            <h2>References</h2>
             <app-footnotes></app-footnotes>
         </div>
     </div>

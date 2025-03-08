@@ -2,24 +2,22 @@
     <div class="container">
         <app-ml-page-navigation/>
         <h1 class="text-center">Association Rule Mining</h1>
-        <h4><em>Note: If the math elements on the page are not rendering properly, try refreshing the page.</em></h4>
-        <h2>Overview</h2>
-        <h3>What is ARM?</h3>
+        <h2>What is ARM?</h2>
         <p>
             Association Rule Mining, or ARM, is a data mining technique that aims to create rules that tell what items of a dataset typically occur together. For example, imagine all the customers at a grocery store and what their shopping carts might look like. What percentage of the customers are buying milk? If someone buys milk, what is the probability that they also buy bread? Is the purchase of these two items correlated? 
 
         <p>
             These are some of the questions that ARM tries to answer. The goal is two create a set of association rules that can give us insight into item cooccurences in a dataset. Rules are defined as relationships between different items in item sets and how often they appear side by side. But how do we determine these association rules?
 
-        <h3>Support, Confidence, and Lift</h3>
+        <h2>Support, Confidence, and Lift</h2>
             <p>
                 Three main factors in determining association rules as well as if they are interesting are known as support, confidence, and lift. They are all based on fairly basic probability.
 
-        <h4>Support</h4>
+        <h3>Support</h3>
             <p>
                 Support for an item is defined as the probability that it appears in a transaction given a total set of transactions. For example, take a set of 10 transactions. If the item $A$ occurs 3 times. Then $supp(A) = P(A) = {{math.fraction("3", "10")}}$, where $P(A)$ is the probability of A. Likewise, imagine the amount of times that the item $A$ and $B$ occur together in transactions. This is represented as the mathematical intersection: $$ supp(A, B) = P(A \cap B). $$
 
-        <h4>Confidence</h4>
+        <h3>Confidence</h3>
             <p>
                 Using the above example, confidence asks a slightly different question. Using the example above: Given that <em>B</em> is in the transaction, what is probability that A is present? This is equivalent to conditional probability: 
 
@@ -33,11 +31,11 @@
                 {{math.endAlign()}}
                 $$
 
-        <h4>Lift</h4>
+        <h3>Lift</h3>
             <p>
                 The discussion of lift is a measure of correlation. The formula is not immediately intuitive, but a discussion of the differences between independent and dependent probability help. There are three key ideas at play: <a href="https://www.inchcalculator.com/wp-content/uploads/2021/01/probability-union.png" target="_blank">union (P(A U B))</a>, <a href="https://thirdspacelearning.com/wp-content/uploads/2022/05/Probability-notation-intersection-image-1.png" target="_blank">intersection (P(A ∩ B))</a>, and <a href="https://assets.tivadardanka.com/2022_10_conditional_probability_featured_c9d47cc379.jpg" target="_blank">conditional probability (P(A|B))</a>.
 
-        <h5>Indepdent and Dependent Events</h5>
+        <h4>Indepdent and Dependent Events</h4>
             <p>
                 When two events are independent, the outcomes do not affect each other at all. When two events are dependent, they do affect each other. There is overlap.
             
@@ -64,7 +62,7 @@
                 </tr>
             </table><br>
 
-        <h5>What does this have to do with lift??</h5>
+        <h4>What does this have to do with lift??</h4>
         <p>
             Lift is a measure of correlation between two items in a transaction. If it is greater than 1, there is a correlation. A lift of 1 means no correlation, and a lift of less than 1 means a negative correlation. We are looking for lift greater than one. The formula for lift is 
 
@@ -112,7 +110,7 @@
                 <li>If A becomes less likely when B is known to be true, A and B are negatively correlated.</li>
             </ul>
 
-        <h5>To Summarize</h5>
+        <h4>To Summarize</h4>
         <p> 
             Below are the equations for support, confidence, and lift for a rule {{'{A}'}} -> {{'{B}'}}:
         <ul>
@@ -121,7 +119,7 @@
             <li>$lift(A, B) = {{math.fraction("supp(A, B)", "supp(A) \\cdot supp(B)")}}$</li>
         </ul>
 
-        <h3>The Apriori Algorithm</h3>
+        <h2>The Apriori Algorithm</h2>
             <p>
                 How do we determine association rules? One common method is known as the apriori algorithm. It is an iterative approach that starts with single item associations and works up towards multiple items together in associations. Take the image below:
 

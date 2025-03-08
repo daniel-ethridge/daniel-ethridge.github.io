@@ -11,6 +11,12 @@ export class ProjectsService {
   routes: ClassRoutes = new ClassRoutes();
 
   projects: Project[] = [
+    // {
+    //   id: 10,
+    //   summary: "Music and Emotion",
+    //   projectPage: this.routes.musicEmotion,
+    //   image: ""
+    // },
     {
       id: 9,
       summary: "Two sides, countless victims: diving into the U.S. gun control debate",
