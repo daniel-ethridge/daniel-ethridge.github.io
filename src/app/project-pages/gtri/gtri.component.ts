@@ -5,7 +5,7 @@ import { ProjectsService } from 'src/app/_services/projects.service';
 @Component({
   selector: 'app-gtri',
   templateUrl: './gtri.component.html',
-  styleUrls: ['./gtri.component.css', '../../app.component.css']
+  styleUrls: ['./gtri.component.scss']
 })
 
 export class GtriComponent implements OnInit {

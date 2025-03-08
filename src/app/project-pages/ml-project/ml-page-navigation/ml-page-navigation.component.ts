@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-ml-page-navigation',
   templateUrl: './ml-page-navigation.component.html',
   styleUrls: [
-    './ml-page-navigation.component.css']
+    './ml-page-navigation.component.scss']
 })
 
 export class MlPageNavigationComponent {

@@ -5,7 +5,7 @@ import { ProjectsService } from 'src/app/_services/projects.service';
 @Component({
   selector: 'app-audio-physio-corr',
   templateUrl: './audio-physio-corr.component.html',
-  styleUrls: ['./audio-physio-corr.component.css']
+  styleUrls: ['./audio-physio-corr.component.scss']
 })
 
 export class AudioPhysioCorrComponent implements OnInit {

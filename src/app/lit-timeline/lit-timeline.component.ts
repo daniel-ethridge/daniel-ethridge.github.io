@@ -6,7 +6,7 @@ import { LiteratureService } from '../_services/literature.service';
 @Component({
   selector: 'app-lit-timeline',
   templateUrl: './lit-timeline.component.html',
-  styleUrls: ['./lit-timeline.component.css']
+  styleUrls: ['./lit-timeline.component.scss']
 })
 
 

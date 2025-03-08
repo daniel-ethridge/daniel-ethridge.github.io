@@ -6,7 +6,7 @@ import { MathRenderer, MathService } from 'src/app/_services/math.service';
 @Component({
   selector: 'app-ml-naive-bayes',
   templateUrl: './ml-naive-bayes.component.html',
-  styleUrls: ['./ml-naive-bayes.component.css']
+  styleUrls: ['./ml-naive-bayes.component.scss']
 })
 export class MlNaiveBayesComponent implements AfterViewInit {
   math: MathScript = new MathScript();

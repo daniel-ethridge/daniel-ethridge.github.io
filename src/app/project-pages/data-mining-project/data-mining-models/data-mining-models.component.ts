@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-data-mining-models',
   templateUrl: './data-mining-models.component.html',
-  styleUrls: ['./data-mining-models.component.css']
+  styleUrls: ['./data-mining-models.component.scss']
 })
 export class DataMiningModelsComponent {
 

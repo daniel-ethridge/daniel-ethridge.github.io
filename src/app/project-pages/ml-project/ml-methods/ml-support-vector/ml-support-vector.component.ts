@@ -6,7 +6,7 @@ import { MathRenderer, MathService } from 'src/app/_services/math.service';
 @Component({
   selector: 'app-ml-support-vector',
   templateUrl: './ml-support-vector.component.html',
-  styleUrls: ['./ml-support-vector.component.css']
+  styleUrls: ['./ml-support-vector.component.scss']
 })
 export class MlSupportVectorComponent implements AfterViewInit{
   math: MathScript = new MathScript();
