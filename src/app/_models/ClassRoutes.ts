@@ -2,6 +2,9 @@ export class ClassRoutes {
     // Projects
     musicEmotion: string = "portfolio/music-emotion";
 
+    // 
+    soup: string = "soup";
+
     // Machine Learning
     mlIntroduction: string = "portfolio/machine-learning/introduction";
     mlEda: string = "portfolio/machine-learning/data-prep-and-eda";
