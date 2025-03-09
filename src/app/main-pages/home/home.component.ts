@@ -4,9 +4,10 @@ import { Project } from '../../_models/Project';
 import { getStorage, ref, uploadBytes } from 'firebase/storage';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css', '../../app.component.css']
+    selector: 'app-home',
+    templateUrl: './home.component.html',
+    styleUrls: ['./home.component.scss'],
+    standalone: false
 })
 export class HomeComponent {
 

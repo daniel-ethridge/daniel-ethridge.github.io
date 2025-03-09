@@ -5,8 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { HeaderComponent } from './header/header/header.component';
-import { NavComponent } from './header/nav/nav.component';
+import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './main-pages/home/home.component';
 import { PortfolioComponent } from './main-pages/portfolio/portfolio.component';
 import { ResumeComponent } from './main-pages/resume/resume.component';
@@ -21,29 +20,27 @@ import { ShapeSongComponent } from './project-pages/shape-song/shape-song.compon
 import { WelcomeToYourHeartComponent } from './project-pages/welcome-to-your-heart/welcome-to-your-heart.component';
 import { GtriComponent } from './project-pages/gtri/gtri.component';
 import { AudioPhysioCorrComponent } from './project-pages/audio-physio-corr/audio-physio-corr.component';
-import { MlIntroductionComponent } from './ml-project/ml-introduction/ml-introduction.component';
-import { MlConclusionsComponent } from './ml-project/ml-conclusions/ml-conclusions.component';
-import { MlDataPrepEdaComponent } from './ml-project/ml-data-prep-eda/ml-data-prep-eda.component';
-import { MlModelsAndMethodsComponent } from './ml-project/ml-models-and-methods/ml-models-and-methods.component';
-import { MlPageNavigationComponent } from './ml-project/ml-page-navigation/ml-page-navigation.component';
+import { MlIntroductionComponent } from './project-pages/ml-project/ml-introduction/ml-introduction.component';
+import { MlConclusionsComponent } from './project-pages/ml-project/ml-conclusions/ml-conclusions.component';
+import { MlDataPrepEdaComponent } from './project-pages/ml-project/ml-data-prep-eda/ml-data-prep-eda.component';
+import { MlModelsAndMethodsComponent } from './project-pages/ml-project/ml-models-and-methods/ml-models-and-methods.component';
+import { MlPageNavigationComponent } from './project-pages/ml-project/ml-page-navigation/ml-page-navigation.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
-import { MlPcaComponent } from './ml-project/ml-methods/ml-pca/ml-pca.component';
-import { MlClusteringComponent } from './ml-project/ml-methods/ml-clustering/ml-clustering.component';
-import { MlArmComponent } from './ml-project/ml-methods/ml-arm/ml-arm.component';
-import { MlDecisionTreeComponent } from './ml-project/ml-methods/ml-decision-tree/ml-decision-tree.component';
-import { MlNaiveBayesComponent } from './ml-project/ml-methods/ml-naive-bayes/ml-naive-bayes.component';
-import { MlRegressionComponent } from './ml-project/ml-methods/ml-regression/ml-regression.component';
-import { MlSupportVectorComponent } from './ml-project/ml-methods/ml-support-vector/ml-support-vector.component';
-import { MlEnsembleComponent } from './ml-project/ml-methods/ml-ensemble/ml-ensemble.component';
-import { FootnoteComponent } from './references/footnote/footnote.component';
-import { ReferencesComponent } from './references/references/references.component';
-import { DataMiningNavigationComponent } from './data-mining-project/data-mining-navigation/data-mining-navigation.component';
-import { DataMiningIntroComponent } from './data-mining-project/data-mining-intro/data-mining-intro.component';
-import { DataMiningExplorationComponent } from './data-mining-project/data-mining-exploration/data-mining-exploration.component';
-import { DataMiningModelsComponent } from './data-mining-project/data-mining-models/data-mining-models.component';
-import { DataMiningConclusionsComponent } from './data-mining-project/data-mining-conclusions/data-mining-conclusions.component';
-import { DataMiningTeamComponent } from './data-mining-project/data-mining-team/data-mining-team.component';
+import { MlPcaComponent } from './project-pages/ml-project/ml-methods/ml-pca/ml-pca.component';
+import { MlClusteringComponent } from './project-pages/ml-project/ml-methods/ml-clustering/ml-clustering.component';
+import { MlArmComponent } from './project-pages/ml-project/ml-methods/ml-arm/ml-arm.component';
+import { MlDecisionTreeComponent } from './project-pages/ml-project/ml-methods/ml-decision-tree/ml-decision-tree.component';
+import { MlNaiveBayesComponent } from './project-pages/ml-project/ml-methods/ml-naive-bayes/ml-naive-bayes.component';
+import { MlRegressionComponent } from './project-pages/ml-project/ml-methods/ml-regression/ml-regression.component';
+import { MlSupportVectorComponent } from './project-pages/ml-project/ml-methods/ml-support-vector/ml-support-vector.component';
+import { MlEnsembleComponent } from './project-pages/ml-project/ml-methods/ml-ensemble/ml-ensemble.component';
+import { DataMiningNavigationComponent } from './project-pages/data-mining-project/data-mining-navigation/data-mining-navigation.component';
+import { DataMiningIntroComponent } from './project-pages/data-mining-project/data-mining-intro/data-mining-intro.component';
+import { DataMiningExplorationComponent } from './project-pages/data-mining-project/data-mining-exploration/data-mining-exploration.component';
+import { DataMiningModelsComponent } from './project-pages/data-mining-project/data-mining-models/data-mining-models.component';
+import { DataMiningConclusionsComponent } from './project-pages/data-mining-project/data-mining-conclusions/data-mining-conclusions.component';
+import { DataMiningTeamComponent } from './project-pages/data-mining-project/data-mining-team/data-mining-team.component';
 import { LitTimelineComponent } from './lit-timeline/lit-timeline.component';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { TextMiningNavigationComponent } from './project-pages/text-mining-project/text-mining-navigation/text-mining-navigation.component';
@@ -62,12 +59,17 @@ import { firebaseConfig } from '../environments/environment';
 import { getStorage, provideStorage } from '@angular/fire/storage';
 import { LitSyncComponent } from './lit-sync/lit-sync.component';
 import { FileService } from './services/file.service';
+import { FootnotesComponent } from './footnotes/footnotes.component';
+import { CiteDirective } from './_directives/cite.directive';
+import { AboutMeComponent } from './main-pages/about-me/about-me.component';
+import { MusicEmotionComponent } from './project-pages/music-emotion/music-emotion.component';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    NavComponent,
     HomeComponent,
     PortfolioComponent,
     ResumeComponent,
@@ -94,8 +96,6 @@ import { FileService } from './services/file.service';
     MlRegressionComponent,
     MlSupportVectorComponent,
     MlEnsembleComponent,
-    FootnoteComponent,
-    ReferencesComponent,
     DataMiningIntroComponent,
     DataMiningNavigationComponent,
     DataMiningConclusionsComponent,
@@ -114,7 +114,14 @@ import { FileService } from './services/file.service';
     TextMiningSvmComponent,
     TextMiningNnComponent,
     TextMiningConclusionsComponent,
+<<<<<<< HEAD
     LitSyncComponent
+=======
+    CiteDirective,
+    FootnotesComponent,
+    AboutMeComponent,
+    MusicEmotionComponent
+>>>>>>> main
   ],
   
   imports: [
@@ -131,7 +138,9 @@ import { FileService } from './services/file.service';
   ],
   providers: [
     [],
-    FileService
+    FileService,
+    provideFirebaseApp(() => initializeApp({ projectId: "audiovascular-7cf53", appId: "1:881463265151:web:09a39ae2b5a2296a65fc4a", storageBucket: "audiovascular-7cf53.firebasestorage.app", apiKey: "AIzaSyDiBFEPzpjeR_FItC5r3Vk55q4prYRXZTQ", authDomain: "audiovascular-7cf53.firebaseapp.com", messagingSenderId: "881463265151", measurementId: "G-DSDKG1BL53" })),
+    provideStorage(() => getStorage())
   ],
   bootstrap: [AppComponent]
 })

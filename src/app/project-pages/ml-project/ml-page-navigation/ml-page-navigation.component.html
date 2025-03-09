@@ -1,0 +1,35 @@
+<mat-menu #ModelMenu="matMenu">
+    <a mat-menu-item class="blue-button" routerLink="/portfolio/machine-learning/methods/principal-component-analysis">PCA</a>
+    <a mat-menu-item class="blue-button" routerLink="/portfolio/machine-learning/methods/clustering">Clustering</a> 
+    <a mat-menu-item class="blue-button" routerLink="/portfolio/machine-learning/methods/association-rule-mining">ARM</a>
+    <a mat-menu-item class="blue-button" routerLink="/portfolio/machine-learning/methods/naive-bayes">Naïve Bayes</a>
+    <a mat-menu-item class="blue-button" routerLink="/portfolio/machine-learning/methods/decision-tree">Decision Tree</a>
+    <a mat-menu-item class="blue-button" routerLink="/portfolio/machine-learning/methods/regression">Regression</a>
+    <a mat-menu-item class="blue-button" routerLink="/portfolio/machine-learning/methods/support-vector-machines">SVMs</a>
+    <a mat-menu-item class="blue-button" routerLink="/portfolio/machine-learning/methods/ensemble">Ensemble</a>
+</mat-menu>
+
+<nav class="navbar-expand-md border-bottom mb-3">
+    <div class="container" style="font-size: 18px;">
+        <ul class="nav justify-content-center">
+            <li class="nav-item nav-button-style">
+                <a routerLink="/portfolio/machine-learning/introduction">
+                    <button class="green-button">Introduction</button>
+                </a>
+            </li>
+            <li class="nav-item nav-button-style">
+                <a routerLink="/portfolio/machine-learning/data-prep-and-eda">
+                    <button class="green-button">Data Prep and EDA</button>
+                </a>
+            </li>
+            <li class="nav-item nav-button-style">
+                    <button class="green-button" [mat-menu-trigger-for]="ModelMenu">Models and Methods</button>
+            </li>
+            <li class="nav-item nav-button-style">
+                <a routerLink="/portfolio/machine-learning/conclusions">
+                    <button class="green-button">Conclusions</button>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>

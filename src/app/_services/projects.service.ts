@@ -11,65 +11,71 @@ export class ProjectsService {
   routes: ClassRoutes = new ClassRoutes();
 
   projects: Project[] = [
+    // {
+    //   id: 10,
+    //   summary: "Music and Emotion",
+    //   projectPage: this.routes.musicEmotion,
+    //   image: ""
+    // },
     {
       id: 9,
-      name: "Text Mining Project",
-      summary: "Two Sides, Countless Victims: Diving into the U.S. Gun Debate",
-      projectPage: this.routes.tmHome
+      summary: "Two sides, countless victims: diving into the U.S. gun control debate",
+      projectPage: this.routes.tmHome,
+      image: "../../assets/project-thumbnails/gun-control-debate.jpg"
     },
     {
       id: 8,
-      name: "Data Mining Project",
-      summary: "What can Steam Reviews Teach us about Game Design?",
-      projectPage: "portfolio/data-mining/introduction"
+      summary: "What can Steam reviews teach us about game design?",
+      projectPage: "portfolio/data-mining/introduction",
+      image: "../../assets/project-thumbnails/controller.jpg"
     },
     {
       id: 7,
-      name: "Machine Learning Project",
       summary: "What does it take to make it onto the Billboard Top 100?",
-      projectPage: "/portfolio/machine-learning/introduction"
+      projectPage: "/portfolio/machine-learning/introduction",
+      image: "../../assets/project-thumbnails/billboard-award.jpg"
     },
     {
       id: 6,
-      name: "Low-Level Audio Feature Correlates to Physiological Arousal",
-      summary: "PhD Research: Year 1",
-      projectPage: "/portfolio/audio-physio-correlates"
+      summary: "Low-level audio feature correlates to physiological arousal",
+      projectPage: "/portfolio/audio-physio-correlates",
+      image: "../../assets/project-thumbnails/ekg-music.jpg"
     },
     {
       id: 0,
-      name: "Anteronesia",
-      summary: "Videogame prototype exploring anterograde amnesia",
+      summary: "Anteronesia: A videogame prototype exploring anterograde amnesia",
       projectPage: "/portfolio/anteronesia",
+      image: "../../assets/project-thumbnails/anteronesia.jpg"
     },
     {
       id: 1,
-      name: "The Magnebacus",
-      summary: "A New Electronic Instrument",
+      summary: "The Magnebacus: A new electronic instrument",
       projectPage: "/portfolio/magnebacus",
+      image: "../../assets/project-thumbnails/magnebacus.jpg"
     },
     {
       id: 2,
-      name: "Music",
-      summary: "Select Original Music Compositions",
+      summary: "Select original music",
       projectPage: "/portfolio/compositions",
+      image: "../../assets/project-thumbnails/piano.jpg"
     },
     {
       id: 3,
-      name: "Georgia Tech Research Institute (GTRI)",
-      summary: "Software Engineering with Python and C++",
+      summary: "GTRI: software engineering with Python and C++",
       projectPage: "portfolio/gtri",
+      image: "../../assets/project-thumbnails/code.jpg"
     },
     {
       id: 4,
-      name: "Shape Song",
-      summary: "Master's Project",
+      summary: "Shape Song: master's project",
       projectPage: "portfolio/shape-song",
+      image: "../../assets/project-thumbnails/shape-song.jpg"
     },
     {
       id: 5,
-      name: "Welcome to Your Heart",
-      summary: "How does music affect your heart?",
+      summary: "Welcome to Your Heart",
       projectPage: "/portfolio/welcome-to-your-heart",
+      image: "../../assets/project-thumbnails/heart-welcome.jpg"
     }
   ];
 

@@ -1,12 +1,11 @@
-<mat-menu #ModelMenu>
-    <a mat-menu-item [routerLink]="tmClustering">Clustering</a> 
-    <a mat-menu-item [routerLink]="tmArm">ARM</a>
-    <a mat-menu-item [routerLink]="tmLda">Latent Dirichlet Allocation</a>
-    <a mat-menu-item [routerLink]="tmNb">Naïve Bayes</a>
-    <a mat-menu-item [routerLink]="tmDescTree">Decision Trees</a>
-    <a mat-menu-item [routerLink]="tmSvm">SVMs</a>
-    <a mat-menu-item [routerLink]="tmNn">Neural Networks</a>
-
+<mat-menu #ModelMenu="matMenu">
+    <a class="blue-button" mat-menu-item [routerLink]="tmClustering">Clustering</a> 
+    <a class="blue-button" mat-menu-item [routerLink]="tmArm">ARM</a>
+    <a class="blue-button" mat-menu-item [routerLink]="tmLda">Latent Dirichlet Allocation</a>
+    <a class="blue-button" mat-menu-item [routerLink]="tmNb">Naïve Bayes</a>
+    <a class="blue-button" mat-menu-item [routerLink]="tmDescTree">Decision Trees</a>
+    <a class="blue-button" mat-menu-item [routerLink]="tmSvm">SVMs</a>
+    <a class="blue-button" mat-menu-item [routerLink]="tmNn">Neural Networks</a>
 
 </mat-menu>
 
@@ -15,20 +14,20 @@
         <ul class="nav justify-content-center">
             <li class="nav-item nav-button-style">
                 <a [routerLink]="tmIntro">
-                    <button mat-stroked-button>Introduction</button>
+                    <button class="green-button">Introduction</button>
                 </a>
             </li>
             <li class="nav-item nav-button-style">
                 <a [routerLink]="tmData">
-                    <button mat-stroked-button>Data</button>
+                    <button class="green-button">Data</button>
                 </a>
             </li>
             <li class="nav-item nav-button-style">
-                    <button mat-stroked-button [mat-menu-trigger-for]="ModelMenu">Models and Methods</button>
+                    <button class="green-button" [mat-menu-trigger-for]="ModelMenu">Models and Methods</button>
             </li>
             <li class="nav-item nav-button-style">
                 <a [routerLink]="tmConclusions">
-                    <button mat-stroked-button>Conclusions</button>
+                    <button class="green-button">Conclusions</button>
                 </a>
             </li>
         </ul>

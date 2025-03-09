@@ -1,4 +1,7 @@
 export class ClassRoutes {
+    // Projects
+    musicEmotion: string = "portfolio/music-emotion";
+
     // Machine Learning
     mlIntroduction: string = "portfolio/machine-learning/introduction";
     mlEda: string = "portfolio/machine-learning/data-prep-and-eda";

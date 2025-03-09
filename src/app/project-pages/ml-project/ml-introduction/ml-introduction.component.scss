@@ -1,0 +1,14 @@
+.billboard-image {
+    width: 70%;
+    display: block;
+    margin: 1rem auto;
+}
+
+@media (min-width: 768px) {
+    .billboard-image {
+        width: 50%;
+        float: right;
+        padding: 0 0 1rem 1rem;
+        margin: 0;
+    }
+}

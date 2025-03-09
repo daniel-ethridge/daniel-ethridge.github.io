@@ -39,7 +39,10 @@ testem.log
 /typings
 environment.ts
 cors.json
+<<<<<<< HEAD
 test*
+=======
+>>>>>>> main
 
 # Python stuff
 .venv
@@ -49,3 +52,8 @@ __pycache__
 # System files
 .DS_Store
 Thumbs.db
+
+# Firebase
+.firebase
+*-debug.log
+.runtimeconfig.json
