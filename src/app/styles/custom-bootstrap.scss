@@ -1,7 +1,4 @@
-
-@import '../../../node_modules/bootstrap/scss/functions';
-@import '../../../node_modules/bootstrap/scss/variables';
-@import '../../../node_modules/bootstrap/scss/mixins';
+@import "../../../node_modules/bootstrap/scss/functions";
 
 $grid-breakpoints: (
   xs: 0,
@@ -12,14 +9,5 @@ $grid-breakpoints: (
   xxl: 1520px
 );
 
-$spacers: (
-    n: ($spacer * -16),
-    0: 0,
-    1: ($spacer * .25),
-    2: ($spacer * .5),
-    3: $spacer,
-    4: ($spacer * 1.5),
-    5: ($spacer * 3)
-);
-
-@import "../../../node_modules/bootstrap/scss/bootstrap.scss";
+@import "../../../node_modules/bootstrap/scss/variables";
+@import "../../../node_modules/bootstrap/scss/mixins";
