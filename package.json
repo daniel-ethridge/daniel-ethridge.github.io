@@ -30,6 +30,7 @@
     "sass": "^1.85.1",
     "schematics-scss-migrate": "^2.3.17",
     "tslib": "^2.3.0",
+    "wrangler": "^3.114.0",
     "zone.js": "~0.15.0"
   },
   "devDependencies": {
