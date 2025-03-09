@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { HeaderComponent } from 'src/app/header/header/header.component';
+import { HeaderComponent } from 'src/app/header/header.component';
 
 
 @Component({
-  selector: 'app-audiovascular',
-  templateUrl: './audiovascular.component.html',
-  styleUrls: ['./audiovascular.component.css']
+    selector: 'app-audiovascular',
+    templateUrl: './audiovascular.component.html',
+    styleUrls: ['./audiovascular.component.scss'],
+    standalone: false
 })
 export class AudiovascularComponent implements OnInit{
 
