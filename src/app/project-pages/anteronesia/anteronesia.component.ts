@@ -3,9 +3,10 @@ import { Project } from 'src/app/_models/Project';
 import { ProjectsService } from 'src/app/_services/projects.service';
 
 @Component({
-  selector: 'app-anteronesia',
-  templateUrl: './anteronesia.component.html',
-  styleUrls: ['./anteronesia.component.css', '../../app.component.css']
+    selector: 'app-anteronesia',
+    templateUrl: './anteronesia.component.html',
+    styleUrls: ['./anteronesia.component.scss'],
+    standalone: false
 })
 
 export class AnteronesiaComponent implements OnInit {
