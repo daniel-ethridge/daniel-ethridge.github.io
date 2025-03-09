@@ -20,10 +20,15 @@
 				"build": {
 					"builder": "@angular-devkit/build-angular:application",
 					"options": {
+						"stylePreprocessorOptions": {
+							"sass": {
+								"silenceDeprecations": ["color-functions", "global-builtin", "import", "mixed-decls"]
+							}
+						},
 						"outputPath": {
-              "base": "dist/website"
-            },
-            "index": "src/index.html",
+              				"base": "dist"
+            			},
+            			"index": "src/index.html",
 						"polyfills": [
 							"zone.js"
 						],
@@ -32,16 +37,17 @@
 							"src/assets"
 						],
 						"styles": [
-							"src/app/styles/custom-theme.scss",
-							"./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
 							"src/app/styles/custom-bootstrap.scss",
+							"node_modules/bootstrap/dist/css/bootstrap.min.css",
 							"src/app/styles/styles.scss",
 							"src/app/styles/code-styles.scss"
 						],
 						"scripts": [
-							"./node_modules/mathjax/es5/core.js"
-            ],
-            "browser": "src/main.ts"
+							"node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+							"node_modules/mathjax/es5/core.js"
+            			],
+            			"browser": "src/main.ts"
+						
 					},
 					"configurations": {
 						"production": {
