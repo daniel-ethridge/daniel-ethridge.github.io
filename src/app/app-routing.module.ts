@@ -11,6 +11,7 @@ let classRoutes = new ClassRoutes();
 
 const routes: Routes = [
   // Main pages
+  
 
   {path: "**", component:HomeComponent, pathMatch: 'full'}
 ];
