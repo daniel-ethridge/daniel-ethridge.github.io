@@ -1,4 +1,7 @@
 export class ClassRoutes {
+
+    // Main pages
+    home: string = "home";
     // Projects
     musicEmotion: string = "portfolio/music-emotion";
 

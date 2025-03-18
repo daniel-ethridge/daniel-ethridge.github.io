@@ -28,10 +28,7 @@
 				"node_modules/bootstrap/dist/css/bootstrap.min.css",
 				"src/app/styles/styles.scss",
 				"src/app/styles/code-styles.scss"
-						],
-			  "scripts": [
-				"./node_modules/mathjax/es5/core.js"
-			  ]
+						]
 			},
 			"configurations": {
 			  "production": {
