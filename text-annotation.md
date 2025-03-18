@@ -49,5 +49,5 @@ These tasks shall be performed granted the above timeline does not get pushed ba
 |:-:|:-:|
 | Implement LDA functionality | April 16 |
 | Implement K-Means functionality | April 18 |
-| Implement Supervised learning functionality | April 23 |
+| Implement Supervised learning and ARM functionality | April 23 |
 | Implement Plotting functionality | April 25 |
