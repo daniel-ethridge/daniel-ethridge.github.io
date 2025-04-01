@@ -4,7 +4,7 @@
         <h1 style="text-align: center;">Latent Dirichlet Allocation</h1>
 
         <p>
-            <em>All code can be found <a target="_blank" href="https://github.com/daniel-ethridge/text-mining-project/tree/main/unsupervised-learning">here</a>, and all data can be found <a target="_blank" href="https://github.com/daniel-ethridge/text-mining-project-data">here</a>. Any code that I did not write is cited below when referenced.</em>
+            <em>All code can be found <a target="_blank" href="https://github.com/daniel-ethridge/text-mining-project/tree/main/unsupervised-learning">here</a>, and all data can be found <a target="_blank" href="https://github.com/daniel-ethridge/text-mining-project-data">here</a>.</em>
 
         <h2>Overview</h2>
         <p>
@@ -25,7 +25,7 @@
 
         <h2>Code</h2>
         <p>            
-            The result of LDA is both a measure of how well each word in the vocabulary fits within all five topics and a measure of how well each document fits within a document. In sklearn, this is equivalent to the components attribute of the LatentDirichletAllocation class and the output of the fit_transform method, respectively, as noted in the example code below. More detailed code (including for visualization) is linked at the top of the page.
+            The result of LDA is both a measure of how well each word in the vocabulary fits within all five topics and a measure of how well each document fits within a topic. In sklearn, this is equivalent to the components attribute of the LatentDirichletAllocation class and the output of the fit_transform method, respectively, as noted in the example code below. More detailed code (including for visualization) is linked at the top of the page.
 
         <pre><code>
             import sklearn.decomposition as decom
