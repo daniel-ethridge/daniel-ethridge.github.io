@@ -1,6 +1,81 @@
 <div class="main-background">
     <div class="container">
         <app-text-mining-navigation/>
-        <h1 style="text-align: center;">Coming Soon!</h1>
+        <h1 style="text-align: center;">Association Rule Mining</h1>
+        <p>
+            <em>All code can be found <a target="_blank" href="https://github.com/daniel-ethridge/text-mining-project/tree/main/unsupervised-learning">here</a>, and all data can be found <a target="_blank" href="https://github.com/daniel-ethridge/text-mining-project-data">here</a>.</em>
+
+        <h2>Overview</h2>
+        <p>
+            Association Rule Mining, or ARM, is a technique that aims to create rules that tell what items of a dataset typically occur together. In the case of text mining, the aim is to find associations among word occurences. For example, imagine all the customers at a grocery store and what their shopping carts might look like. What percentage of the customers are buying milk? If someone buys milk, what is the probability that they also buy bread? Is the purchase of these two items correlated? In the context of this investigation, if an author uses the word shooting, what is the probabiliity they also use the word school?
+
+        <p>
+            These are some of the questions that ARM tries to answer. The goal is to create a set of association rules that can give us insight into item cooccurences in a dataset. Rules are defined as relationships between different items in item sets and how often they appear side by side. In the context of mass shootings, it will be worthwhile to search for associations among words. This processs could provide further insight into the partisan debate of mass shootings.
+
+        <p>
+            ARM has three main interpretable results: support, lift, and confidence. Support and confidence are often used as thresholds for association rules, while lift is a measure of confidence.
+
+        <h2>Data Prep</h2>
+        <p>
+            ARM requires transaction data. Transaction data is a type of unlabeled data where the important aspect is simply to have several lists of items. There are no columns, and there are no labels. The images below show dirty (top) and clean (data).
+
+        <div class="row row-cols-1">
+            <div class="col text-center mb-4">
+                <img src="../../../../../assets/text-mining/module-1/csv-file-text.png" class="img-fluid" alt="Dirty transaction data">
+            </div>
+            <div class="col text-center mb-4">
+                <img src="../../../../../assets/text-mining/module-2/clean-for-arm.png" class="img-fluid" alt="Clean transaction data">
+            </div>
+        </div>
+
+        <h3>Results</h3>
+        <p>
+            In running ARM, the support threshold was 0.1 and the confidence threshold was 0.5. The top 15 rules sorted by support (left), confidence (right), and lift (bottom) are shown below.
+
+        <div class="row row-cols-2">
+            <div class="col text-center mb-4">
+            <img src="../../../../../assets/text-mining/module-2/arm-by-support.png" class="img-fluid" alt="ARM rules sorted by support">
+            </div>
+            <div class="col text-center mb-4">
+            <img src="../../../../../assets/text-mining/module-2/arm-by-confidence.png" class="img-fluid" alt="ARM rules sorted by confidence">
+            </div>
+        </div>
+        <div class="row row-cols-1">
+            <div class="col text-center mb-4">
+            <img src="../../../../../assets/text-mining/module-2/arm-by-lift.png" class="img-fluid" alt="ARM rules sorted by lift">
+            </div>
+        </div>
+
+        <p>
+            Furthermore, we can visualize the association rules in a network based graph format.
+
+        <div class="text-center mb-4">
+            <img src="../../../../../assets/text-mining/module-2/total-arm-graph.png" alt="ARM graph" class="img-fluid">
+        </div>
+
+        <p>
+            The graph above presents an interesting picture. The top left section seems to display the political debate behind the issue with words such as "republican", "legislation", "background", and "federal". This is contrasted with the bottom portion which feels more emotional: "families", "dead", "shot", "mental", "health". 
+            
+        <p>
+            Furthermore, we can investigate specific words that were discovered through <a href="/portfolio/text-mining/latent-dirichlet-allocation">topic modeling</a>. In that discussion, various words appeared to be central to specific topics. Three of those words ("school", "gun", and "control") are shown as the center of network graphs below.
+
+        <div class="row row-cols-1">
+            <div class="col text-center mb-4">
+            <img src="../../../../../assets/text-mining/module-2/school-arm-plot.png" class="img-fluid" alt="ARM rules sorted by support">
+            </div>
+            <div class="col text-center mb-4">
+            <img src="../../../../../assets/text-mining/module-2/gun-arm-plot.png" class="img-fluid" alt="ARM rules sorted by confidence">
+            </div>
+            <div class="col text-center mb-4">
+            <img src="../../../../../assets/text-mining/module-2/control-arm-plot.png" class="img-fluid" alt="ARM rules sorted by lift">
+            </div>
+        </div>
+
+        <h2>Conclusions</h2>
+        <p>
+            ARM provided interesting insights into common word associations found throughout the news articles. Most interesting perhaps is the network plot with the word "gun" in the middle. The graph nicely encapsulates the entire debate ranging from the mass shootings plaguing the nation to the ideas for how to stop the shootings. Another interesting finding comes in the form of the association rules highlighting various point of the debate. Mental health appears frequently. Background checks appear frequently. Elementary and high school appear frequently. 
+
+        <p> 
+            As shown especially through the network graphs, this is a multifaceted issue with a political side and a human side. Both sides of congress continuously debate each other on the proper way to solve the issue while people continue to die. From regular media consumption, it is clear that both the left and the right want mass shootings to end, but they cannot agree on how to get there. The word associations reinforce this notion and remind us of the other layers.
     </div>
 </div>
