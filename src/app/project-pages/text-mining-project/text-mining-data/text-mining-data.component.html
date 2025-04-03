@@ -34,7 +34,7 @@
         <p>
             These four news organizations were the ones that the webscraping worked for. CNN and MSNBC could not be scraped in this manner probably due to how the websites were designed. Fox News was working, but the implementation has since broken. Limitations aside, the webscraping strategy yielded enough articles to bring the total article count to approximately 2,800. In order to more easily label each article as left leaning or right leaning (according to <a href="https://mediabiasfactcheck.com/" target="_blank">Media Bias Fact Check</a>), articles not from the New York Times, OAN, the New York Post, Mother Jones, or the Associated Press were not kept. This brought the total number of articles to slightly above 2,600.
 
-        <h2>Data Preprocessing</h2>
+        <h2 id="data-preprocessing">Data Preprocessing</h2>
         <p>
             Cleaning the data was an iterative process. After the articles had been downloaded using Newspaper3K, the url, title, and document text were written to a csv file. A snippet of this is shown below.
 

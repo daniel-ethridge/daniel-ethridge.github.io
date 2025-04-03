@@ -1,6 +1,157 @@
 <div class="main-background">
     <div class="container">
         <app-text-mining-navigation/>
-        <h1 style="text-align: center;">Coming Soon!</h1>
+        <h1 style="text-align: center;">Clustering</h1>
+
+        <p>
+            <em>All code can be found <a target="_blank" href="https://github.com/daniel-ethridge/text-mining-project/tree/main/unsupervised-learning">here</a>, and all data can be found <a target="_blank" href="https://github.com/daniel-ethridge/text-mining-project-data">here</a>. Any code that I did not write is cited below when referenced.</em>
+
+        <h2>Overview</h2>
+        <p>
+            Even if data are unlabeled, it often has patterns in it. Some of these patterns can form clusters, or groups of datapoints all near each other. When these patterns emerge from data, they are often seen as similar data points to one another and might receive the same label. While several clustering methods exist, we'll utilize two methods: K-means clustering and hierarchical clustering.
+
+        <p>
+            K-means is a type of partitional clustering. Partitional clustering is a method that sorts data into non-overlapping groups. One of the most common methods for partitional clustering is called K-Means clustering. In this method, k centroids are chosen at random. They are then iteratively updated according to the data until the distance from each datapoint to the closest cluster is minimized.
+            
+        <p>
+            Now, rather than dividing data up into partitions, imagine a family tree but for data. Hierarchical clustering aims to build a family tree of sorts. The higher up in the family tree, the larger a cluster of data might be. These larger clusters are slowly broken down into more and more smaller clusters where the contained data points are closer together.
+
+        <p>
+            All this being said, the news article data about the mass shootings has a binary label (i.e. left wing media or right wing media), so why bother with clustering? While supervised methods like decision trees and naive bayes can be used to predict the label of an unseen news article, unsupervised methods like clustering are great for inductively exploring the data and discovering hidden insight. While this project was formulated with two labels in mind, perhaps there are other ways to label the data which could lead to further interesting insights. 
+
+        <p>
+            Recall the five news outlets from which data was collected: New York Times (NYT), One America News Network (OAN), the New York Post (NY Post), Mother Jones, and the Associated Press (AP). The table below shows the bias and factual reporting ratings from <a target="_blank" href="https://mediabiasfactcheck.com/">mediabiasfactcheck.com</a>.
+
+        <table class="center">
+            <tr>
+                <th>News Organization</th>
+                <th>Bias Rating</th>
+                <th>Factual Reporting</th>
+            </tr>
+            <tr>
+                <td>NYT</td>
+                <td>Left Center</td>
+                <td>High</td>
+            </tr>
+            <tr>
+                <td>OAN</td>
+                <td>Far Right</td>
+                <td>Low</td>
+            </tr>
+            <tr>
+                <td>NY Post</td>
+                <td>Right Center</td>
+                <td>Mixed</td>
+            </tr>
+            <tr>
+                <td>Mother Jones</td>
+                <td>Left Center</td>
+                <td>High</td>
+            </tr>
+            <tr>
+                <td>AP</td>
+                <td>Left Center</td>
+                <td>High</td>
+            </tr>
+        </table>
+
+        <p class="mt-3">
+            The table shows all the news outlets close to center except for OAN which could be indicative of a third cluster. Furthermore, maybe there is clustering around factuality ratings of the news sources: high, mixed, and low. A final hypothesis is that the AP is in it's own group. While not reflected in the table, the AP is the closest to the center of all the news outlets. Perhaps that would show in clusters. 
+
+        <h2 class="mt-5">Data Prep</h2>
+        <p>
+            In the <a target="_blank" href="/portfolio/text-mining/data-prep#data-preprocessing">data tab</a>, the preprocessing steps to convert raw articles to a dataframe were discussed. Every row represents an article, and every column represents a word in the vocabulary. The only other preprocessing step for clustering is to remove the labels column:
+
+        <pre><code>
+            import pandas as pd
+
+            # ### 
+            # Prior code to create dataframe and save to variable orig
+            # ###
+
+            # Drop labels column
+            df = orig.drop("labels", axis=1)
+        </code></pre>
+
+        <p>
+            Previously, there were two different types of dataframes that were discussed: A dataframe containing word counts and one created using a weighting called Term Frequency - Inverse Document Frequency (TFIDF). For clustering (both k-means and hierarchical), we will utilize the TFIDF dataframe. The specific dataframe we'll use is found <a target="_blank" href="https://github.com/daniel-ethridge/text-mining-project-data/blob/e514c711be14862941d0aa89fd6861862a4d8f6f/clean/lem-tfidf-100.csv">here</a>. After removing the label, we have the following dataframe:
+
+        <div class="text-center">
+            <img class="img-fluid" src="../../../../../assets/text-mining/module-2/data-for-clustering.png" alt="">
+        </div>
+
+        <h2 class="mt-5">Results</h2>
+        <h3>K-Means</h3>
+        <p>
+            K-means is implemented simply using the Python package Sklearn. An important aspect of K-means is to select the number of clusters to use. We can do this algorithmically via two different methods: an elbow plot and silhouette analysis. The elbow plot is the more simple of the two. Several different values for clusters are chosen, and the inertia value is recorded for each cluster. The <a href="https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html">Sklearn</a> documentation defines inertia as the "sum of squared distances of samples to their closest cluster center". In plotting these values for different numbers of clusters, an "elbow" point often appears, and this is commonly deemed to be the optimal number of clusters. Since K-means uses random initialization, running the algorithm produces different results each time. To counter this, the algorithm was run 100 times per number of clusters, and the resulting inertias were averaged per cluster.
+
+        <div class="text-center mb-4">
+            <img class="img-fluid" src="../../../../../assets/text-mining/module-2/elbow-plot.png" alt="">
+        </div>
+
+        <p>
+            Silhouette analysis accomplishes the same task in a different way. A silhouette plot shows how close each point is to other points in different clusters. These distances are silhouette scores. By comparing average silhouette scores for different numbers of clusters, we can determine an optimal number of clusters. The images below show a silhouette plot of the article data and printed outputs that tell the average silhouette scores for each number of clusters. You will see that the first image shows five clusters as the optimal number of clusters. Thus, the second image shows five silhouetters. For completeness, the third image shows the results of two clusters given the binary left-right label, and the final image shows 3 clusters, the choice of which stems from the above hypotheses about how the data might cluster. 
+
+        <p>
+            <em>Note: the code to generate the plots and the output statements comes directly from Sklearn. See <a target="_blank" href="https://scikit-learn.org/stable/auto_examples/cluster/plot_kmeans_silhouette_analysis.html#sphx-glr-auto-examples-cluster-plot-kmeans-silhouette-analysis-py">here</a> for the code on the Sklearn website.</em>
+
+        <div class="row row-cols-1">
+            <div class="col text-center mb-3">
+                <img class="img-fluid" src="../../../../../assets/text-mining/module-2/silhouette-scores.png" alt="Silhouette scores plot">
+            </div>
+            <div class="col text-center mb-3">
+                <img class="img-fluid" src="../../../../../assets/text-mining/module-2/silhouette-5-plot.png" alt="Silhouette output">
+            </div>
+            <div class="col text-center mb-3">
+                <img class="img-fluid" src="../../../../../assets/text-mining/module-2/silhouette-2-plot.png" alt="Silhouette output">
+            </div>
+            <div class="col text-center mb-3">
+                <img class="img-fluid" src="../../../../../assets/text-mining/module-2/silhouette-3-plot.png" alt="Silhouette output">
+            </div>
+        </div>
+
+        <p>
+            Additionally, a final idea is to reduce dimensionality using Principal Component Analysis (PCA) in order to try and visualize clusters in a lower dimensional space. For this particular set of data, a three-dimensional plot does not provide any additional information.
+
+        <div class="col text-center mb-3">
+            <img class="img-fluid" src="../../../../../assets/text-mining/module-2/pc.png" alt="3D PCA">
+        </div>
+
+        <h3>Hierarchical</h3>
+
+        <p>
+            The second form of clustering, hierarchical, groups the articles in multiple ways at once. Articles are grouped both into large, encompassing groups as well as smaller, more specific groups. This is visualized as a dendrogram. The x-axis with over 2000 articles would get incredibly messy, so first we can look at an unlabeled dendrogram to see how many clusters are apparent.
+    
+            
+        <div class="text-center mb-4">
+            <img class="img-fluid" src="../../../../../assets/text-mining/module-2/unlabeled-dendrogram.png" alt="">
+        </div>
+
+        <p>
+            Obviously the bottom of the plot is illegible, but this view is valuable to see how the data overall clusters. It seems to agree with the 5 clusters that the silhouette method and the elbow plot suggested. This can be more easily seen by drawing red rectangles around the clustered areas.
+
+        <div class="text-center mb-4">
+            <img class="img-fluid" src="../../../../../assets/text-mining/module-2/unlabeled-dendro-box.png" alt="">
+        </div>
+
+        <p>
+            While it could be argued that the right most cluster could be divided into two separate clusters, five seems like a better fit given the other methods. With that, we can take a sample of the data and visualize another dendrogram, now with labels.
+
+        <div class="text-center mb-4">
+            <img class="img-fluid" src="../../../../../assets/text-mining/module-2/dendrogram.png" alt="">
+        </div>
+
+        <div class="clearfix">
+            <img class="float-end px-5" style="max-width: 400px;" src="../../../../../assets/text-mining/module-2/clusters-labels.png" alt="cluster stuff">
+
+        <h2>Conclusions</h2>
+
+        <p>
+            The first logical idea of why five clusters is a good fit is because of there being five news outlets. This is not the case however as can be seen in the image to the right. It shows the labels of each article as well as the cluster that the article was assigned to. If it were the case that each news outlet got its own group, left and right labels would not belong to the same cluster, but the image in the right shows several examples where left and right labels are in the same cluster. This is also seen in the dendrogram above. Likely, there are around five overarching subtopics in this debate. What those are is not immediately apparent, but performing clustering on what was initially labeled data has provided a richer view. 
+
+        <p>
+            Pertaining to the topic of mass shootings in the United States, the main take away from clustering is that within this partisan issue exist approximately 5 subissues or 5 types of articles that might be written. Further exploration concerning what these subissues are are interesting next steps that could potentially be investigated through <a href="/portfolio/text-mining/arm">association rule mining</a> or <a href="/portfolio/text-mining/lda">topic modelling</a>.
+
+        </div>
     </div>
 </div>

@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 import { ClassRoutes } from 'src/app/_models/ClassRoutes';
 
 @Component({
-  selector: 'app-text-mining-navigation',
-  templateUrl: './text-mining-navigation.component.html',
-  styleUrls: ['./text-mining-navigation.component.css']
+    selector: 'app-text-mining-navigation',
+    templateUrl: './text-mining-navigation.component.html',
+    styleUrls: ['./text-mining-navigation.component.scss'],
+    standalone: false
 })
 export class TextMiningNavigationComponent {
   routes: ClassRoutes = new ClassRoutes();
