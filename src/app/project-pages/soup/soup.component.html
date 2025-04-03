@@ -1,5 +1,96 @@
 <div class="main-background">
     <div class="container">
-        <h1>Coming Soon!</h1>
+        <h1 class="text-center">Subject Flow</h1>
+        <p>
+            From March 7th to April 3rd, the subject blew into a tube to measure breath flow strength. Data was collected starting March 7th and stopped on April 1st. Three puffs were performed on each day as instructed. Supplementary data concerning sleep quality, dream type, and previous day activity level were also collected. 
+
+        <h2>The Effect of Puff Order</h2>
+        <p>
+            The image below show box plots of puff values for the first, second, and third puffs each day.
+
+        <div class="text-center mb-5">
+            <img class="img-fluid w-75" src="../../../assets/puff/boxplots.png" alt="">
+        </div>
+
+        <p>
+            Results showed no significant effects of puff order. Therefore, the rest of the analyses were done using the average of the three puffs for each day. These values are shown below.
+
+        <div class="text-center mb-5">
+            <img class="img-fluid w-75" src="../../../assets/puff/puff-hist.png" alt="">
+        </div>
+
+        <h2>The effects of Sleep Quality</h2>
+        <p>
+            The plot below shows frequency of different qualities of sleep experienced by the subject. Sleep quality was measured on a likert scale ranging from 1 to 7.
+
+        <div class="text-center mb-5">
+            <img class="img-fluid w-75" src="../../../assets/puff/sleep-quality.png" alt="">
+        </div>
+
+        <p> 
+            Due to the low sample sizes of the sleep quality ratings of 2, 3, and 7, these were thrown out. The plot below shows the relative puff strengths for each of the remaining sleep qualities.
+    
+        <div class="text-center mb-5">
+            <img class="img-fluid w-75" src="../../../assets/puff/puff-sleep.png" alt="">
+        </div>
+
+        <p>
+            Despite no significant effects, one can visually see that ass sleep quality decreases, the puff strength also tends to decrease.
+
+        <h2>The Effects of Dream Quality</h2>
+        <p>
+            Over the experimental period, the subject either experienced a weird dream or no dream each night as shown below.
+
+        <div class="text-center mb-5">
+            <img class="img-fluid w-75" src="../../../assets/puff/weird-dreams.png" alt="">
+        </div>
+
+        <p>
+            The plot below shows the relationship between dream quality and puff strength.
+
+        <div class="text-center mb-5">
+            <img class="img-fluid w-75" src="../../../assets/puff/puff-dream.png" alt="">
+        </div>
+
+        <p>
+            There seems to be a small, non-statistically significant effect of dream quality. Notice the outliers in the bottom of the plots. When these are removed, the effect seems less pronounced. 
+
+        <div class="text-center mb-5">
+            <img class="img-fluid w-75" src="../../../assets/puff/puff-dream-no-outliers.png" alt="">
+        </div>
+
+        <h2>The Effects of Exercise</h2>
+        <p>
+            The previous days activity was recorded on a 7-point likert scale. The plot below shows the responses.
+
+        <div class="text-center mb-5">
+            <img class="img-fluid w-75" src="../../../assets/puff/prior-day-exercise.png" alt="">
+        </div>
+
+        <p>
+            Given the large number of "1" responses (indicating no exercise the day before), the data was aggregated according to a binary TRUE or FALSE in terms of exercise.
+
+        <div class="text-center mb-5">
+            <img class="img-fluid w-75" src="../../../assets/puff/exercise.png" alt="">
+        </div>
+
+        <p>
+            The plot below shows the relationship between puff strength and exercise.
+
+        <div class="text-center mb-5">
+            <img class="img-fluid w-75" src="../../../assets/puff/puff-exercise.png" alt="">
+        </div>
+
+        <p>
+            Similar to the dream analysis, it could be argued that some of the lower points are outliers. In removing these, the following plot is produced. Note that the plotting software moved FALSE to the left. Could not get that changed back.
+
+        <div class="text-center mb-5">
+            <img class="img-fluid w-75" src="../../../assets/puff/puff-exercise-no-outlier.png" alt="">
+        </div>
+
+        <h2>Conclusions</h2>
+        <p>
+            The only thing that seems to influence puff strength is sleep quality, yet this was still technically insignificant. Logically it does make sense given the importance of sleep. Thus, more data would need to be collected for a proper analysis.
+            
     </div>
 </div>
