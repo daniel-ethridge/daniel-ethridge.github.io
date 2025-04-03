@@ -3,9 +3,10 @@ import { Project } from 'src/app/_models/Project';
 import { ProjectsService } from 'src/app/_services/projects.service';
 
 @Component({
-  selector: 'app-magnebacus',
-  templateUrl: './shape-song.component.html',
-  styleUrls: ['./shape-song.component.css', './../../app.component.css']
+    selector: 'app-magnebacus',
+    templateUrl: './shape-song.component.html',
+    styleUrls: ['./shape-song.component.scss'],
+    standalone: false
 })
 
 export class ShapeSongComponent implements OnInit {

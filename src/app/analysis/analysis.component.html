@@ -1,0 +1,58 @@
+<mat-menu #vizMenu="matMenu">
+    <button mat-menu-item class="blue-button bright-hover" style="width: 75%;" (click)="createScatterplot()">Scatter Plot</button>
+    <button mat-menu-item class="blue-button bright-hover" style="width: 75%;">Clear</button> 
+</mat-menu>
+
+<mat-menu #xVar="matMenu">
+    <div *ngFor="let col of csvData.columns">
+        <button mat-menu-item class="blue-button bright-hover" style="width: 75%;" (click)="setDatacolumns('x', col)">{{col}}</button>
+    </div>
+</mat-menu>
+
+<mat-menu #yVar="matMenu">
+    <div *ngFor="let col of csvData.columns">
+        <button mat-menu-item class="blue-button bright-hover" style="width: 75%;" (click)="setDatacolumns('y', col)">{{col}}</button>
+    </div>
+</mat-menu>
+
+<div class="main-background">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-lg-4 text-center">
+            <div class="col">
+                <button class="green-button bright-hover" style="width: 75%;" (click)="loadCsvData()"><h5>Load Data</h5></button>
+            </div>
+            <div class="col">
+                <button class="green-button bright-hover" style="width: 75%;"><h5>DataFrame</h5></button>
+            </div>
+            <div class="col">
+                <button class="green-button bright-hover" style="width: 75%;" [mat-menu-trigger-for]="vizMenu"><h5>Visualizations</h5></button>
+            </div>
+            <div class="col">
+                <button class="green-button bright-hover" style="width: 75%;"><h5>Create Image</h5></button>
+            </div>
+        </div>
+
+        <div class="row mt-4 content-box">
+            <div class="col-12">
+                <h4 class="text-center">Settings</h4>
+            </div>
+            <div class="col-3">
+                <button class="green-button bright-hover" style="width: 75%" [mat-menu-trigger-for]="xVar"><h6>X Variable: {{xKey}}</h6></button>
+            </div>
+            <div class="col-3">
+                <button class="green-button bright-hover" style="width: 75%" [mat-menu-trigger-for]="yVar"><h6>Y Variable: {{yKey}}</h6></button>
+            </div>
+        </div>
+        
+        <div *ngIf="displayPlot" style="text-align:center">
+            <apx-chart
+                [series]="chartOptions.series!"
+                [chart]="chartOptions.chart!"
+                [xaxis]="chartOptions.xaxis!"
+                [yaxis]="chartOptions.yaxis!"
+                [title]="chartOptions.title!"
+                [grid]="chartOptions.grid!"
+            ></apx-chart>
+        </div>
+    </div>
+</div>
