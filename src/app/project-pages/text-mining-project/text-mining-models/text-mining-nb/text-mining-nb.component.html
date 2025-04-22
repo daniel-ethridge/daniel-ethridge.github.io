@@ -1,6 +1,92 @@
 <div class="main-background">
     <div class="container">
         <app-text-mining-navigation/>
-        <h1 style="text-align: center;">Coming Soon!</h1>
+        <h1 style="text-align: center;">Naïve Bayes</h1>
+        <p>
+            <em>All code can be found <a target="_blank" href="https://github.com/daniel-ethridge/text-mining-project/tree/main/unsupervised-learning">here</a>, and all data can be found <a target="_blank" href="https://github.com/daniel-ethridge/text-mining-project-data">here</a>.</em>
+        <h2>Overview</h2>
+        <p>
+            A full overview of Naïve Bayes cannot be had without first discussing conditional probability. Extending from that concept, there are several types of Naïve Bayes, and which to use will be apparent given the type of data we have. 
+
+
+        <h3 class="mt-4">An Extension of Conditional Probability</h3>
+        <p>
+            Naïve Bayes, like other supervised learning models, learns a  can be used to predict an outcome based on data. It is built off of Baye's Theorem which at its core is simply conditional probability of dependent events:
+
+            $${{math.beginAlign()}}
+                
+                P(Y|X) & = {{math.fraction("P(Y \\cap X)", "P(X)")}} \\\\
+                P(Y|X) & =  {{math.fraction("P(X|Y)P(Y)", "P(X)")}},
+
+            {{math.endAlign()}}$$
+
+        <p>
+            where $Y$ is a $N \times 1$ vector and $X$ is a $M \times $N matrix. $y_1$ is the $n$th element in $Y$ and ${{math.sub("x", "m,n")}}$ is the element in $X$ in the $m$th row and the $n$th column. Imagine that $y_1$ is the current outcome value of interest based on a single row of $X$. By Baye's theorem, 
+
+            $$
+            {{math.beginAlign()}}
+
+                P(y_1|X) & = {{math.fraction("P(X | y_1)P(y_1)", "P(X)")}} \\\\
+
+                P(y_1|x_1 \cap x_2 \cap ... \cap x_m) & = {{math.fraction("P(x_1 \\cap x_2 \\cap ... \\cap x_m| y_1)P(y_1)", "P(x_1 \\cap x_2 \\cap ... \\cap x_m)")}} \\\\
+            {{math.endAlign()}}
+            $$
+
+        <h3 class="mt-4">From Conditional Probability to Naïve Bayes</h3>
+        <p>
+            With dependent events, this formula becomes unweildy for large amounts of features (i.e. large values of $M$). See <a href="https://en.wikipedia.org/wiki/Chain_rule_(probability)" target="_blank">the chain rule for probability</a> for an explanation. Enter the naïve part of Naïve Bayes. The algorithm makes an assumption that the features of $X$ are independent. While this is mostly likely seldom the case, it simplifies the math greatly. The final formula, following from above, becomes
+            $$
+
+            {{math.beginAlign()}}
+                P(y_1|x_1 \cap x_2 \cap ... \cap x_m) & = {{math.fraction("P(x_1 \\cap x_2 \\cap ... \\cap x_m| y_1)P(y_1)", "P(x_1 \\cap x_2 \\cap ... \\cap x_m)")}} \\\\
+
+                & = {{math.fraction("P(x_1|y_1) \\cdot P(x_2|y_1) \\cdot ... \\cdot P(x_m|y_1) \\cdot P(y_1)", "P(x_1) \\cdot P(x_2) \\cdot ... \\cdot P(x_m)")}}
+            {{math.endAlign()}}
+            $$
+
+        <p>
+            The Naïve Bayes model calculates all necessary probabilities when given a training dataset and can predict an outcome based on a new data vector using the formula. 
+
+        <h3 class="mt-4">Types of Naïve Bayes</h3>
+        <p>
+            There are multiple types of Naïve Bayes algorithms. Which one to utilize depends on the type of training data. Four main types are:
+
+        <ul>
+            <li>Gaussian Naïve Bayes</li>
+            <li>Multinomial Naïve Bayes</li>
+            <li>Bernoulli Naïve Bayes</li>
+            <li>Categorical Naïve Bayes</li>
+        </ul>
+
+        <p>
+            
+            They are all named after the distributions that the input data can come from. Gaussian Naive Bayes has input where each feature vector takes the form of a normal, or gaussian, distribution. Multinomial, Bernoulli, and Categorical Naive Bayes all deal with discrete distributions.
+
+        <p>
+            The multinomial distribution revolves around two parameters $k$ and $n$. Suppose there is an event with some number of possible outcomes, and this event will happen some number of times. Each outcome has its own probability of happening. Take this event to be drawing a marble out of a bag with replacement, and in the bag there are 5 blue (B) marbles, 3 green (G) marbles, and 2 red (R) marbles. For each draw, $P(B) = 0.5$, $P(G)=0.3$, and $P(R) = 0.2$. We have three outcomes. Assume that a marble is selected from the bag 5 times. 
+
+        <p>
+            Let us return to $k$ and $n$. The letter $k$ corresponds to the number of possible outcomes. In this example, $k=3$, and $n$ corresponds to the number of times the event occurs. In this example, $n=5$. 
+
+        <p>
+            The remaining two distributions, Bernoulli and Categorical, are specific cases of the Multinomial distribution. If $k=2$ and $n=1$, it is the Bernoulli distribution. If $k>2$ and $n=1$, it is the Categorical distribution.
+
+        <p>
+            If the data is continuous and normally distributed, Gaussian Naive Bayes is the right choice. If the data is discrete, it will be:
+        
+        <ul>
+            <li>Categorical: For multiple categories</li>
+            <li>Multinomial: Often for count data</li>
+            <li>Bernoulli: For 2 categories</li>
+        </ul>
+
+        <!-- What do we use for text data? -->
+        <h3 class="mt-4">What do we use for text data?</h3>
+        <p>
+            From the bullet point list above, we see that Multinomial Naïve Bayes is often utilized for count data, and count data is what we have from <code>scikit-learn</code>'s <code>CountVectorizer</code>. Thus, for this endeavor, we will utilized Multinomial Naive Bayes. 
+
+        <h2>Data Preparation</h2>
+        <h2>Results</h2>
+        <h2>Conclusions</h2>
     </div>
 </div>
