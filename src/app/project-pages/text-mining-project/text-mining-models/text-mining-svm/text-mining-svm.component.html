@@ -1,6 +1,145 @@
 <div class="main-background">
     <div class="container">
         <app-text-mining-navigation/>
-        <h1 style="text-align: center;">Coming Soon!</h1>
+        <h1 class="text-center">Support Vector Machines</h1>
+        <p>
+            <em>All code can be found <a target="_blank" href="https://github.com/daniel-ethridge/text-mining-project/blob/main/supervised-learning/supervised_learning.ipynb">here</a>, and all data can be found <a target="_blank" href="https://github.com/daniel-ethridge/text-mining-project-data">here</a>.</em>
+        </p>
+        <h2>Overview</h2>
+        <div class="text-center my-4">
+            <img class="img-fluid" src="../../../../assets/ml-assets/ml-supervised/svm.png" alt="">
+        </div>
+
+        <h3>A Linear Separator</h3>
+        <p>
+            Imagine a company wants to construct a straight road through the countryside. On either side of this planned road there might be trees on the left and bushes on the right. We cannot move any of the plants as they are already in place, so we need to build as wide a road as we can right through the middle without disturbing any of the vegetation.
+
+        <p>
+            This analogy describes what a support vector machine (SVM) does. An SVM finds a hyperplane through a set of data that separates data points labeled binarily with the goal of maximizing the width of the margin created. 
+        
+        <p>
+            But what if the data are not linearly Separable? It's a important question. In this case, we can utilize what is known as a kernel. A kernel can map data to a higher dimension so that, while it might not be linearly separable in this dimension, it is linearly separable in a higher dimension.
+
+        <h2>Data Preparation</h2>
+        <p>
+            For supervised learning, labeled data is required because the models need a ground truth to find the patterns in a dataset that lead to any specific label. In this case, the labels are "left" and "right". Mapped to numbers with <code>scikit-learn</code>'s <code>LabelEncoder</code>, the labels are 0 and 1. 
+
+        <p>
+            The full dataset can be found at the link at the top of the page. Go to the clean folder, and see the file called <code>count-4856.csv</code>. An partial image of the full dataset is below.
+
+        <div class="text-center my-4">
+            <img src="assets/text-mining/supervised-learning/data.png" alt="Partial view of dataset" class="img-fluid">
+        </div>
+
+        <p>
+            To train a model, the data must be split into training and testing data. This is for model evaluation. The point of these models to be able to predict things about data they have not seen, or in this point to predict the political leaning of an article that it has not seen. If the model is evaluated on the data it was trained on, it's like if a student in school was able to study for a test with the exact test and answers that they would later see. It's cheating. Thus, we need to split data into separate training and testing sets. The images on the left show training data and labels, and the image on the right show testing data and labels. Notice the difference in row counts. The training data is 90% of the entire dataset, while the testing set is only 10%.
+
+        <div class="row text-center">
+            <div class="col-6 my-4">
+            <img src="assets/text-mining/supervised-learning/training-data.png" alt="Training data" class="img-fluid">
+            </div>
+            <div class="col-6 my-4">
+            <img src="assets/text-mining/supervised-learning/testing-data.png" alt="Testing data" class="img-fluid">
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="col-6 my-4">
+            <img src="assets/text-mining/supervised-learning/training-labels.png" alt="Training labels" class="img-fluid">
+            </div>
+            <div class="col-6 my-4">
+            <img src="assets/text-mining/supervised-learning/testing-labels.png" alt="Testing labels" class="img-fluid">
+            </div>
+        </div>
+
+        <p>
+            Note that this is just an example. To train and evaluate the models, I've implemented a flavor of cross validation called monte-carlo cross validation. This is a method where instead of just training and evaluating a model once, we create a new, random train-test split, train, and evaluate several times. By doing this, we can obtain a distribution of each of the metrics used later (i.e. accuracy, precision, recall, and f1 score) and calculate average scores and the standard deviation. This has the benefit of providing more information than just a single number. 
+
+        <h2>Results</h2>
+        <p>
+            With any machine learning model, overfitting is a concern. Support vector machines, there are actually 4 different parameters to tweak: the kernel, C (or cost), gamma, and degree. For more detail on these, please <a href="https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html#sklearn.svm.SVC">see the documentation</a>.
+
+        <p>
+            First, the kernels. There are three kernels to try: linear, RBF, and polynomial. The C values that I tried were 0.1, 1, 10, and 100. The gamma values that I tried were 0.1, 1, 10, and 100. Finally, the degrees for the polynomial kernel were 2, 3, 4, and 5. Thankfully, not every kernel takes every parameter. Only the polynomial kernel take a degree, while the linear kernel doesn't need gamma either. That still leaves several combinations to try. Training all the models took some time, but ultimately there were 6 SVMs that were the best.
+
+        <div class="text-center my-4">
+            <img src="assets/text-mining/supervised-learning/svm-top-models.png" alt="Top performing SVM models" class="img-fluid">
+        </div>
+
+        <p>
+            With these models in hand, it was important to check for model overfitting. First, for the linear kernel, the only value to adjust the cost (C) of the SVM. This is shown below.
+
+        <div class="text-center my-4">
+            <img src="assets/text-mining/supervised-learning/linear-svm-overfit1.png" alt="Linear SVM overfitting test" class="img-fluid">
+        </div>
+
+        <p>
+            The model overfit. Even with C = 0.01, we are overfitting. Thus, we need to try smaller values of C.
+
+        <div class="text-center my-4">
+            <img src="assets/text-mining/supervised-learning/linear-svm-overfit2.png" alt="Linear SVM second overfitting test" class="img-fluid">
+        </div>
+
+        <p>
+            From this, we will set C = 0.001. I took a similar course of action with the polynomial kernel SVMs. The necessary values to maximize accuracies while not overfitting were C = 0.001 and gamma = 0.001. 
+
+        <p>
+            The 5 plots below show distributions of five evaluation metrics alongside a confusion matrix for the iteration that provided the average accuracy. These are for the linear SVM.
+
+        <div class="row text-center mb-4">
+            <div class="col-6">
+            <img src="assets/text-mining/supervised-learning/linear-svm-accuracy.png" alt="Accuracy distribution" class="img-fluid">
+            </div>
+            <div class="col-6">
+            <img src="assets/text-mining/supervised-learning/linear-svm-precision.png" alt="Precision distribution" class="img-fluid">
+            </div>
+        </div>
+        <div class="row text-center mb-4">
+            <div class="col-6">
+            <img src="assets/text-mining/supervised-learning/linear-svm-recall.png" alt="Recall distribution" class="img-fluid">
+            </div>
+            <div class="col-6">
+            <img src="assets/text-mining/supervised-learning/linear-svm-f1.png" alt="F1 distribution" class="img-fluid">
+            </div>
+        </div>
+        <div class="row text-center my-4">
+            <div class="col-12">
+            <img src="assets/text-mining/supervised-learning/linear-svm-conf-mat.png" alt="Confusion matrix" class="img-fluid">
+            </div>
+        </div>
+
+        <p>
+            In computing confusion matrices for the other two kernels with proper hyperparameters to prevent overfitting, things did not go well. They predicted everything as "left".
+
+        <div class="row text-center">
+            <div class="col-6">
+                <img src="assets/text-mining/supervised-learning/rbf-svm-conf-mat.png" alt="RBF SVM confusion matrix" class="img-fluid">
+            </div>
+            <div class="col-6">
+                <img src="assets/text-mining/supervised-learning/poly-svm-conf-mat.png" alt="Polynomial SVM confusion matrix" class="img-fluid">
+            </div>
+        </div>
+
+        <h3 class="mt-5">Comparison with other Models</h3>
+        <p>
+            The table below shows the SVMs' evaluation metrics compared to a <a href="/portfolio/text-mining/naive-bayes">Naive Bayes Model</a> and a <a href="/portfolio/text-mining/decision-tree">decision tree model</a>. See the pages linked to learn about those!
+
+        <div class="text-center my-4">
+            <img src="assets/text-mining/supervised-learning/all-results.png" alt="Model comparison" class="img-fluid">
+        </div>
+
+        <p>
+            The linear SVM performed the best, while the other two SVMs performed the worst. 
+
+        <h2 id="conclusion">Conclusions</h2>
+        <p>
+            With the linear SVM, we are able to predict about 83% of news articles' political leaning correctly, and it does it the best out of any of the other models. Furthermore, the SVM can give us a window into how it is actually making the prediction decisions. For example, the linear SVM provides feature weights after it is trained and thus tells us which features are most important. The image below tells us the 20 features that matter most. 
+
+        <div class="text-center my-4">
+            <img src="assets/text-mining/supervised-learning/svm-words.png" alt="Most important words for SVM model" class="img-fluid">
+        </div>
+
+        <p>
+            The three most important words -- "matters", "fight", and "letter" -- are the exact three most important words that comprised the root nodes of <a href="/portfolio/text-mining/decision-tree#the-trees">the three decision trees</a>. This would warrant further investigation via unsupervised methods to see what clusters, topics, and associations might revolve around these words.
+
     </div>
 </div>

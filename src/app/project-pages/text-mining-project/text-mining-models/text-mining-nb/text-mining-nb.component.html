@@ -3,7 +3,7 @@
         <app-text-mining-navigation/>
         <h1 style="text-align: center;">Naïve Bayes</h1>
         <p>
-            <em>All code can be found <a target="_blank" href="https://github.com/daniel-ethridge/text-mining-project/tree/main/unsupervised-learning">here</a>, and all data can be found <a target="_blank" href="https://github.com/daniel-ethridge/text-mining-project-data">here</a>.</em>
+            <em>All code can be found <a target="_blank" href="https://github.com/daniel-ethridge/text-mining-project/blob/main/supervised-learning/supervised_learning.ipynb">here</a>, and all data can be found <a target="_blank" href="https://github.com/daniel-ethridge/text-mining-project-data">here</a>.</em>
         <h2>Overview</h2>
         <p>
             A full overview of Naïve Bayes cannot be had without first discussing conditional probability. Extending from that concept, there are several types of Naïve Bayes, and which to use will be apparent given the type of data we have. 
@@ -83,10 +83,119 @@
         <!-- What do we use for text data? -->
         <h3 class="mt-4">What do we use for text data?</h3>
         <p>
-            From the bullet point list above, we see that Multinomial Naïve Bayes is often utilized for count data, and count data is what we have from <code>scikit-learn</code>'s <code>CountVectorizer</code>. Thus, for this endeavor, we will utilized Multinomial Naive Bayes. 
+            From the bullet point list above, we see that Multinomial Naïve Bayes is often utilized for count data, and count data is what we have from <code>scikit-learn</code>'s <code>CountVectorizer</code>. Thus, for this endeavor, we will utilize Multinomial Naive Bayes. 
 
         <h2>Data Preparation</h2>
+        <p>
+            For supervised learning, labeled data is required because the models need a ground truth to find the patterns in a dataset that lead to any specific label. In this case, the labels are "left" and "right". Mapped to numbers with <code>scikit-learn</code>'s <code>LabelEncoder</code>, the labels are 0 and 1. 
+
+        <p>
+            The full dataset can be found at the link at the top of the page. Go to the clean folder, and see the file called <code>count-4856.csv</code>. An partial image of the full dataset is below.
+
+        <div class="text-center my-4">
+            <img src="assets/text-mining/supervised-learning/data.png" alt="Partial view of dataset" class="img-fluid">
+        </div>
+
+        <p>
+            To train a model, the data must be split into training and testing data. This is for model evaluation. The point of these models to be able to predict things about data they have not seen, or in this point to predict the political leaning of an article that it has not seen. If the model is evaluated on the data it was trained on, it's like if a student in school was able to study for a test with the exact test and answers that they would later see. It's cheating. Thus, we need to split data into separate training and testing sets. The images on the left show training data and labels, and the image on the right show testing data and labels. Notice the difference in row counts. The training data is 90% of the entire dataset, while the testing set is only 10%.
+
+        <div class="row text-center">
+            <div class="col-6 my-4">
+            <img src="assets/text-mining/supervised-learning/training-data.png" alt="Training data" class="img-fluid">
+            </div>
+            <div class="col-6 my-4">
+            <img src="assets/text-mining/supervised-learning/testing-data.png" alt="Testing data" class="img-fluid">
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="col-6 my-4">
+            <img src="assets/text-mining/supervised-learning/training-labels.png" alt="Training labels" class="img-fluid">
+            </div>
+            <div class="col-6 my-4">
+            <img src="assets/text-mining/supervised-learning/testing-labels.png" alt="Testing labels" class="img-fluid">
+            </div>
+        </div>
+
+        <p>
+            Note that this is just an example. To train and evaluate the models, I've implemented a flavor of cross validation called monte-carlo cross validation. This is a method where instead of just training and evaluating a model once, we create a new, random train-test split, train, and evaluate several times. By doing this, we can obtain a distribution of each of the metrics used later (i.e. accuracy, precision, recall, and f1 score) and calculate average scores and the standard deviation. This has the benefit of providing more information than just a single number. 
+
         <h2>Results</h2>
+        <p>
+            With any machine learning model, overfitting is a concern. For Multinomial Naive Bayes, the main hyperparameter that I wanted to check with was the alpha parameter. According to documentation, alpha is a smoothing parameter.
+
+        <p>
+            To test for overfitting with any model, we can calculate two separate accuracies: one with the model evaluated on the training data one with the model evaluated on the testing data and one on the training data. The image below shows this.
+
+        <div class="text-center my-4">
+            <img src="assets/text-mining/supervised-learning/nb-train-test.png" alt="Training and testing accuracy" class="img-fluid">
+        </div>
+
+        <p>
+            A sign of potential overfitting would be if the testing accuracy was more than 5% below the training accuracy, but we do not observe that. It is natural for the training data evalutation to be slightly better because the model has already seen that data. A significant difference in training data and testing data accuracies would be cause for concern. 
+            
+        <p>
+            Furthermore, we can zoom in on the testing data accuracies to see if any certain value of alpha makes a difference. 
+
+        <div class="text-center my-4">
+            <img src="assets/text-mining/supervised-learning/nb-different-alpha.png" alt="Testing accuracy with different alpha values" class="img-fluid">
+        </div>
+
+        <p>
+            The largest peak seems to be around 1.0, right around the default. In other iterations of this plot not shown, 1.0 was not always the highest, but it is safe in this instance to go with alpha = 1 since the difference in accuracies only spans 1%.
+
+        <p>
+            The 5 plots below show distributions of five evaluation metrics alongside a confusion matrix for the iteration that provided the average accuracy. 
+
+        <div class="row text-center mb-4">
+            <div class="col-6">
+            <img src="assets/text-mining/supervised-learning/nb-accuracy.png" alt="Accuracy distribution" class="img-fluid">
+            </div>
+            <div class="col-6">
+            <img src="assets/text-mining/supervised-learning/nb-precision.png" alt="Precision distribution" class="img-fluid">
+            </div>
+        </div>
+        <div class="row text-center mb-4">
+            <div class="col-6">
+            <img src="assets/text-mining/supervised-learning/nb-recall.png" alt="Recall distribution" class="img-fluid">
+            </div>
+            <div class="col-6">
+            <img src="assets/text-mining/supervised-learning/nb-f1.png" alt="F1 distribution" class="img-fluid">
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="col-12">
+            <img src="assets/text-mining/supervised-learning/nb-conf-mat.png" alt="Confusion matrix" class="img-fluid">
+            </div>
+        </div>
+
+        <h3 class="mt-5">Comparison with other Models</h3>
+        <p>
+            The table below shows Multinomial Naive Bayes' evaluation metrics compared to a <a href="/portfolio/text-mining/decision-tree">Decision Tree model</a> and three <a href="/portfolio/text-mining/support-vector-machine">Support Vector Machine models</a>. See the pages linked to learn about those!
+
+        <div class="text-center my-4">
+            <img src="assets/text-mining/supervised-learning/all-results.png" alt="Model comparison" class="img-fluid">
+        </div>
+
+        <p>
+            Multinomial Naive Bayes performs decently compared to the other models, but it's not the best.
+
         <h2>Conclusions</h2>
+        <p>
+            With Naive Bayes, we can predict the political affiliation of 4 out of 5 articles correctly. It performs fairly well on with precision, recall, and f1 as well. 
+
+        <p>
+            Given decent predictions, the word probabilities generated during model fit are informative. The top 20 most probable words given the label of left (left image) and right (right image) are below.
+
+        <div class="row text-center">
+            <div class="col-6 my-4">
+                <img src="assets/text-mining/supervised-learning/nb-left-words.png" alt="Left words" class="img-fluid">
+            </div>
+            <div class="col-6 my-4">
+                <img src="assets/text-mining/supervised-learning/nb-right-words.png" alt="Right words" class="img-fluid">
+            </div>
+        </div>
+
+        <p>
+            The words from the right seem more informational. This is contrasted with the words from the left. The inclusion of the words "trump", "black", "white", and "president" point to potential cultural and political underpinnings. 
     </div>
 </div>
