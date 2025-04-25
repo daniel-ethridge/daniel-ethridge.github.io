@@ -19,7 +19,7 @@ export class ClassRoutes {
     tmConclusions: string = "portfolio/text-mining/conclusions";
     tmArm: string = "portfolio/text-mining/arm";
     tmClustering: string = "portfolio/text-mining/clustering";
-    tmDescTree: string = "portfolio/text-mining/descision-tree";
+    tmDescTree: string = "portfolio/text-mining/decision-tree";
     tmLda: string = "portfolio/text-mining/latent-dirichlet-allocation";
     tmNb: string = "portfolio/text-mining/naive-bayes";
     tmNn: string = "portfolio/text-mining/neural-network";
