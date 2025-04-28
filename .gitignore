@@ -50,3 +50,6 @@ __pycache__
 # System files
 .DS_Store
 Thumbs.db
+
+# Raw assets
+image-projects/
