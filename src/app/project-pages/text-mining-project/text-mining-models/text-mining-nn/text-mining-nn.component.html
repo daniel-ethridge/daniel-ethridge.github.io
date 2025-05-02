@@ -1,6 +1,71 @@
 <div class="main-background">
     <div class="container">
         <app-text-mining-navigation/>
-        <h1 style="text-align: center;">Coming Soon!</h1>
-    </div>
-</div>
+        <h1 style="text-align: center;">Neural Networks</h1>
+        <p>
+            <em>All code can be found <a target="_blank" href="https://github.com/daniel-ethridge/text-mining-project/blob/main/supervised-learning/supervised_learning.ipynb">here</a>, and all data can be found <a target="_blank" href="https://github.com/daniel-ethridge/text-mining-project-data">here</a>.</em>
+        <div class="row d-flex justify-content-center">
+            <div class="col-12 text-center">
+                <img src="assets/text-mining/neural-networks/neural-network.png" class="img-fluid" alt="Neural Network Diagram">
+            </div>
+        </div>
+        <p>
+            
+        <h2>Overview</h2>
+        <p>
+            Above is a classic picture of a neural network. Inspired by the human brain, neural networks are comprised of several layers. The one above has 4 layers: an input layer, two hidden layers, and an output layer. Neural networks have been utilized for a variety of tasks. Recurrent neural networks have been utilized in language processing tasks such as the predicting-the-next-word task while convolutional neural networks have found use in image classification as well as other areas. These are by far not the only two types of neural networks. A third type, a feed-forward neural network, is the kind represented above. Data is fed into the input layer, the model learns from the training data, and it can then perform well with classification tasks. A feedforward neural network is exactly what is utilized below for classfication of news articles into left-leaning or right-leaning. 
+
+        <h2>Data Preparation</h2>
+        <p>
+            A feedforward neural network falls squarely in the field of supervised learning. For supervised learning, labeled data is required because the models need a ground truth to find the patterns in a dataset that lead to any specific label. In this case, the labels are "left" and "right". Mapped to numbers with <code>scikit-learn</code>'s <code>LabelEncoder</code>, the labels are 0 and 1. 
+
+        <p>
+            The full dataset can be found at the link at the top of the page. Go to the clean folder, and see the file called <code>count-4856.csv</code>. The most crucial part of preparing the data was weighting the data with sklearn's <code>TfidfTransformer</code>. A partial image of the full dataset is below after transforming it.
+
+        <div class="text-center my-4">
+            <img src="assets/text-mining/neural-networks/full-data-nn.png" alt="Partial view of dataset" class="img-fluid">
+        </div>
+
+        <p>
+            To train a model, the data must be split into training and testing data. This is for model evaluation. The point of these models to be able to predict things about data they have not seen, or in this point to predict the political leaning of an article that it has not seen. If the model is evaluated on the data it was trained on, it's like if a student in school was able to study for a test with the exact test and answers that they would later see. It's cheating. Thus, we need to split data into separate training and testing sets. The images on the left show training data and labels, and the image on the right show testing data and labels. Notice the difference in row counts. The training data is 85% of the entire dataset, while the testing set is only 15%.
+
+        <div class="row text-center">
+            <div class="col-6 my-4">
+            <img src="assets/text-mining/neural-networks/training-data.png" alt="Training data" class="img-fluid">
+            </div>
+            <div class="col-6 my-4">
+            <img src="assets/text-mining/neural-networks/testing-data.png" alt="Testing data" class="img-fluid">
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="col-6 my-4">
+            <img src="assets/text-mining/neural-networks/training-labels.png" alt="Training labels" class="img-fluid">
+            </div>
+            <div class="col-6 my-4">
+            <img src="assets/text-mining/neural-networks/testing-labels.png" alt="Testing labels" class="img-fluid">
+            </div>
+        </div>
+
+        <h2>Results</h2>
+        <p>
+            After model training, the model performed considerably well on evaluation. The model performance was measured according to accuracy, precision, recall, and f1 score which are below. A confusion matrix is also provided. 
+
+        <div class="row text-center">
+            <div class="col-12 my-4">
+            <img src="assets/text-mining/neural-networks/nn-metrics.png" alt="Neural Network Metrics" class="img-fluid">
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="col-12 my-4">
+            <img src="assets/text-mining/neural-networks/conf-mat.png" alt="Confusion Matrix" class="img-fluid">
+            </div>
+        </div>
+        <p>
+            An interesting aspect of the model that was trained is that it was only trained over two epochs. Any more than two epochs and the network began to severly overfit. Additionally, during some iterations, model performance actually decreased on the testing data when there were more than two epochs. Even so, the model is performing well.
+
+        <h2>Conclusions</h2>
+        <p>
+            The total amount of data that was used to train this network was around 2000 records. The remaining data was used for training. For a neural network, this is an incredibly small amount of data. I believe this points to a strong juxtaposition in rhetoric between the right-wing and the left-wing media, and anyone who spends only a bit of time comparing articles from Fox and MSNBC, for example, would agree.
+
+        <p>
+            Frankly the interesting conclusion here is not that the model performs well. In my opinion, the neural networks do not add much to this conversation largely due to their rightfully earned label as black boxes. While neural networks make strong predictive models, their inner workings are not easy to understand. They do not provide clear insight into their decision making. Other supervised machine learning models do. Three of them -- decision trees, naive bayes, and support vector machines -- were also used to classify and predict, and those models do provide a window into their decision making process.
