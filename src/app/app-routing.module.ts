@@ -30,7 +30,6 @@ import { DataMiningExplorationComponent } from './project-pages/data-mining-proj
 import { DataMiningModelsComponent } from './project-pages/data-mining-project/data-mining-models/data-mining-models.component';
 import { DataMiningConclusionsComponent } from './project-pages/data-mining-project/data-mining-conclusions/data-mining-conclusions.component';
 import { DataMiningTeamComponent } from './project-pages/data-mining-project/data-mining-team/data-mining-team.component';
-import { LitTimelineComponent } from './lit-timeline/lit-timeline.component';
 import { TextMiningIntroComponent } from './project-pages/text-mining-project/text-mining-intro/text-mining-intro.component';
 import { TextMiningDataComponent } from './project-pages/text-mining-project/text-mining-data/text-mining-data.component';
 import { TextMiningConclusionsComponent } from './project-pages/text-mining-project/text-mining-conclusions/text-mining-conclusions.component';
@@ -42,6 +41,7 @@ import { TextMiningNbComponent } from './project-pages/text-mining-project/text-
 import { TextMiningNnComponent } from './project-pages/text-mining-project/text-mining-models/text-mining-nn/text-mining-nn.component';
 import { TextMiningSvmComponent } from './project-pages/text-mining-project/text-mining-models/text-mining-svm/text-mining-svm.component';
 import { AboutMeComponent } from './main-pages/about-me/about-me.component';
+import { DatasetCreationComponent } from './main-pages/dataset-creation/dataset-creation.component';
 import { MusicEmotionComponent } from './project-pages/music-emotion/music-emotion.component';
 import { SoupComponent } from './project-pages/soup/soup.component';
 
@@ -59,6 +59,7 @@ const routes: Routes = [
   {path: "resume", component: ResumeComponent},
   {path: "contact", component: ContactComponent},
   {path: "audiovascular", component: AudiovascularComponent},
+  {path: "dataset-creation", component: DatasetCreationComponent},
 
   // Project pages
   {path: "portfolio/anteronesia", component: AnteronesiaComponent},
@@ -71,9 +72,6 @@ const routes: Routes = [
   {path: classRoutes.musicEmotion, component: MusicEmotionComponent},
 
   {path: classRoutes.soup, component: SoupComponent},
-
-  // Literature Visualizations
-  {path: "literature-timeline", component: LitTimelineComponent},
 
   /* *** Machine Learning Project *** */
   // Main pages

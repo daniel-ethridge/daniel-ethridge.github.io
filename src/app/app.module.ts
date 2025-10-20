@@ -41,7 +41,6 @@ import { DataMiningExplorationComponent } from './project-pages/data-mining-proj
 import { DataMiningModelsComponent } from './project-pages/data-mining-project/data-mining-models/data-mining-models.component';
 import { DataMiningConclusionsComponent } from './project-pages/data-mining-project/data-mining-conclusions/data-mining-conclusions.component';
 import { DataMiningTeamComponent } from './project-pages/data-mining-project/data-mining-team/data-mining-team.component';
-import { LitTimelineComponent } from './lit-timeline/lit-timeline.component';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { TextMiningNavigationComponent } from './project-pages/text-mining-project/text-mining-navigation/text-mining-navigation.component';
 import { TextMiningIntroComponent } from './project-pages/text-mining-project/text-mining-intro/text-mining-intro.component';
@@ -59,6 +58,7 @@ import { CiteDirective } from './_directives/cite.directive';
 import { AboutMeComponent } from './main-pages/about-me/about-me.component';
 import { MusicEmotionComponent } from './project-pages/music-emotion/music-emotion.component';
 import { SoupComponent } from './project-pages/soup/soup.component';
+import { DatasetCreationComponent } from './main-pages/dataset-creation/dataset-creation.component';
 
 
 @NgModule({
@@ -97,7 +97,6 @@ import { SoupComponent } from './project-pages/soup/soup.component';
     DataMiningExplorationComponent,
     DataMiningTeamComponent,
     DataMiningModelsComponent,
-    LitTimelineComponent,
     TextMiningNavigationComponent,
     TextMiningIntroComponent,
     TextMiningDataComponent,
@@ -113,7 +112,8 @@ import { SoupComponent } from './project-pages/soup/soup.component';
     FootnotesComponent,
     AboutMeComponent,
     MusicEmotionComponent,
-    SoupComponent
+    SoupComponent,
+    DatasetCreationComponent
   ],
   
   imports: [
