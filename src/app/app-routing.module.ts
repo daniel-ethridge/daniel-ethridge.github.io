@@ -71,9 +71,6 @@ const routes: Routes = [
 
   {path: classRoutes.soup, component: SoupComponent},
 
-  // Literature Visualizations
-  {path: "literature-timeline", component: LitTimelineComponent},
-
   /* *** Machine Learning Project *** */
   // Main pages
   {path: classRoutes.mlIntroduction, component: MlIntroductionComponent},
