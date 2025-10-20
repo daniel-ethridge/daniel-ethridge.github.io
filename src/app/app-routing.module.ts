@@ -30,7 +30,6 @@ import { DataMiningExplorationComponent } from './project-pages/data-mining-proj
 import { DataMiningModelsComponent } from './project-pages/data-mining-project/data-mining-models/data-mining-models.component';
 import { DataMiningConclusionsComponent } from './project-pages/data-mining-project/data-mining-conclusions/data-mining-conclusions.component';
 import { DataMiningTeamComponent } from './project-pages/data-mining-project/data-mining-team/data-mining-team.component';
-import { LitTimelineComponent } from './lit-timeline/lit-timeline.component';
 import { TextMiningIntroComponent } from './project-pages/text-mining-project/text-mining-intro/text-mining-intro.component';
 import { TextMiningDataComponent } from './project-pages/text-mining-project/text-mining-data/text-mining-data.component';
 import { TextMiningConclusionsComponent } from './project-pages/text-mining-project/text-mining-conclusions/text-mining-conclusions.component';
