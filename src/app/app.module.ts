@@ -41,7 +41,6 @@ import { DataMiningExplorationComponent } from './project-pages/data-mining-proj
 import { DataMiningModelsComponent } from './project-pages/data-mining-project/data-mining-models/data-mining-models.component';
 import { DataMiningConclusionsComponent } from './project-pages/data-mining-project/data-mining-conclusions/data-mining-conclusions.component';
 import { DataMiningTeamComponent } from './project-pages/data-mining-project/data-mining-team/data-mining-team.component';
-import { LitTimelineComponent } from './lit-timeline/lit-timeline.component';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { TextMiningNavigationComponent } from './project-pages/text-mining-project/text-mining-navigation/text-mining-navigation.component';
 import { TextMiningIntroComponent } from './project-pages/text-mining-project/text-mining-intro/text-mining-intro.component';
@@ -97,7 +96,6 @@ import { SoupComponent } from './project-pages/soup/soup.component';
     DataMiningExplorationComponent,
     DataMiningTeamComponent,
     DataMiningModelsComponent,
-    LitTimelineComponent,
     TextMiningNavigationComponent,
     TextMiningIntroComponent,
     TextMiningDataComponent,
