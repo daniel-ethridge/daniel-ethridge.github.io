@@ -1,0 +1,147 @@
+<div class="main-background">
+    <div class="container">
+        <div class="d-flex align-items-center justify-content-center mb-3">
+
+            <!-- First stage: Open the video and decide whether it's a single song or a compilation.-->
+            <div *ngIf="stage == 0" class="text-center">
+
+                <!-- Open the song -->
+                <a href="https://www.youtube.com/watch?v=M7_NY1DG8dA" target="_blank">
+                    <button class="green-button"
+                    (click)="stage = 1">Open Song in New Tab</button>
+                </a>
+            </div>
+
+            <!-- Decide if it's a single or a compilation -->
+            <div *ngIf="stage == 1">
+                <div class="row.row-cols-2">
+                    <div class="col text-center">
+                        <h3>Does the video opened represent only a single song? Or is it a compilation?</h3>
+                        <div class="row">
+                            <div class="col">
+                                <button class="green-button"
+                                (click)="stage = 2">Single Song</button>
+                            </div>
+                            <div class="col">
+                                <a href="/dataset-creation?p=1" target="_blank">
+                                    <button class="green-button">Compilation</button>
+                                </a>                         
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <!-- Second stage: Fill in the details of the karaoke video -->
+        <div *ngIf="stage == 2">
+            <div class="row">
+
+                <div class="col-12 text-center">
+                    <h1>Song Title and Artist</h1>
+                </div>
+                <div class="col-6 mb-3 text-center"><h4>Song Title</h4></div>
+                <div class="col-6 mb-3">
+                    <input type="text" 
+                           class="form-control" 
+                           #songTitle
+                           placeholder="Enter the artist of the song.">
+                </div>
+
+                <div class="col-6 mb-3 text-center"><h4>Song Name</h4></div>
+                <div class="col-6 mb-3">
+                    <input type="text" 
+                           class="form-control" 
+                           #songName
+                           placeholder="Enter the name of the song.">
+                </div>
+
+                <div>
+                    <div class="col-12 text-center mt-5">
+                        <h1>Song Timestamps</h1>
+                    </div>
+                </div>
+
+                <div class="col-6 mb-3 text-center"><h4>Song Start Time</h4></div>
+                <div class="col-3 mb-3">
+                    <input type="number" 
+                           class="form-control" 
+                           #songStartMin
+                           placeholder="Enter Minutes">
+                </div>
+                <div class="col-3 mb-3">
+                    <input type="number" 
+                           class="form-control" 
+                           #songStartSec
+                           placeholder="Enter Seconds">
+                </div>
+
+                <div class="col-6 mb-3 text-center"><h4>Song End Time</h4></div>
+                <div class="col-3 mb-3">
+                    <input type="number" 
+                           class="form-control" 
+                           #songEndMin
+                           placeholder="Enter Minutes">
+                </div>
+                <div class="col-3 mb-3">
+                    <input type="number" 
+                           class="form-control" 
+                           #songEndSec
+                           placeholder="Enter Seconds">
+                </div>
+
+                <div class="col-6 mb-3 text-center"><h4>1st Chorus Start Time</h4></div>
+                <div class="col-3 mb-3">
+                    <input type="number" 
+                           class="form-control" 
+                           #chorusStartMin
+                           placeholder="Enter Minutes">
+                </div>
+                <div class="col-3 mb-3">
+                    <input type="number" 
+                           class="form-control" 
+                           #chorusStartSec
+                           placeholder="Enter Seconds">
+                </div>
+
+                <div class="col-6 mb-3 text-center"><h4>1st Chorus End Time</h4></div>
+                <div class="col-3 mb-3">
+                    <input type="number" 
+                           class="form-control" 
+                           #chorusEndMin
+                           placeholder="Enter Minutes">
+                </div>
+                <div class="col-3 mb-3">
+                    <input type="number" 
+                           class="form-control" 
+                           #chorusEndSec
+                           placeholder="Enter Seconds">
+                </div>
+                <div class="col-6 mb-3 text-center">
+                    <button class="green-button" style="width: 50%">Back</button>
+                </div>
+                <div class="col-6 mb-3 text-center">
+                    <button class="green-button" style="width: 50%"
+                    (click)="saveStageTwoData(
+                        songTitle.value,
+                        songName.value,
+                        +songStartMin.value,
+                        +songStartSec.value,
+                        +songEndMin.value,
+                        +songEndSec.value,
+                        +chorusStartMin.value,
+                        +chorusStartSec.value,
+                        +chorusEndMin.value,
+                        +chorusEndSec.value
+                    )">Next</button>
+                </div>
+                
+            </div>
+        </div>
+
+        <div *ngIf="stage == 3">
+
+        </div>
+
+        </div>
+    </div>
+</div>
