@@ -17,7 +17,8 @@ export class ResearchComponent {
   // Separate zoom states for each image
   imageStates: { [key: string]: ImageZoomState } = {
     'high-level': { zoomLevel: 1, originX: 50, originY: 50, isZoomed: false },
-    'details': { zoomLevel: 1, originX: 50, originY: 50, isZoomed: false }
+    'details': { zoomLevel: 1, originX: 50, originY: 50, isZoomed: false },
+    'datasets': { zoomLevel: 1, originX: 50, originY: 50, isZoomed: false }
   };
 
   onImageClick(event: MouseEvent, imageId: string): void {
@@ -35,7 +36,7 @@ export class ResearchComponent {
       const yPercent = (y / rect.height) * 100;
       
       // Zoom in - scale by 1.5x centered on click point
-      state.zoomLevel = 1.5;
+      state.zoomLevel = 1.75;
       state.originX = xPercent;
       state.originY = yPercent;
       state.isZoomed = true;
