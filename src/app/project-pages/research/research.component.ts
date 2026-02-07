@@ -36,7 +36,7 @@ export class ResearchComponent {
       const yPercent = (y / rect.height) * 100;
       
       // Zoom in - scale by 1.5x centered on click point
-      state.zoomLevel = 1.75;
+      state.zoomLevel = 1.3;
       state.originX = xPercent;
       state.originY = yPercent;
       state.isZoomed = true;
