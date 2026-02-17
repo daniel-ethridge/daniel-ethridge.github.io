@@ -6,6 +6,9 @@
             <p>On this page are a series of diagrams showing the breakdown of current research tasks. The diagrams include:</p>
             <ul>
                 <li>
+                    RQs Diagram: The research questions and associated hypotheses/ancticipated conclusions guiding the overall research.
+                </li>
+                <li>
                     High level Diagram: A bird's eye view of the experiments and how they fit into a larger picture.
                 </li>
                 <li>
@@ -19,6 +22,28 @@
         <p>
             <em>Note: All the plots are scrollable and zoomable. The zooming functionality is a bit buggy. Zoom out to remedy if you can't scroll over to something.</em>
         </p>
+
+        <h2>RQs</h2>
+        <div class="row">
+            <div class="col-12 mt-4">
+                <div style="
+                    overflow-x: auto; 
+                    overflow-y: auto; 
+                    white-space: nowrap; 
+                    background-color: white; 
+                    padding: 10px; 
+                    cursor: zoom-in;"
+                >
+                    <img src="assets/research/experiment-tasks.drawio.v2.png" 
+                         alt="Experiment High Level" 
+                         style="height: 77vh; transition: transform 0.3s ease;"
+                         (click)="onImageClick($event, 'high-level')"
+                         [style.transform]="getTransform('high-level')"
+                         [style.transform-origin]="getTransformOrigin('high-level')">
+                </div>
+            </div>
+        </div>
+
         <h2>High level</h2>
         <div class="row">
             <div class="col-12 mt-4">
