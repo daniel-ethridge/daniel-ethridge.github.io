@@ -41,6 +41,8 @@ testem.log
 /typings
 environment.ts
 cors.json
+*.wav
+*drawio*
 
 # Python stuff
 .venv

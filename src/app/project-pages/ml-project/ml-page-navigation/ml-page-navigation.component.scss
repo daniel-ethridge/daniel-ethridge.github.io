@@ -1,16 +1,24 @@
-.blue-button {
+.green-button {
     width: 100%; 
-    background-color: #90CDFF; 
+    background-color: #BBBBBB; 
     border: none; 
     border-radius: 25px; 
     padding: 10px; 
-    color: white;
-    box-shadow: 0px 0px 3px 3px white;
+    color: black;
+    // box-shadow: 0px 0px 1px 1px black;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+
     justify-content: center;
+
+    transition: background-color 0.3s ease !important;
+
+    &:hover {
+        background-color: #00a807 !important;
+    }
 }
 
 ::ng-deep .mat-mdc-menu-panel {
-    background: #1c3993 !important;
+    background: #BBBBBB !important;
     min-width: 200px !important;
     border-radius: 25px !important;
     overflow: hidden !important;
@@ -27,8 +35,4 @@
     width: 90% !important;
     margin: 8px 0 !important;
     text-align: center !important;
-    transition: color !important;
-    &:hover {
-        color: white !important;
-    }
 }
