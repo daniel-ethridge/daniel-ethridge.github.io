@@ -11,15 +11,23 @@ import { Component, Injectable, OnInit } from '@angular/core';
   providedIn: 'root'
 })
 
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
 
-  bannerColor: CSSStyleValue = "";
+  // private readonly storageKey = 'simpleBackground';
+  // simpleBackground = false;
 
-  setColorStr(newColor: CSSStyleValue) : void {
-    this.bannerColor = newColor;
-  }
+  // ngOnInit(): void {
+  //   if (typeof window !== 'undefined') {
+  //     this.simpleBackground = window.localStorage.getItem(this.storageKey) === 'true';
+  //   }
+  // }
 
-  ngOnInit(): void {
-    this.bannerColor = "lightgrey";
-  }
+  // setColorStr(simpleBkgnd: boolean): void {
+  //   this.simpleBackground = simpleBkgnd;
+
+  //   if (typeof window !== 'undefined') {
+  //     window.localStorage.setItem(this.storageKey, String(simpleBkgnd));
+  //   }
+  // }
+
 }

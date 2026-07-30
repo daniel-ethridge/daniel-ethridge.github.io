@@ -8,18 +8,18 @@ import { HeaderComponent } from 'src/app/header/header.component';
     styleUrls: ['./audiovascular.component.scss'],
     standalone: false
 })
-export class AudiovascularComponent implements OnInit{
+export class AudiovascularComponent{
 
   constructor(private header: HeaderComponent) {
 
   }
 
-  setBannerColor() : void {
-    this.header.setColorStr("red");
-  }
+  // setBannerColor() : void {
+  //   this.header.setColorStr("red");
+  // }
 
-  ngOnInit(): void {
-    this.header.setColorStr("red");
-  }
+  // ngOnInit(): void {
+  //   this.header.setColorStr("red");
+  // }
 
 }

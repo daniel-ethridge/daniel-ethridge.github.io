@@ -56,7 +56,6 @@ import { TextMiningConclusionsComponent } from './project-pages/text-mining-proj
 import { FootnotesComponent } from './footnotes/footnotes.component';
 import { CiteDirective } from './_directives/cite.directive';
 import { AboutMeComponent } from './main-pages/about-me/about-me.component';
-import { MusicEmotionComponent } from './project-pages/music-emotion/music-emotion.component';
 import { SoupComponent } from './project-pages/soup/soup.component';
 
 
@@ -110,7 +109,6 @@ import { SoupComponent } from './project-pages/soup/soup.component';
     CiteDirective,
     FootnotesComponent,
     AboutMeComponent,
-    MusicEmotionComponent,
     SoupComponent
   ],
   
