@@ -33,6 +33,12 @@ export class ContactComponent {
       return;
     }
 
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/i;
+    if (!emailRegex.test(this.form.email.trim())) {
+      alert('Email address is invalid!');
+      return;
+    }
+
     this.emailService.sendEmail(this.form).subscribe({
       next: () => {
         this.form = {
@@ -45,7 +51,7 @@ export class ContactComponent {
       },
       error: (err) => {
         console.error(err);
-        alert('Unable to send email.');
+        alert(`Unable to send email.`);
       }
     });
   }
