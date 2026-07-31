@@ -121,17 +121,11 @@ a {
     color: #006e04;
 }
 
-.bright-hover {
-    // transition: filter 0.3s ease;
-    // &:hover {
-    //     filter: brightness(120%);
-    // }
-}
-
-.orange-hover {
+.green-hover {
     transition: color 0.3s ease; /* Add smooth transition */
+
     &:hover {
-        color: #ffda7e;
+        color: #00a807;
     }
 }
 
