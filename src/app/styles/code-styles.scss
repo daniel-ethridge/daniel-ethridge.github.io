@@ -32,10 +32,17 @@
   .tomorrow-purple, pre .keyword, pre .javascript .function {
     color: #c397d8;
   }
+
+  pre {
+    background: black;
+    overflow-x: auto;
+  }
   
   pre code {
     display: block;
-    background: black;
+    min-width: 100%;
+    width: max-content;
+    background: transparent;
     color: #eaeaea;
     font-family: Menlo, Monaco, Consolas, monospace;
     line-height: 1.5;

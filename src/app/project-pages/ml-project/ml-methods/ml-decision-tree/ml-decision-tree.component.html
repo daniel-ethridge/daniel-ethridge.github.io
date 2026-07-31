@@ -5,8 +5,12 @@
         <h2>Overview</h2>
         <p>
             Look at the image below.
-            <img class="img-center-s" src="../../../../assets/ml-assets/ml-supervised/funny-dt.jpg" alt="">
-        
+            <div class="d-none d-lg-flex mb-4">
+                <img class="img-center-m" src="../../../../assets/ml-assets/ml-supervised/funny-dt.jpg" alt="">
+            </div>
+            <div class="d-lg-none d-flex mb-4">
+                <img class="img-center-l" src="../../../../assets/ml-assets/ml-supervised/funny-dt.jpg" alt="">
+            </div>
         <p>
             Now look at the next image:
             <img class="img-center-l" src="../../../../assets/ml-assets/ml-supervised/tree0.png" alt="">
@@ -39,55 +43,55 @@
         <h5>The value that we are going to try and predict with a decision tree is whether or not a song is instrumental.</h5>
         <p>
             The spotify API states that an instrumentalness score of below 0.5 is likely not instrumental, while a score of above 0.5 is. After dropping unnecessary columns and creating the label, the data looks like this: <br>
-            <img class="img-center-s" src="../../../../assets/ml-assets/prepped-spotify-data-supervised.png" alt=""><br>
+            <img class="img-center-m" src="../../../../assets/ml-assets/prepped-spotify-data-supervised.png" alt=""><br>
 
         <p>
             For supervised learning, we need labeled data to train the model. The label for this data is "instrumental". So we will first separate the actual data from the label. The image on the left is the data, while the image on the right is the label vector.
 
-        <div class="row">
+        <div class="row mb-5">
             <div class="col-sm-6">
-                <img class="img-center-m" src="../../../../assets/ml-assets/ml-supervised/supervised-data.png" alt="">
+                <img class="img-center-l" src="../../../../assets/ml-assets/ml-supervised/supervised-data.png" alt="">
             </div>
             <div class="col-sm-6">
-                <img class="img-center-m" src="../../../../assets/ml-assets/ml-supervised/supervised-labels.png" alt="">
+                <img class="img-center-l" src="../../../../assets/ml-assets/ml-supervised/supervised-labels.png" alt="">
             </div>
         </div>
 
         <p>
             It is important in supervised learning to have equal numbers of each class, but for this data that is not the case as shown below:
-            <img class="img-center-s" src="../../../../assets/ml-assets/ml-supervised/instrumental_counts.png" alt="">
+            <img class="img-center-m mb-5" src="../../../../assets/ml-assets/ml-supervised/instrumental_counts.png" alt="">
 
         <p>
             While there are several ways to potentially fix this issue, one method is to use what is known as oversampling. This in essence randomly duplicates samples from the minority class (in this case 1) so that the cases are even. This can be accomplished with the python package <code>imblearn</code> and the included class <code>RandomOverSampler</code>. Doing so fixes the imbalance:
-            <img class="img-center-s" src="../../../../assets/ml-assets/ml-supervised/instrumental_counts_sampled.png" alt="">
+            <img class="img-center-m mb-5" src="../../../../assets/ml-assets/ml-supervised/instrumental_counts_sampled.png" alt="">
 
         <p>
             The data now needs to be split into a training set and a testing set. This disjoin split is important to be able to evaluate the model. If the model is evaluated on the same data it is trained on, it might perform great. But there is no way to know if it will generalize well to other data. Thus, it needs to perform well on data that it has not seen. The model is trained on the training set, and then the labels of the testing set are predicted. The model is then evaluated by comparing the predicted labels to the actual labels. Splitting data into a training and testing set is easily accomplished with scikit learn's <code>train__test_split</code> method. See the images below. From left to right and going down, they are training data, testing data, training labels, and testing labels. Notice the larger size of the training data. 75% of the data is randomly assigned as training data, and 25% of the data is randomly assigned as testing data.
             
-            <div class="row">
+            <div class="row mb-5">
                 <div class="col-sm-6">
-                    <img class="img-center" src="../../../../assets/ml-assets/ml-supervised/x-train.png" alt="">
+                    <img class="img-center-l p-1" src="../../../../assets/ml-assets/ml-supervised/x-train.png" alt="">
                 </div>
                 <div class="col-sm-6">
-                    <img class="img-center" src="../../../../assets/ml-assets/ml-supervised/x-test.png" alt="">
+                    <img class="img-center-l p-1" src="../../../../assets/ml-assets/ml-supervised/x-test.png" alt="">
                 </div>
                 <div class="col-sm-6">
-                    <img class="img-center" src="../../../../assets/ml-assets/ml-supervised/y-train.png" alt="">
+                    <img class="img-center-l p-1" src="../../../../assets/ml-assets/ml-supervised/y-train.png" alt="">
                 </div>
                 <div class="col-sm-6">
-                    <img class="img-center" src="../../../../assets/ml-assets/ml-supervised/y-test.png" alt="">
+                    <img class="img-center-l p-1" src="../../../../assets/ml-assets/ml-supervised/y-test.png" alt="">
                 </div>
             </div>
 
         <p>
             After the data is ready, the model is fit to the data. After a first pass, the follow confusion matrix and metrics are calculated:
 
-            <div class="row">
+            <div class="row mb-5">
                 <div class="col-sm-6">
-                    <img class="img-center" src="../../../../assets/ml-assets/ml-supervised/bad-tree-conf.png" alt="">
+                    <img class="img-center-l p-1" src="../../../../assets/ml-assets/ml-supervised/bad-tree-conf.png" alt="">
                 </div>
                 <div class="col-sm-6">
-                    <img class="img-center-m" src="../../../../assets/ml-assets/ml-supervised/bad-tree-table.png" alt="">
+                    <img class="img-center-l p-1" src="../../../../assets/ml-assets/ml-supervised/bad-tree-table.png" alt="">
                 </div>
             </div>
 
@@ -99,12 +103,12 @@
         <p>
             This shows that after a max depth of 10, the model begins to overfit to the training data and not generalize as well. Below is a confusion matrix and metrics for a max depth of 15:
 
-            <div class="row">
+            <div class="row mb-5">
                 <div class="col-sm-6">
-                    <img class="img-center" src="../../../../assets/ml-assets/ml-supervised/tree_conf_matrix.png" alt="">
+                    <img class="img-center-l p-1" src="../../../../assets/ml-assets/ml-supervised/tree_conf_matrix.png" alt="">
                 </div>
                 <div class="col-sm-6">
-                    <img class="img-center-m" src="../../../../assets/ml-assets/ml-supervised/tree-table.png" alt="">
+                    <img class="img-center-l p-1" src="../../../../assets/ml-assets/ml-supervised/tree-table.png" alt="">
                 </div>
             </div>
 
