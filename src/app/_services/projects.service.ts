@@ -18,6 +18,12 @@ export class ProjectsService {
     //   image: ""
     // },
     {
+      id: 10,
+      summary: "Dissertation Research (In Progress)",
+      projectPage: this.routes.dissertation,
+      image: "../../assets/dissertation-research.jpg"
+    },
+    {
       id: 9,
       summary: "Two sides, countless victims: diving into the U.S. gun control debate",
       projectPage: this.routes.tmHome,

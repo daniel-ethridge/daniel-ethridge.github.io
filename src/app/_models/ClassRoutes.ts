@@ -1,8 +1,8 @@
 export class ClassRoutes {
     // Projects
     musicEmotion: string = "portfolio/music-emotion";
+    dissertation: string = "portfolio/dissertation";
 
-    // 
     soup: string = "soup";
 
     // Machine Learning

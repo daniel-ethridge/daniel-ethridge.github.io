@@ -43,6 +43,7 @@ import { TextMiningSvmComponent } from './project-pages/text-mining-project/text
 import { AboutMeComponent } from './main-pages/about-me/about-me.component';
 import { SoupComponent } from './project-pages/soup/soup.component';
 import { ResearchComponent } from './project-pages/research/research.component';
+import { DissertationComponent } from './project-pages/dissertation/dissertation.component';
 
 /*
 Add routing to new pages below. Path then Angular component
@@ -68,6 +69,7 @@ const routes: Routes = [
   {path: "portfolio/shape-song", component: ShapeSongComponent},
   {path: "portfolio/welcome-to-your-heart", component: WelcomeToYourHeartComponent},
   {path: "portfolio/audio-physio-correlates", component: AudioPhysioCorrComponent},
+  {path: classRoutes.dissertation, component: DissertationComponent},
 
   {path: classRoutes.soup, component: SoupComponent},
 

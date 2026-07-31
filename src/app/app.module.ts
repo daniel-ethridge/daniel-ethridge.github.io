@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -57,7 +58,7 @@ import { FootnotesComponent } from './footnotes/footnotes.component';
 import { CiteDirective } from './_directives/cite.directive';
 import { AboutMeComponent } from './main-pages/about-me/about-me.component';
 import { SoupComponent } from './project-pages/soup/soup.component';
-
+import { DissertationComponent } from './project-pages/dissertation/dissertation.component';
 
 @NgModule({
   declarations: [
@@ -109,7 +110,8 @@ import { SoupComponent } from './project-pages/soup/soup.component';
     CiteDirective,
     FootnotesComponent,
     AboutMeComponent,
-    SoupComponent
+    SoupComponent,
+    DissertationComponent
   ],
   
   imports: [
@@ -122,7 +124,7 @@ import { SoupComponent } from './project-pages/soup/soup.component';
     CollapseModule.forRoot(),
     FormsModule
   ],
-  providers: [],
+  providers: [provideHttpClient(withInterceptorsFromDi())],
   bootstrap: [AppComponent]
 })
 
