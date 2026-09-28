@@ -44,6 +44,7 @@ import { AboutMeComponent } from './main-pages/about-me/about-me.component';
 import { SoupComponent } from './project-pages/soup/soup.component';
 import { ResearchComponent } from './project-pages/research/research.component';
 import { DissertationComponent } from './project-pages/dissertation/dissertation.component';
+import { TestComponent } from './study/test/test.component';
 
 /*
 Add routing to new pages below. Path then Angular component
@@ -109,6 +110,7 @@ const routes: Routes = [
   {path: classRoutes.tmNb, component: TextMiningNbComponent},
   {path: classRoutes.tmNn, component: TextMiningNnComponent},
   {path: classRoutes.tmSvm, component: TextMiningSvmComponent},
+  {path: "study", component: TestComponent},
 
   {path: "**", component:HomeComponent, pathMatch: 'full'}
 ];
