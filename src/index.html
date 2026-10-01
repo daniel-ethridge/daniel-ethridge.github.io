@@ -22,5 +22,28 @@
 <body">
   <app-root>
   </app-root>
+    <script>
+    // Listen for cross-document communication messages coming from the iframe
+    window.addEventListener('message', function(event) {
+      
+      // Safety check: ensure the message structure matches what our Unity iframe sends
+      if (event.data && event.data.type === 'ExperimentCompleted') {
+        
+        const jsonPayloadString = event.data.payload;
+        console.log("Sending to email");
+        
+        // Forward the string data directly to your local Netlify serverless function
+        // In order to properly test this locally, run netlify dev, not ng serve
+        fetch('/.netlify/functions/upload-json', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: jsonPayloadString // Already a structured JSON string from Unity
+        })
+        .then(response => response.json())
+        .then(data => console.log('Netlify Local Function Success:', data))
+        .catch(error => console.error('Netlify Local Function Error:', error));
+      }
+    });
+  </script>
 </body>
 </html>
