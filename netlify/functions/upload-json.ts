@@ -33,7 +33,7 @@ export const handler: Handler = async (event) => {
       text: "New Data",
       attachments: [
         {
-            filename: "nostalgia-data.json",
+            filename: `${jsonData.part_id}_nostalgia_data.json`,
             content: Buffer.from(JSON.stringify(jsonData, null, 2)).toString("base64")
         }
       ]
