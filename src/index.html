@@ -32,7 +32,6 @@
         const jsonPayloadString = event.data.payload;
         console.log("Sending to email");
         
-        // Forward the string data directly to your local Netlify serverless function
         // In order to properly test this locally, run netlify dev, not ng serve
         fetch('/.netlify/functions/upload-json', {
           method: 'POST',
