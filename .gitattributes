@@ -1,1 +1,4 @@
 src/assets/study/StreamingAssets/baekz_audio_files.assetbundle filter=lfs diff=lfs merge=lfs -text
+*.assetbundle filter=lfs diff=lfs merge=lfs -text
+*.data filter=lfs diff=lfs merge=lfs -text
+*.wasm filter=lfs diff=lfs merge=lfs -text
